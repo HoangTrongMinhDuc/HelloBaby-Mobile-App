@@ -41,7 +41,7 @@ public class SelectMomOrSon extends AppCompatActivity {
         btnForMom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                edit.putString("forObject","son");
+                edit.putString("forObject","mom");
                 edit.commit();
                 Intent intent=new Intent(SelectMomOrSon.this,MainActivity.class);
                 startActivity(intent);

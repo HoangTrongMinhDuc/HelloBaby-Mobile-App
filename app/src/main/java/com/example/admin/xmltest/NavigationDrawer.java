@@ -75,6 +75,7 @@ public class NavigationDrawer extends AppCompatActivity
 
     private void addEvents() {
         final SharedPreferences pre=getSharedPreferences("login_data",MODE_PRIVATE);
+        final SharedPreferences pre2=getSharedPreferences("for",MODE_PRIVATE);
 
 
 
@@ -86,7 +87,7 @@ public class NavigationDrawer extends AppCompatActivity
         tvName.setText(pre.getString("username",""));
         tvPass.setText(pre.getString("username",""));
 
-        if(pre.getString("username","")!="")
+        if(pre2.getString("forObject","").equals("son"))
         {
             Menu menu=navigationView.getMenu();
             menu.findItem(R.id.nav_slideshow).setEnabled(false);
