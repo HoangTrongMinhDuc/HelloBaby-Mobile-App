@@ -166,8 +166,16 @@ public class NavigationDrawer extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_slideshow) {
+            ChucNang3Frag fragment3=new ChucNang3Frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container,fragment3);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_manage) {
+            ChucNang4Frag fragment4=new ChucNang4Frag();
+            android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container,fragment4);
+            fragmentTransaction.commit();
 
         }
 
