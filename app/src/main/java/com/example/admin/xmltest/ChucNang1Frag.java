@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -198,7 +199,9 @@ public class ChucNang1Frag extends Fragment {
     {
         AlertDialog.Builder buider=new AlertDialog.Builder(getActivity());
         buider.setTitle("Nhập số điện thoại");
-        input=new EditText(getActivity());
+        EditText editText=new EditText(getActivity());
+        editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input=editText;
         buider.setView(input);
 
         buider.setPositiveButton("Nhập", new DialogInterface.OnClickListener() {
