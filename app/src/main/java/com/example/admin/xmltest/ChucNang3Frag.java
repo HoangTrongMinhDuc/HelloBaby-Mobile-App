@@ -17,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * Created by admin on 9/13/2017.
@@ -44,8 +45,9 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String sdtcon="01647723485";
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage("01647723485", null, "sms message", null, null);
+                smsManager.sendTextMessage(sdtcon, null, "sms message", null, null);
             }
         });
         return vView;
@@ -66,13 +68,14 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         gMap=googleMap;
         gMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(20.2,34.2),5));
+        LatLng position=new LatLng(16.075798,108.1514833);
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position,18));
         gMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
                 progressDialog.dismiss();
             }
         });
-
+        gMap.addMarker(new MarkerOptions().position(position).title("Tao ở đây"));
     }
 }
