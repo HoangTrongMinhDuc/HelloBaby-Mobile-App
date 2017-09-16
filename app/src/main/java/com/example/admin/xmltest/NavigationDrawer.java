@@ -93,6 +93,10 @@ public class NavigationDrawer extends AppCompatActivity
             menu.findItem(R.id.nav_slideshow).setEnabled(false);
         }
 
+        //Khoi tao va chay Service SonReceiAndSendBackService
+        startService(new Intent(getBaseContext(),SonReceiveAndSendBackService.class));
+
+
 
         //Tao fragment 1 ban dau khi vao
         ChucNang1Frag fragment1=new ChucNang1Frag();
