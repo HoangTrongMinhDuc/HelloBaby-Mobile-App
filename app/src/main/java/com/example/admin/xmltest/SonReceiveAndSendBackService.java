@@ -1,13 +1,10 @@
 package com.example.admin.xmltest;
 
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.support.annotation.IntDef;
-import android.support.annotation.Nullable;
+import android.telephony.SmsMessage;
 import android.widget.Toast;
 
 /**
@@ -18,10 +15,14 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "Service Started", Toast.LENGTH_LONG).show();
-        Bundle extras=intent.getExtras();
-        if(extras!=null){
-
+        Bundle bundle=intent.getExtras();
+        Object[] pdus= (Object[]) bundle.get("pdus");
+        for (int i=1;i<pdus.length;i++)
+        {
+            SmsMessage smsMessage=SmsMessage.createFromPdu((byte[]) pdus[i]);
+            String noidung=smsMessage.getMessageBody();
+            String phone=smsMessage.getOriginatingAddress();
+            Toast.makeText(context,"Số phone="+phone+"\nNội dung:"+noidung,Toast.LENGTH_SHORT).show();
         }
     }
 }

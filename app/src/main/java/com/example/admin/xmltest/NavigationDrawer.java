@@ -94,7 +94,7 @@ public class NavigationDrawer extends AppCompatActivity
         }
 
         //Khoi tao va chay Service SonReceiAndSendBackService
-        startService(new Intent(getBaseContext(),SonReceiveAndSendBackService.class));
+
 
 
 
