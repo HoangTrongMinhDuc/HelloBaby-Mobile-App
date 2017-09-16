@@ -15,7 +15,6 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String a;
         Bundle bundle=intent.getExtras();
         Object[] pdus= (Object[]) bundle.get("pdus");
         for (int i=1;i<pdus.length;i++)
