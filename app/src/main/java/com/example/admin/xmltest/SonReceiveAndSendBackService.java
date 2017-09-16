@@ -3,7 +3,9 @@ package com.example.admin.xmltest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 public class SonReceiveAndSendBackService extends BroadcastReceiver {
 
+    @RequiresApi(api = Build.VERSION_CODES.DONUT)
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle=intent.getExtras();
