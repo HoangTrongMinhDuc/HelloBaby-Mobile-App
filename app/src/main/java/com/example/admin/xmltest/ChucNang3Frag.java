@@ -1,5 +1,6 @@
 package com.example.admin.xmltest;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,7 +28,8 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
     private MapView mapView;
     private View vView;
     private GoogleMap gMap;
-    private ProgressDialog progressDialog;
+//    private ProgressDialog progressDialog;
+    private Dialog progressDialog;
     private Button btnFind;
     @Nullable
 
@@ -35,10 +37,14 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         vView=inflater.inflate(R.layout.fragment_chuc_nang3, container, false);
         getActivity().setTitle("QUẢN LÝ");
-        progressDialog =new ProgressDialog(getContext());
-        progressDialog.setTitle("Thông báo");
-        progressDialog.setMessage("Đang tải bản đồ");
+        progressDialog=new Dialog(getContext(),R.style.Theme_AppCompat_Dialog);
+        progressDialog.setContentView(R.layout.progress_dialog);
+//        progressDialog =new ProgressDialog(getContext());
+//        progressDialog.setContentView(R.layout.progress_dialog);
+//        progressDialog.setTitle("Thông báo");
+//        progressDialog.setMessage("Đang tải bản đồ");
         progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
 
 
         btnFind= (Button) vView.findViewById(R.id.btnfind);

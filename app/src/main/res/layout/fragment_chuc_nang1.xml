@@ -5,6 +5,7 @@
     tools:context="com.example.admin.xmltest.ChucNang1Frag"
     android:orientation="vertical"
     android:background="@color/colorBlueLight"
+    android:padding="20dp"
     >
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="3"
-        android:stretchColumns="*"
-        android:shrinkColumns="*"
+
+
         >
 
 
@@ -23,11 +24,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:weightSum="3">
 
             <ImageView
                 android:id="@+id/imgNum1"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
@@ -37,29 +40,35 @@
                 android:shadowRadius="10"
                 android:scaleType="fitXY"
                 android:src="@mipmap/icon_owl"
+                android:layout_gravity="center"
+                android:layout_weight="1"
                 />
 
             <ImageView
                 android:id="@+id/imgNum2"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_water_seal" />
+                android:src="@mipmap/icon_water_seal"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/imgNum3"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_gigraffy" />
+                android:src="@mipmap/icon_gigraffy"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
 
 
         </TableRow>
@@ -68,40 +77,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:weightSum="3">
 
             <ImageView
                 android:id="@+id/imgNum4"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_lion" />
+                android:src="@mipmap/icon_lion"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/imgNum5"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_bear" />
+                android:src="@mipmap/icon_bear"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/imgNum6"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_dog" />
+                android:src="@mipmap/icon_dog"
+                android:layout_weight="1"/>
 
 
         </TableRow>
@@ -110,33 +124,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="3">
 
             <ImageView
                 android:id="@+id/imgNum7"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_monkey" />
+                android:src="@mipmap/icon_monkey"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/imgNum8"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_elephant" />
+                android:src="@mipmap/icon_elephant"
+                android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/imgNum9"
-                android:layout_width="70dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
@@ -144,7 +161,8 @@
                 android:layout_marginTop="10dp"
 
                 android:scaleType="fitXY"
-                android:src="@mipmap/icon_koala" />
+                android:src="@mipmap/icon_koala"
+                android:layout_weight="1"/>
 
 
         </TableRow>

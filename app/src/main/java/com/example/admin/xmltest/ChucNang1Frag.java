@@ -199,7 +199,7 @@ public class ChucNang1Frag extends Fragment {
     {
         AlertDialog.Builder buider=new AlertDialog.Builder(getActivity());
         buider.setTitle("Nhập số điện thoại");
-        int a;
+        buider.setIcon(R.mipmap.icon_running_rabbit);
         EditText editText=new EditText(getActivity());
         editText.setInputType(InputType.TYPE_CLASS_NUMBER);
         input=editText;
