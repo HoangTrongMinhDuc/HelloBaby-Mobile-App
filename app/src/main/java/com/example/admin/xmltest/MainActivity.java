@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     EditText edtUserName, edtPassWords;
-    Button btnLogin, btnGiaoDuc,btnComic,btnVideo;
+    Button btnLogin, btnGiaoDuc,btnComic,btnVideo,btnChonlua;
     TextView tvSignUp;
 
     @Override
@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 edit.putString("username",edtPassWords.getText().toString());
                 edit.putString("password",edtUserName.getText().toString());
                 edit.commit();
-
                 startActivity(intent);
                 finish();
             }
@@ -63,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
 
 
