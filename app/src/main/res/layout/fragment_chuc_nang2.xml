@@ -2,12 +2,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/bg_giaoduc"
     tools:context="com.example.admin.xmltest.ChucNang2Frag">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello fragment 2" />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="110dp"
+            android:background="@drawable/logo"/>
+        <Button
+            android:id="@+id/btnGiaoDuc"
+            android:onClick="chuyenGiaoDuc"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_giaoduc"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            />
+        <Button
+            android:id="@+id/btnComic"
+            android:onClick="chuyenTruyen"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_truyen"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            />
+        <Button
+            android:id="@+id/btnVideo"
+            android:onClick="chuyenVideo"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_video"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            />
+    </LinearLayout>
 
 </FrameLayout>

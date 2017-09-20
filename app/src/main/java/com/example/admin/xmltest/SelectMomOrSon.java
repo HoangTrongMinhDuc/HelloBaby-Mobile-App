@@ -33,7 +33,7 @@ public class SelectMomOrSon extends AppCompatActivity {
             public void onClick(View v) {
                 edit.putString("forObject","son");
                 edit.commit();
-                Intent intent=new Intent(SelectMomOrSon.this,Manhinhchinh.class);
+                Intent intent=new Intent(SelectMomOrSon.this,MainActivity.class);//?????
                 startActivity(intent);
                 finish();
             }
