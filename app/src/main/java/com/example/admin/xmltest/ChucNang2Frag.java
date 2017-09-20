@@ -42,6 +42,8 @@ public class ChucNang2Frag extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+
             }
         });
         btnTruyen.setOnClickListener(new View.OnClickListener() {
