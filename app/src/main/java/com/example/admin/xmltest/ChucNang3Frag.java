@@ -74,8 +74,8 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         gMap=googleMap;
         gMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        LatLng position=new LatLng(16.075798,108.1514833);
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position,18));
+        LatLng position=new LatLng(16.0408051,108.2481322);
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position,35));
         gMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {

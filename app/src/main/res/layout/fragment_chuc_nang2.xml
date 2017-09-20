@@ -15,13 +15,13 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="110dp"
-            android:background="@drawable/logo"/>
+            android:background="@mipmap/logo"/>
         <Button
             android:id="@+id/btnGiaoDuc"
             android:onClick="chuyenGiaoDuc"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@drawable/btn_giaoduc"
+            android:background="@mipmap/btn_giaoduc"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
@@ -31,7 +31,7 @@
             android:onClick="chuyenTruyen"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@drawable/btn_truyen"
+            android:background="@mipmap/btn_truyen"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
@@ -41,10 +41,11 @@
             android:onClick="chuyenVideo"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@drawable/btn_video"
+            android:background="@mipmap/btn_video"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
             />
     </LinearLayout>
 
