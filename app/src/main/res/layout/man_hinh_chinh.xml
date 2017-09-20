@@ -18,7 +18,7 @@
             android:background="@drawable/logo"/>
         <Button
             android:id="@+id/btnGiaoDuc"
-            android:onClick="chuyenManHinhKhac"
+            android:onClick="chuyenGiaoDuc"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/btn_giaoduc"
@@ -28,6 +28,7 @@
             />
         <Button
             android:id="@+id/btnComic"
+            android:onClick="chuyenTruyen"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/btn_truyen"
@@ -37,6 +38,7 @@
             />
         <Button
             android:id="@+id/btnVideo"
+            android:onClick="chuyenVideo"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/btn_video"
