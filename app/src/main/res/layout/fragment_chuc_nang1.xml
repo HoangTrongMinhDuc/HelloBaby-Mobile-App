@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.admin.xmltest.ChucNang1Frag"
     android:orientation="vertical"
-    android:background="@color/colorBlueLight"
+    android:background="@mipmap/bg_sub"
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
     android:paddingBottom="20dp"
+
     >
 
     <!-- TODO: Update blank fragment layout -->
