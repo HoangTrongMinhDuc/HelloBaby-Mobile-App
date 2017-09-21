@@ -42,7 +42,7 @@ public class ChucNang1Frag extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_chuc_nang1, container, false);
         addControls(view);
-        //giaLapDuLieu();
+        ///giaLapDuLieu();
         addEvents();
 
         //Thay doi chu toolbar
