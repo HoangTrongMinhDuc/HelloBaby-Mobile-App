@@ -22,6 +22,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import static com.example.admin.xmltest.R.id.nav_camera;
 import static com.example.admin.xmltest.R.id.tvEmail_;
 import static com.example.admin.xmltest.R.id.tvName;
@@ -31,7 +34,8 @@ public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView naviationView;
     Toolbar toolbar;
-
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
 
     @Override
@@ -40,7 +44,7 @@ public class NavigationDrawer extends AppCompatActivity
         setContentView(R.layout.activity_navigation_drawer);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        mAuth=FirebaseAuth.getInstance();
         addControls();
         addEvents();
         addFloatingActionButton();
@@ -84,8 +88,12 @@ public class NavigationDrawer extends AppCompatActivity
         View hView =  navigationView.getHeaderView(0);
         TextView tvName = (TextView)hView.findViewById(R.id.tvName);
         TextView tvPass= (TextView) hView.findViewById(R.id.tvEmail_);
-        tvName.setText(pre.getString("username",""));
-        tvPass.setText(pre.getString("username",""));
+
+        mUser=FirebaseAuth.getInstance().getCurrentUser();
+        tvName.setText(mUser.getEmail());
+        tvPass.setText(mUser.getDisplayName());
+//        tvName.setText(pre.getString("username",""));
+//        tvPass.setText(pre.getString("username",""));
 
         if(pre2.getString("forObject","").equals("son"))
         {
