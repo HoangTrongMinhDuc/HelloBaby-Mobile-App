@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogin, btnGiaoDuc,btnComic,btnVideo,btnChonlua;
     TextView tvSignUp;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
