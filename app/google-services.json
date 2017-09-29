@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "857020090938",
+    "firebase_url": "https://hello-baby-fd148.firebaseio.com",
+    "project_id": "hello-baby-fd148",
+    "storage_bucket": "hello-baby-fd148.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857020090938:android:8ecf2c983ba2d018",
+        "android_client_info": {
+          "package_name": "com.example.admin.xmltest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857020090938-0g2d52ah4blfdt9sj7rt2gvb61nv30ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdYkI6s_kVonTZixkhMAb0FMJJp-7Sm_c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
