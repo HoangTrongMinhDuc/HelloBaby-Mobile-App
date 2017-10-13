@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +32,7 @@ public class ChucNang1Frag extends Fragment {
     ImageView imgNum1,imgNum2,imgNum3,imgNum4,imgNum5,imgNum6,imgNum7,imgNum8,imgNum9;
     EditText input;
     String txt="";
-
+    ArrayList<ImageView> imgArr;
     public ChucNang1Frag() {
         // Required empty public constructor
     }
@@ -41,158 +43,59 @@ public class ChucNang1Frag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_chuc_nang1, container, false);
-        addControls(view);
-        ///giaLapDuLieu();
-        addEvents();
-
         //Thay doi chu toolbar
         getActivity().setTitle("GỌI CHO NGƯỜI THÂN");
+
+        init();
+        setComponent(view);
+        setEvents();
+
+
         return view;
 
     }
+
+    private void init() {
+        imgArr=new ArrayList<>();
+    }
+
     private void giaLapDuLieu() {
         SharedPreferences sP = this.getActivity().getSharedPreferences("phone_num_to_call", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sP.edit();
-        editor.putString("phone_num_1", "0987078071");
-        editor.putString("phone_num_2", "0987078072");
-        editor.putString("phone_num_3", "0987078073");
-        editor.putString("phone_num_4", "0987078074");
-        editor.putString("phone_num_5", "0987078075");
-        editor.putString("phone_num_6", "0987078076");
-        editor.putString("phone_num_7", "0987078077");
-        editor.putString("phone_num_8", "0987078078");
-        editor.putString("phone_num_9", "0987078079");
+//        editor.putString("phone_num_1", "0987078071");
+//        editor.putString("phone_num_2", "0987078072");
+//        editor.putString("phone_num_3", "0987078073");
+//        editor.putString("phone_num_4", "0987078074");
+//        editor.putString("phone_num_5", "0987078075");
+//        editor.putString("phone_num_6", "0987078076");
+//        editor.putString("phone_num_7", "0987078077");
+//        editor.putString("phone_num_8", "0987078078");
+//        editor.putString("phone_num_9", "0987078079");
         editor.commit();
     }
     //
-    private void addEvents() {
-        imgNum1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,1);
+    private void setEvents() {
+        for(int i=0;i<9;i++){
+            final int finalI = i;
+            imgArr.get(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    xuLyGoi(v, finalI +1);
+                }
+            });
+        }
 
-            }
-        });
-        imgNum2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,2);
+        for(int i=0;i<9;i++){
+            final int finalI = i;
+            imgArr.get(i).setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                            xuLyNhapSo(v, finalI +1);
+                    return false;
+                }
+            });
+        }
 
-            }
-        });
-        imgNum3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,3);
-
-            }
-        });
-        imgNum4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,4);
-
-            }
-        });
-        imgNum5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,5);
-
-            }
-        });
-        imgNum6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,6);
-
-            }
-        });
-        imgNum7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,7);
-
-            }
-        });
-        imgNum8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,8);
-
-            }
-        });
-        imgNum9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                xuLyGoi(view,9);
-
-            }
-        });
-
-        imgNum1.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,1);
-                return false;
-            }
-        });
-        imgNum2.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,2);
-                return false;
-            }
-        });
-        imgNum3.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,3);
-                return false;
-            }
-        });
-        imgNum4.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,4);
-                return false;
-            }
-        });
-        imgNum5.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,5);
-                return false;
-            }
-        });
-        imgNum6.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,6);
-                return false;
-            }
-        });
-        imgNum7.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,7);
-                return false;
-            }
-        });
-        imgNum8.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,8);
-                return false;
-            }
-        });
-        imgNum9.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                xuLyNhapSo(v,0);
-                return false;
-            }
-        });
     }
 
     private void xuLyNhapSo(View v, final int i)
@@ -222,7 +125,7 @@ public class ChucNang1Frag extends Fragment {
         });
 
 
-        AlertDialog ad=buider.create();
+        AlertDialog ad = buider.create();
         ad.show();
 
     }
@@ -230,39 +133,37 @@ public class ChucNang1Frag extends Fragment {
     private void savePhone(String txt, int i) {
         SharedPreferences sP = this.getActivity().getSharedPreferences("phone_num_to_call", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sP.edit();
-
-
-        switch (i)
-        {
-            case 1:
-                Toast.makeText(getActivity(),txt,Toast.LENGTH_LONG).show();
-                editor.putString("phone_num_1", txt );
-                break;
-            case 2:
-                editor.putString("phone_num_2", txt);
-                break;
-            case 3:
-                editor.putString("phone_num_3", txt);
-                break;
-            case 4:
-                editor.putString("phone_num_4", txt);
-                break;
-            case 5:
-                editor.putString("phone_num_5", txt);
-                break;
-            case 6:
-                editor.putString("phone_num_6", txt);
-                break;
-            case 7:
-                editor.putString("phone_num_7", txt);
-                break;
-            case 8:
-                editor.putString("phone_num_8", txt);
-                break;
-            case 9:
-                editor.putString("phone_num_9", txt);
-                break;
-        }
+//        switch (i)
+//        {
+//            case 1:
+//                editor.putString("phone_num_1", txt );
+//                break;
+//            case 2:
+//                editor.putString("phone_num_2", txt);
+//                break;
+//            case 3:
+//                editor.putString("phone_num_3", txt);
+//                break;
+//            case 4:
+//                editor.putString("phone_num_4", txt);
+//                break;
+//            case 5:
+//                editor.putString("phone_num_5", txt);
+//                break;
+//            case 6:
+//                editor.putString("phone_num_6", txt);
+//                break;
+//            case 7:
+//                editor.putString("phone_num_7", txt);
+//                break;
+//            case 8:
+//                editor.putString("phone_num_8", txt);
+//                break;
+//            case 9:
+//                editor.putString("phone_num_9", txt);
+//                break;
+//        }
+        editor.putString("phone_num_"+i,txt);
         editor.commit();
     }
 
@@ -302,16 +203,25 @@ public class ChucNang1Frag extends Fragment {
 //
     }
 
-    private void addControls(View view) {
-        imgNum1= (ImageView) view.findViewById(R.id.imgNum1);
-        imgNum2= (ImageView) view.findViewById(R.id.imgNum2);
-        imgNum3= (ImageView) view.findViewById(R.id.imgNum3);
-        imgNum4= (ImageView) view.findViewById(R.id.imgNum4);
-        imgNum5= (ImageView) view.findViewById(R.id.imgNum5);
-        imgNum6= (ImageView) view.findViewById(R.id.imgNum6);
-        imgNum7= (ImageView) view.findViewById(R.id.imgNum7);
-        imgNum8= (ImageView) view.findViewById(R.id.imgNum8);
-        imgNum9= (ImageView) view.findViewById(R.id.imgNum9);
+    private void setComponent(View view) {
+        imgNum1 = (ImageView) view.findViewById(R.id.imgNum1);
+        imgNum2 = (ImageView) view.findViewById(R.id.imgNum2);
+        imgNum3 = (ImageView) view.findViewById(R.id.imgNum3);
+        imgNum4 = (ImageView) view.findViewById(R.id.imgNum4);
+        imgNum5 = (ImageView) view.findViewById(R.id.imgNum5);
+        imgNum6 = (ImageView) view.findViewById(R.id.imgNum6);
+        imgNum7 = (ImageView) view.findViewById(R.id.imgNum7);
+        imgNum8 = (ImageView) view.findViewById(R.id.imgNum8);
+        imgNum9 = (ImageView) view.findViewById(R.id.imgNum9);
+        imgArr.add(imgNum1);
+        imgArr.add(imgNum2);
+        imgArr.add(imgNum3);
+        imgArr.add(imgNum4);
+        imgArr.add(imgNum5);
+        imgArr.add(imgNum6);
+        imgArr.add(imgNum7);
+        imgArr.add(imgNum8);
+        imgArr.add(imgNum9);
 
     }
 

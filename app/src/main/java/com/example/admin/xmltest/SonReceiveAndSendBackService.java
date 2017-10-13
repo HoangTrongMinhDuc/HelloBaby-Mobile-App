@@ -31,7 +31,6 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
             Toast.makeText(context,"Số phone="+phone+"\nNội dung:"+noidung,Toast.LENGTH_SHORT).show();
         }
 
-
     }
 
 
