@@ -22,19 +22,23 @@ public class CreateAccountActivity extends AppCompatActivity {
     Button btnCreate;
     TextView tvLogin;
     FirebaseAuth mAuth;
-    Spinner snMotherSon;
-    boolean motherOrSon;
+//    Spinner snMotherSon;
+//    boolean motherOrSon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        mAuth= FirebaseAuth.getInstance();
-        addControls();
-        addEvents();
+        init();
+        setComponents();
+        setEvents();
     }
 
-    private void addEvents() {
+    private void init() {
+        mAuth= FirebaseAuth.getInstance();
+    }
+
+    private void setEvents() {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +50,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(CreateAccountActivity.this,MainActivity.class);
+                Intent intent=new Intent(CreateAccountActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -59,13 +63,13 @@ public class CreateAccountActivity extends AppCompatActivity {
     private void xuLyTaoTaiKhoan() {
         final String name=edtUserName.getText().toString();
         final String pass=edtPassWords.getText().toString();
-        mAuth.createUserWithEmailAndPassword(name  , pass)
+        mAuth.createUserWithEmailAndPassword(name, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(CreateAccountActivity.this,"Đăng kí thành công",Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(CreateAccountActivity.this,MainActivity.class);
+                            Toast.makeText(CreateAccountActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
@@ -81,11 +85,11 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
 
-    private void addControls() {
-        edtUserName= (EditText) findViewById(R.id.edtUserName);
-        edtPassWords= (EditText) findViewById(R.id.edtPassWords);
-        btnCreate= (Button) findViewById(R.id.btnCreate);
-        tvLogin= (TextView) findViewById(R.id.tvLogin);
+    private void setComponents() {
+        edtUserName = (EditText) findViewById(R.id.edtUserName);
+        edtPassWords = (EditText) findViewById(R.id.edtPassWords);
+        btnCreate = (Button) findViewById(R.id.btnCreate);
+        tvLogin = (TextView) findViewById(R.id.tvLogin);
 
 
     }

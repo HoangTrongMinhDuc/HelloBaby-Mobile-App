@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     EditText edtUserName, edtPassWords;
-    Button btnLogin, btnGiaoDuc,btnComic,btnVideo,btnChonlua;
+    Button btnLogin, btnGiaoDuc, btnComic, btnVideo, btnChonlua;
     TextView tvSignUp;
     FirebaseAuth mAuth;
 
@@ -32,19 +32,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        mAuth=FirebaseAuth.getInstance();
-        addControls();
-        addEvents();
+        init();
+        setComponents();
+        setEvents();
 
     }
 
-    private void addEvents() {
+    private void init() {
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    private void setEvents() {
         //khi có dữ liệu rồi thì chạy vào để sang màn hình tiếp
-        final SharedPreferences pre=getSharedPreferences("login_data",MODE_PRIVATE);
+        final SharedPreferences pre = getSharedPreferences("login_data",MODE_PRIVATE);
 
         if(pre.getString("username","")!="")
         {
-            Intent intent=new Intent(MainActivity.this,NavigationDrawer.class);
+            Intent intent=new Intent(MainActivity.this, NavigationDrawer.class);
             startActivity(intent);
             finish();
         }
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,CreateAccountActivity.class);
+                Intent intent=new Intent(MainActivity.this, CreateAccountActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -82,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void xuLyDangNhap() {
-        String email=edtUserName.getText().toString();
-        String password=edtPassWords.getText().toString();
+        String email = edtUserName.getText().toString();
+        String password = edtPassWords.getText().toString();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
 
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Đăng nhập thành công",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent=new Intent(MainActivity.this,NavigationDrawer.class);
+                            Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
                             startActivity(intent);
                             finish();
 
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addControls() {
+    private void setComponents() {
         edtUserName= (EditText) findViewById(R.id.edtUserName);
         edtPassWords= (EditText) findViewById(R.id.edtPassWords);
         btnLogin= (Button) findViewById(R.id.btnLogin);
