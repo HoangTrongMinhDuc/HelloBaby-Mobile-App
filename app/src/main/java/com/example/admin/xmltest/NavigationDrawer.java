@@ -149,6 +149,8 @@ public class NavigationDrawer extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent=new Intent(NavigationDrawer.this,SetupAccountActivity.class);
+            startActivity(intent);
             return true;
         }
 

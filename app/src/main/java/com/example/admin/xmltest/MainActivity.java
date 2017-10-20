@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //SharedPreferences pre=getSharedPreferences("login_data",MODE_PRIVATE);
-                if(edtPassWords.getText().toString()==""&&edtUserName.getText().toString()==""){
+                if(edtPassWords.getText().toString()!=""&&edtUserName.getText().toString()!=""){
                 SharedPreferences.Editor edit=pre.edit();
 
                 edit.putString("username",edtPassWords.getText().toString());
