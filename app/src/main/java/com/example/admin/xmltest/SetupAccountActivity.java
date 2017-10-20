@@ -41,7 +41,7 @@ public class SetupAccountActivity extends AppCompatActivity {
     private void init() {
         mData= FirebaseDatabase.getInstance().getReference();
         pre=getSharedPreferences("for", MODE_PRIVATE);
-        pre2=getSharedPreferences("login_data",MODE_PRIVATE);
+        pre2=getSharedPreferences("login_data", MODE_PRIVATE);
     }
 
     private void setComponents() {
@@ -53,12 +53,12 @@ public class SetupAccountActivity extends AppCompatActivity {
 
     private void setDefault() {
 
-        String a=pre.getString("forObject","");
-        if(a.compareTo("son")==0){
+        String a=pre.getString("forObject", "");
+        if(a.compareTo("son") == 0){
             edtSonPhone.setEnabled(false);
             isMother=false;
         }
-        else if(a.compareTo("mom")==0){
+        else if(a.compareTo("mom") == 0){
             isMother=true;
         }
 
@@ -97,23 +97,23 @@ public class SetupAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isMother){
-                    MotherAccountProfile proFile=new MotherAccountProfile();
-                    proFile.setUserName(pre2.getString("username",""));
+                    MotherAccountProfile proFile = new MotherAccountProfile();
+                    proFile.setUserName(pre2.getString("username", ""));
                     proFile.setPhone(edtPhone.getText().toString());
                     proFile.setRealName(edtRealName.getText().toString());
                     proFile.setSonPhone(edtSonPhone.getText().toString());
-                    proFile.setId(pre2.getString("ID",""));
-                    mData.child("mother").child(pre2.getString("ID","")).setValue(proFile);
+                    proFile.setId(pre2.getString("ID", ""));
+                    mData.child("mother").child(pre2.getString("ID", "")).setValue(proFile);
                     }
 
                 else if(!isMother)
                 {
-                    SonAccountProfile proFile=new SonAccountProfile();
-                    proFile.setUserName(pre2.getString("username",""));
+                    SonAccountProfile proFile = new SonAccountProfile();
+                    proFile.setUserName(pre2.getString("username", ""));
                     proFile.setPhone(edtPhone.getText().toString());
                     proFile.setRealName(edtRealName.getText().toString());
-                    proFile.setId(pre2.getString("ID",""));
-                    mData.child("mother").child(pre2.getString("ID","")).setValue(proFile);
+                    proFile.setId(pre2.getString("ID", ""));
+                    mData.child("mother").child(pre2.getString("ID", "")).setValue(proFile);
 
                 }
                 finish();

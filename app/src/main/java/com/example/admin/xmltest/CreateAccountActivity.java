@@ -46,19 +46,19 @@ public class CreateAccountActivity extends AppCompatActivity {
 
 
     private void init() {
-        mAuth= FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance().getReference();
-        pre=getSharedPreferences("for", MODE_PRIVATE);
-        pre2=getSharedPreferences("login_data",MODE_PRIVATE);
+        pre = getSharedPreferences("for", MODE_PRIVATE);
+        pre2 = getSharedPreferences("login_data", MODE_PRIVATE);
     }
 
     private void setDefault() {
-        String a=pre.getString("forObject","");
-        if(a.compareTo("son")==0){
-            isMother=false;
+        String a = pre.getString("forObject", "");
+        if(a.compareTo("son") == 0){
+            isMother = false;
         }
-        else if(a.compareTo("mom")==0){
-            isMother=true;
+        else if(a.compareTo("mom") == 0){
+            isMother = true;
         }
     }
 
@@ -74,7 +74,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(CreateAccountActivity.this, MainActivity.class);
+                Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

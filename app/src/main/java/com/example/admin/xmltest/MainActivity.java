@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setEvents() {
         //khi có dữ liệu rồi thì chạy vào để sang màn hình tiếp
-        pre = getSharedPreferences("login_data",MODE_PRIVATE);
+        pre = getSharedPreferences("login_data", MODE_PRIVATE);
 
-        if(pre.getString("username","")!="")
+        if(pre.getString("username", "") != "")
         {
-            Intent intent=new Intent(MainActivity.this, NavigationDrawer.class);
+            Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
             startActivity(intent);
             finish();
         }
@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //SharedPreferences pre=getSharedPreferences("login_data",MODE_PRIVATE);
-                if(edtPassWords.getText().toString()!=""&&edtUserName.getText().toString()!=""){
+                if(edtPassWords.getText().toString() != "" && edtUserName.getText().toString()!=""){
                 SharedPreferences.Editor edit=pre.edit();
 
-                edit.putString("username",edtPassWords.getText().toString());
-                edit.putString("password",edtUserName.getText().toString());
+                edit.putString("username", edtPassWords.getText().toString());
+                edit.putString("password", edtUserName.getText().toString());
                 edit.commit();
                 
                 xuLyDangNhap();
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         tvSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, CreateAccountActivity.class);
+                Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
                 startActivity(intent);
                 finish();
             }
