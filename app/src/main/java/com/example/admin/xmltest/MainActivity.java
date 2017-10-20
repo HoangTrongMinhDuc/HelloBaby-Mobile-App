@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogin, btnGiaoDuc, btnComic, btnVideo, btnChonlua;
     TextView tvSignUp;
     FirebaseAuth mAuth;
-
+    SharedPreferences pre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setEvents() {
         //khi có dữ liệu rồi thì chạy vào để sang màn hình tiếp
-        final SharedPreferences pre = getSharedPreferences("login_data",MODE_PRIVATE);
+        pre = getSharedPreferences("login_data",MODE_PRIVATE);
 
         if(pre.getString("username","")!="")
         {
@@ -100,6 +100,11 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Đăng nhập thành công",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
+
+
+                            SharedPreferences.Editor editor=pre.edit();
+                            editor.putString("ID",user.getUid().toString());
+                            editor.commit();
                             Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
                             startActivity(intent);
                             finish();

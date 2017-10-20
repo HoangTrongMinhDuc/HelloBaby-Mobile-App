@@ -102,26 +102,19 @@ public class SetupAccountActivity extends AppCompatActivity {
                     proFile.setPhone(edtPhone.getText().toString());
                     proFile.setRealName(edtRealName.getText().toString());
                     proFile.setSonPhone(edtSonPhone.getText().toString());
-                    if(pre2.getString("id","")=="") {
-                        SharedPreferences.Editor editor = pre2.edit();
-                        proFile.setId(mData.child("mother").push().getKey());
-                        editor.putString("id",mData.child("mother").push().getKey());
+                    proFile.setId(pre2.getString("ID",""));
+                    mData.child("mother").child(pre2.getString("ID","")).setValue(proFile);
                     }
 
-                    mData.child("mother").push().setValue(proFile);
-                }
                 else if(!isMother)
                 {
                     SonAccountProfile proFile=new SonAccountProfile();
                     proFile.setUserName(pre2.getString("username",""));
                     proFile.setPhone(edtPhone.getText().toString());
                     proFile.setRealName(edtRealName.getText().toString());
-                    if(pre2.getString("id","")=="") {
-                        SharedPreferences.Editor editor = pre2.edit();
-                        proFile.setId(mData.child("son").push().getKey());
-                        editor.putString("id",mData.child("son").push().getKey());
-                    }
-                    mData.child("son").push().setValue(proFile);
+                    proFile.setId(pre2.getString("ID",""));
+                    mData.child("mother").child(pre2.getString("ID","")).setValue(proFile);
+
                 }
                 finish();
             }
