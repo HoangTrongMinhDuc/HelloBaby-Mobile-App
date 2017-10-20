@@ -10,8 +10,13 @@ import android.widget.EditText;
 
 import com.example.admin.xmltest.models.MotherAccountProfile;
 import com.example.admin.xmltest.models.SonAccountProfile;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class SetupAccountActivity extends AppCompatActivity {
 
@@ -20,6 +25,7 @@ public class SetupAccountActivity extends AppCompatActivity {
     DatabaseReference mData;
     SharedPreferences pre,pre2;
     boolean isMother;
+//    ArrayList<String> arrAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +65,34 @@ public class SetupAccountActivity extends AppCompatActivity {
     }
 
     private void setEvents() {
+
+        mData.child("mother").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                MotherAccountProfile motherAccountProfile = dataSnapshot.getValue(MotherAccountProfile.class);
+//                arrAccount.add(motherAccountProfile.getUserName());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +125,8 @@ public class SetupAccountActivity extends AppCompatActivity {
                 }
                 finish();
             }
+
+
         });
 
 
