@@ -85,34 +85,7 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/lo_create_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="Have an account?"
-            android:textColor="@android:color/background_dark" />
-
-        <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:text="LOGIN"
-            android:textColor="@android:color/background_dark"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 </RelativeLayout>
 
     <!--<?xml version="1.0" encoding="utf-8"?>-->

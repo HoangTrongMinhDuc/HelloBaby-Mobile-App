@@ -13,11 +13,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.xmltest.models.MotherAccountProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     Button btnLogin, btnGiaoDuc, btnComic, btnVideo, btnChonlua;
     TextView tvSignUp;
     FirebaseAuth mAuth;
+    DatabaseReference mData;
     SharedPreferences pre;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         mAuth = FirebaseAuth.getInstance();
+        mData = FirebaseDatabase.getInstance().getReference();
     }
 
     private void setEvents() {
@@ -58,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //SharedPreferences pre=getSharedPreferences("login_data",MODE_PRIVATE);
-                if(edtPassWords.getText().toString() != "" && edtUserName.getText().toString()!=""){
+                if(edtPassWords.getText().toString() != "" && edtUserName.getText().toString() != ""){
                 SharedPreferences.Editor edit=pre.edit();
 
                 edit.putString("username", edtPassWords.getText().toString());
@@ -96,12 +106,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(MainActivity.this, "Đăng nhập thành công",
                                     Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-
                             SharedPreferences.Editor editor=pre.edit();
                             editor.putString("ID",user.getUid().toString());
                             editor.commit();

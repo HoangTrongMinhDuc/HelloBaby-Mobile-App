@@ -11,14 +11,15 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="110dp"
-            android:background="@mipmap/logo"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="70dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_marginTop="110dp"-->
+            <!--android:background="@mipmap/logo"/>-->
         <Button
             android:id="@+id/btnGiaoDuc"
             android:onClick="chuyenGiaoDuc"

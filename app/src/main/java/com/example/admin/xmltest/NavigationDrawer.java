@@ -36,7 +36,7 @@ public class NavigationDrawer extends AppCompatActivity
     Toolbar toolbar;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-
+    SharedPreferences pre,pre2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,18 @@ public class NavigationDrawer extends AppCompatActivity
         addEvents();
         addFloatingActionButton();
         addNavigationView();
-
-
-
-
     }
+
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        if(pre2.getString("forObject","").equals("son"))
+//        {
+//            Menu menu=navigationView.getMenu();
+//            menu.findItem(R.id.nav_slideshow).setEnabled(false);
+//        }
+//    }
 
     private void addNavigationView() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -78,8 +85,8 @@ public class NavigationDrawer extends AppCompatActivity
     }
 
     private void addEvents() {
-        final SharedPreferences pre=getSharedPreferences("login_data",MODE_PRIVATE);
-        final SharedPreferences pre2=getSharedPreferences("for",MODE_PRIVATE);
+        pre=getSharedPreferences("login_data",MODE_PRIVATE);
+        pre2=getSharedPreferences("for",MODE_PRIVATE);
 
 
 
