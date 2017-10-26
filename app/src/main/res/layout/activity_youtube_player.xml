@@ -2,14 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.xmltest.YoutubePlayer">
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/ytPlayer"
-        android:layout_width="368dp"
-        android:layout_height="551dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_width="match_parent"
+        android:layout_height="360dp">
     </com.google.android.youtube.player.YouTubePlayerView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvTieudevideo"
+            android:padding="20dp"
+            android:text="Tiêu đề video"
+            android:textSize="20sp"
+            android:textColor="#0048ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnBackvideo"
+            android:text="Trở về"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>

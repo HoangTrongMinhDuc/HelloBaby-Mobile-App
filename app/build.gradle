@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.example.admin.xmltest"
         minSdkVersion 15
@@ -26,7 +26,7 @@ dependencies {
     })
     //0.1
     compile files('libs/YouTubeAndroidPlayerApi.jar')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
@@ -35,6 +35,8 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:11.4.0'
     compile 'com.google.firebase:firebase-database:11.4.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.17'
+    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:26.+'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
