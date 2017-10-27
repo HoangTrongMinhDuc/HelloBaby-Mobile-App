@@ -2,6 +2,7 @@ package com.example.admin.xmltest.VideoYoutube;
 
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -72,6 +73,8 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.Simple
     @Override
     public void onBindViewHolder(SimpleViewHolder holder, final int position) {
         //set text cho layout ngang
+        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/MAINFONT2.OTF");
+        holder.category.setTypeface(typeface);
         holder.category.setText(mCategory.get(position).getNameType()); //tên thể loại
         holder.horizontalAdapter.setData(mCategory.get(position).getVideos()); // set dữ liệu là danh sách video cho adapter ngang
         holder.horizontalAdapter.setRowIndex(position); //set index cho adapter ngang

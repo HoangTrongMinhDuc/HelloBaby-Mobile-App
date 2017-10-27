@@ -79,7 +79,6 @@ public class HorizontalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         if(title.length()>=20)
             title =  title.copyValueOf(title.toCharArray(),0,16)+"...";
         holder.text.setText(title); //set title cho video
-
         holder.itemView.setTag(position);
         Picasso.with(mContext).load("https://i.ytimg.com/vi/"+current.getId()+"/hqdefault.jpg").into(holder.img);
         holder.itemVideo.setOnClickListener(new View.OnClickListener() {

@@ -28,6 +28,7 @@
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".YoutubePlayer" />
+
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
