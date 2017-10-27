@@ -35,7 +35,7 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //finish();
+                finish();
             }
         });
 
