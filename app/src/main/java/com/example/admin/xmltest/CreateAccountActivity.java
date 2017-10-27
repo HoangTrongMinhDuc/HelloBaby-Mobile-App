@@ -31,6 +31,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     DatabaseReference mData;
     Boolean isMother;
     SharedPreferences pre,pre2;
+    String id = "";
 //    Spinner snMotherSon;
 //    boolean motherOrSon;
 
@@ -95,9 +96,8 @@ public class CreateAccountActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(CreateAccountActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            dangNhapThu(name, pass);
+
                         } else {
 
                             Toast.makeText(CreateAccountActivity.this, "Đăng kí không thành công ",
@@ -107,6 +107,57 @@ public class CreateAccountActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+
+    }
+
+    private void dangNhapThu(String name, String pass){
+
+        mAuth.signInWithEmailAndPassword(name, pass)
+                .addOnCompleteListener(CreateAccountActivity.this, new OnCompleteListener<AuthResult>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            id = user.getUid().toString();
+                            // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(CreateAccountActivity.this, "Đăng nhập thành công"+id,
+                                    Toast.LENGTH_SHORT).show();
+
+                            if(isMother){
+                                MotherAccountProfile proFile = new MotherAccountProfile();
+                                proFile.setUserName(pre2.getString("username", ""));
+                                proFile.setPhone("");
+                                proFile.setRealName("");
+                                proFile.setSonPhone("");
+                                proFile.setId(id);
+                                mData.child("mother").child(id).setValue(proFile);
+                            }
+                            else {
+                                SonAccountProfile proFile = new SonAccountProfile();
+                                proFile.setUserName(pre2.getString("username", ""));
+                                proFile.setPhone("");
+                                proFile.setRealName("");
+                                proFile.setId(id);
+                                mData.child("son").child(id).setValue(proFile);
+
+                            }
+                            Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+                            Toast.makeText(CreateAccountActivity.this, "Đăng nhập không thành công",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
+
 
     }
 

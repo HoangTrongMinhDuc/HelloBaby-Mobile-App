@@ -113,7 +113,7 @@ public class SetupAccountActivity extends AppCompatActivity {
                     proFile.setPhone(edtPhone.getText().toString());
                     proFile.setRealName(edtRealName.getText().toString());
                     proFile.setId(pre2.getString("ID", ""));
-                    mData.child("mother").child(pre2.getString("ID", "")).setValue(proFile);
+                    mData.child("son").child(pre2.getString("ID", "")).setValue(proFile);
 
                 }
                 finish();

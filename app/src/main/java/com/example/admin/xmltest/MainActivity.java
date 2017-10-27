@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tvSignUp;
     FirebaseAuth mAuth;
     DatabaseReference mData;
-    SharedPreferences pre;
+    SharedPreferences pre, pre2;
+    Boolean isMother = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
         setComponents();
+        setDefault();
         setEvents();
 
     }
@@ -50,11 +52,23 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         mAuth = FirebaseAuth.getInstance();
         mData = FirebaseDatabase.getInstance().getReference();
+        pre = getSharedPreferences("login_data", MODE_PRIVATE);
+        pre2 = getSharedPreferences("for", MODE_PRIVATE);
+    }
+
+    private void setDefault() {
+        String a = pre2.getString("forObject", "");
+        if(a.compareTo("son") == 0){
+            isMother = false;
+        }
+        else if(a.compareTo("mom") == 0){
+            isMother = true;
+        }
     }
 
     private void setEvents() {
         //khi có dữ liệu rồi thì chạy vào để sang màn hình tiếp
-        pre = getSharedPreferences("login_data", MODE_PRIVATE);
+
 
         if(pre.getString("username", "") != "")
         {
@@ -110,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(MainActivity.this, "Đăng nhập thành công",
                                     Toast.LENGTH_SHORT).show();
-                            SharedPreferences.Editor editor=pre.edit();
-                            editor.putString("ID",user.getUid().toString());
-                            editor.commit();
-                            Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
-                            startActivity(intent);
-                            finish();
+                            
+                            
+                            kiemTraTrongProfile(user.getUid().toString());
+                            
+                            
+
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -127,6 +141,41 @@ public class MainActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+
+    }
+
+    private void kiemTraTrongProfile(final String uid) {
+
+        String child;
+        if(isMother)
+            child = "mother";
+        else
+            child = "son";
+
+            mData.child(child).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if(dataSnapshot.child(uid).exists()){
+                        SharedPreferences.Editor editor=pre.edit();
+
+
+                        Toast.makeText(MainActivity.this, "Đăng nhập thành công 2"+uid,
+                                Toast.LENGTH_SHORT).show();
+                        editor.putString("ID",uid);
+                        editor.commit();
+                        Intent intent = new Intent(MainActivity.this, NavigationDrawer.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
 
     }
 
