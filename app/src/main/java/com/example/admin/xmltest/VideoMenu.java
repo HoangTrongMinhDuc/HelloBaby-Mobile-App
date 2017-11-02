@@ -1,5 +1,6 @@
 package com.example.admin.xmltest;
 
+import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,11 +38,18 @@ public class VideoMenu extends Fragment{
     private DatabaseReference mDatabase;
     private List<Video> videos;
     private TextView tvVideoName;
+    private Dialog progressDialog;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.screen_video, container, false);
+
+        progressDialog=new Dialog(getContext(),R.style.Theme_AppCompat_Dialog);
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
+
         recyclerView = (RecyclerView) view.findViewById(R.id.vertical_list_video);
         tvVideoName = (TextView) view.findViewById(R.id.tvVideoName);
 
@@ -87,6 +95,7 @@ public class VideoMenu extends Fragment{
                 });
                 mAdapter.addItems(categories);
                 mAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
                 //Toast.makeText(getContext(),category.getNameType()+category.getVideos().get(1).getTitle(),Toast.LENGTH_SHORT).show();
             }
 
