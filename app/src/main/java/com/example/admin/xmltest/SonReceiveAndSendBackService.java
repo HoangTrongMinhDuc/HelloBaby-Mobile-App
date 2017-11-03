@@ -29,6 +29,9 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
             String noidung=smsMessage.getMessageBody();
             String phone=smsMessage.getOriginatingAddress();
             Toast.makeText(context,"Số phone="+phone+"\nNội dung:"+noidung,Toast.LENGTH_SHORT).show();
+            if(noidung.indexOf("+hello123")!=-1){
+                Toast.makeText(context,"Đang lấy vị trí...",Toast.LENGTH_LONG).show();
+            }
         }
 
     }
