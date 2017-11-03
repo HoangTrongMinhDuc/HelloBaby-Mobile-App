@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.admin.xmltest.ChucNang1Frag"
     android:orientation="vertical"
-    android:background="@mipmap/bg_sub"
+    android:background="@drawable/bg_main"
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
     android:paddingBottom="20dp"
