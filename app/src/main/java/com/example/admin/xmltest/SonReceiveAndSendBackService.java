@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
@@ -29,27 +30,16 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
 
     private LocationManager locationManager;
     private LocationListener locationListener;
-
+    private double longitude, latitude;
     @Override
     public void onReceive(final Context context, Intent intent) {
-        Bundle bundle = intent.getExtras();
-        Object[] pdus = (Object[]) bundle.get("pdus");
-        for (int i = 1; i < pdus.length; i++) {
-            SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
-            String noidung = smsMessage.getMessageBody();
-            String phone = smsMessage.getOriginatingAddress();
-            Toast.makeText(context, "Số phone=" + phone + "\nNội dung:" + noidung, Toast.LENGTH_SHORT).show();
-            if (noidung.indexOf("+hello123") != -1) {
-                Toast.makeText(context, "Đang lấy vị trí...", Toast.LENGTH_LONG).show();
-            }
-
-        }
-
         locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 Toast.makeText(context, location.getLatitude() +":"+location.getLongitude(), Toast.LENGTH_LONG).show();
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
             }
 
             @Override
@@ -80,6 +70,29 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
         else {
             locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
         }
+
+
+
+
+
+        Bundle bundle = intent.getExtras();
+        Object[] pdus = (Object[]) bundle.get("pdus");
+        for (int i = 1; i < pdus.length; i++) {
+            SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
+            String noidung = smsMessage.getMessageBody();
+            String phone = smsMessage.getOriginatingAddress();
+            Toast.makeText(context, "Số phone=" + phone + "\nNội dung:" + noidung, Toast.LENGTH_SHORT).show();
+            if (noidung.indexOf("+hello123") != -1) {
+
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phone, null, "+hello123:"+longitude+"$"+latitude, null, null);
+                Toast.makeText(context,longitude +"$"+latitude,Toast.LENGTH_LONG).show();
+
+            }
+
+        }
+
+
     }
 
 
