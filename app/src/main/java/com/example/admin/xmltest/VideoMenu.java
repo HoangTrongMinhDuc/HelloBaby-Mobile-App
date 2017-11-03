@@ -22,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -71,17 +70,9 @@ public class VideoMenu extends Fragment{
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(mAdapter);
 
-        //fake du liệu
-        Video v = new Video("Wiw-WtjtOT4","Doraemon Tập 259 - Vòng Hào Quang Cảm Kích, Người Ấy Ở Đại Sảnh - Hoạt Hình Tiếng Việt");
-        videos = Arrays.asList(v,v,v,v);
-
-        Category c = new Category("amnhac", "Âm Nhạc", videos);
-
-
-
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Category").child("hoahinh").child("videos").child("3").setValue(v);
+
         mDatabase.child("Category").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
