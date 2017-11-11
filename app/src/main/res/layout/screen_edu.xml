@@ -23,6 +23,7 @@
 
             android:background="@mipmap/logo_giaoduc" />
     <Button
+        android:id="@+id/btnTiengAnh"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@mipmap/btn_tienganh"
@@ -31,6 +32,7 @@
         android:layout_marginTop="20dp"
         />
     <Button
+        android:id="@+id/btnTiengViet"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@mipmap/btn_tiengviet"
@@ -39,6 +41,7 @@
         android:layout_marginTop="20dp"
         />
     <Button
+        android:id="@+id/btnToan"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@mipmap/btn_toan"

@@ -40,7 +40,18 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".SetupAccountActivity"
             android:screenOrientation="portrait"></activity>
-
+        <activity android:name=".Education.EduMainActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Education.ToanChia"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Education.ToanCong"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Education.ToanDem"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Education.ToanNhan"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Education.ToanTru"
+            android:screenOrientation="portrait"></activity>
         <receiver android:name=".SonReceiveAndSendBackService">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />

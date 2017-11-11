@@ -1,0 +1,52 @@
+package com.example.admin.xmltest.Education;
+
+
+
+public class ToanDemIdenX {
+    private String id;
+    private String link;
+    private String question;
+    private String result;
+
+    public ToanDemIdenX() {
+    }
+
+    public ToanDemIdenX(String id, String link, String question, String result) {
+        this.id = id;
+        this.link = link;
+        this.question = question;
+        this.result = result;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+}
