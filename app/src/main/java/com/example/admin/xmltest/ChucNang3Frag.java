@@ -2,12 +2,16 @@ package com.example.admin.xmltest;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.telephony.SmsManager;
+import android.telephony.SmsMessage;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +44,9 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
     private Button btnFind;
     private String phoneNumber;
 
+
+
+    BroadcastReceiver mReceiver;
 
     FirebaseAuth mAuth;
     DatabaseReference mData;
@@ -91,6 +98,9 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
             }
         });
         return vView;
+
+
+
     }
 
     @Override
@@ -100,6 +110,7 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
         mapView.onCreate(null);
         mapView.onResume();
         mapView.getMapAsync(this);
+
 
 
     }
@@ -117,5 +128,24 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
             }
         });
         gMap.addMarker(new MarkerOptions().position(position).title("Tao ở đây"));
+
+        mReceiver=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Bundle bundle = intent.getExtras();
+                Object[] pdus = (Object[]) bundle.get("pdus");
+                for (int i = 0; i < pdus.length; i++) {
+                    SmsMessage smsMessage;
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        String format = bundle.getString("format");
+                        smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i], format);
+                    } else {
+                        smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                    }
+                    String noidung = smsMessage.getMessageBody();
+                }
+            }
+        };
     }
 }
