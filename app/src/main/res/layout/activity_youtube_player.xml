@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.admin.xmltest.YoutubePlayer">
+
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/ytPlayer"
         android:layout_width="match_parent"

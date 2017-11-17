@@ -2,6 +2,7 @@ package com.example.admin.xmltest.VideoYoutube;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.admin.xmltest.R;
 import com.example.admin.xmltest.models.Category;
@@ -82,7 +82,13 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.Simple
         holder.next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, mCategory.get(position).getNameType(), Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent();
+//                Bundle bundle = new Bundle();
+//                intent.getExtras(mCategory.get(position).getNameType().z);
+                Intent intent = new Intent(mContext, ViewAllOnCategory.class);
+                intent.putExtra("videos", mCategory.get(position));
+                mContext.startActivity(intent);
+//                Toast.makeText(mContext, mCategory.get(position).getNameType(), Toast.LENGTH_SHORT).show();
             }
         });
     }

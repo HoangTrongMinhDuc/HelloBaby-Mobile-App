@@ -33,6 +33,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".YoutubePlayer"
             android:screenOrientation="portrait"/>
+        <activity android:name=".VideoYoutube.ViewAllOnCategory"/>
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"

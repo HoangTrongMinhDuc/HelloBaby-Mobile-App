@@ -5,14 +5,32 @@
     android:background="@drawable/bg_main"
     >
     <TextView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textSize="30sp"
-        android:textColor="#0077ff"
-        android:layout_gravity="center"
+        android:textColor="#004cff"
+        android:background="#c800bdea"
+        android:gravity="center"
         android:id="@+id/tvVideoName"
         android:text="Kho video"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SearchView
+            android:id="@+id/searchVideo"
+            android:queryHint="Tìm kiếm video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></SearchView>
+        <Spinner
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/spinnerVideo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></Spinner>
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
