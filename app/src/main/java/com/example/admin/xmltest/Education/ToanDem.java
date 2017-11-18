@@ -1,6 +1,9 @@
 package com.example.admin.xmltest.Education;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -14,40 +17,44 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class ToanDem extends AppCompatActivity {
 
 
-      DatabaseReference mDatabase;
-      ListView lvtest;
-      ArrayAdapter adapter=null;
-      ArrayList<String> mangId;
-      List<String> ids;
-      List<String> links;
-      List<String> questions;
-      List<String> results;
+    DatabaseReference mDatabase;
+    ListView lvtest;
+    ArrayAdapter adapter=null;
+    ArrayList<String> mangId;
+    private ViewPager mVPdem;
+    toandem110Adapter adapter110 ;
+    ArrayList<ToanDemIdenX> mlist;
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toan_dem);
-        lvtest= (ListView) findViewById(R.id.lvTest);
-        mangId=new ArrayList<String>();
-        adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, mangId);
-        lvtest.setAdapter(adapter);
+        mlist = new ArrayList<ToanDemIdenX>();
+        adapter110 = new toandem110Adapter(this, R.layout.item_dem, mlist);
+        mVPdem = (ViewPager) findViewById(R.id.vpDem110);
+        mVPdem.setAdapter(adapter110);
+
         mDatabase= FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MATH").child("TẬP ĐẾM").child("TỪ 1 ĐẾN 10").addChildEventListener(new ChildEventListener(){
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            ToanDemIdenX toandem1den10 = dataSnapshot.getValue(ToanDemIdenX.class);
-                mangId.add(toandem1den10.getId());
-                adapter.notifyDataSetChanged();
-            Toast.makeText(getBaseContext(),toandem1den10.getId(),Toast.LENGTH_SHORT).show();
-                    }
+                ToanDemIdenX toandem1den10 = dataSnapshot.getValue(ToanDemIdenX.class);
+                mlist.add(toandem1den10);
+                long seed = System.nanoTime();
+                Collections.shuffle(mlist, new Random(seed));
+                adapter110.notifyDataSetChanged();
+            }
 
 
             @Override
