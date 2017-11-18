@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.provider.Telephony.SMS_RECEIVED"/>
+    <uses-permission android:name="android.provider.Telephony.SMS_RECEIVED" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.LoginStyle">
-        <activity android:name=".SelectMomOrSon"
+        <activity
+            android:name=".SelectMomOrSon"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,32 +28,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateAccountActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".YoutubePlayer"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".VideoYoutube.ViewAllOnCategory"/>
+        <activity
+            android:name=".CreateAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".YoutubePlayer"
+            android:screenOrientation="portrait" />
+        <activity android:name=".VideoYoutube.ViewAllOnCategory" />
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
-            android:theme="@style/AppTheme.LoginStyle"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SetupAccountActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Education.EduMainActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Education.ToanChia"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Education.ToanCong"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Education.ToanDem"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Education.ToanNhan"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Education.ToanTru"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.LoginStyle" />
+        <activity
+            android:name=".SetupAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Education.EduMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Education.ToanChia"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Education.ToanCong"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Education.ToanDem"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Education.ToanNhan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Education.ToanTru"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".SonReceiveAndSendBackService">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
@@ -67,7 +79,8 @@
             android:glEsVersion="0x00020000"
             android:required="true" />
 
-
+        <activity android:name=".Comic.ComicPlayer" />
+        <activity android:name=".Comic.ComicProfile"></activity>
     </application>
 
 </manifest>

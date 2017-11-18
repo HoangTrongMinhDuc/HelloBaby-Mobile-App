@@ -11,16 +11,26 @@ public class Truyen {
     String description;
     String category;
     List<Chuong> chuongs;
+    String thumbnail;
 
     public Truyen(){
 
     }
 
-    public Truyen(String name, String description, String category, List<Chuong> chuongs) {
+    public Truyen(String name, String description, String category, List<Chuong> chuongs, String thumbnail) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.chuongs = chuongs;
+        this.thumbnail = thumbnail;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getName() {
