@@ -123,46 +123,137 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
 
             if (noidung.indexOf("+hello123") != -1) {
 //                currentBestLocation = getLastBestLocation(context);
-                mLocationManager = (LocationManager) context
-                        .getSystemService(Context.LOCATION_SERVICE);
-                    if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-                    boolean isGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-                    boolean isNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-                    if(isGPSEnabled)
-                        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000, 5, mLocationListener);
-                    else if(isNetworkEnabled)
-                         mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,1000,5,mLocationListener);
-                    Location gotLoc = mLocationManager
-                            .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    if(gotLoc!=null)
-                        currentBestLocation=gotLoc;
-                    Toast.makeText(context, "Mobile Location (NW):"+currentBestLocation,
-                            Toast.LENGTH_LONG).show();
+//                mLocationManager = (LocationManager) context
+//                        .getSystemService(Context.LOCATION_SERVICE);
+//                if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                    // TODO: Consider calling
+//                    //    ActivityCompat#requestPermissions
+//                    // here to request the missing permissions, and then overriding
+//                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                    //                                          int[] grantResults)
+//                    // to handle the case where the user grants the permission. See the documentation
+//                    // for ActivityCompat#requestPermissions for more details.
+//                    return;
+//                }
+//                boolean isGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+//                boolean isNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+//                if (isGPSEnabled)
+//                    mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, mLocationListener);
+//                else if (isNetworkEnabled)
+//                    mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5, mLocationListener);
+//                Location gotLoc = mLocationManager
+//                        .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                Location gotLoc=getLocation(context);
+                if (gotLoc != null) {
+                    currentBestLocation = gotLoc;
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phone, null, currentBestLocation.getAltitude() + ":" + currentBestLocation.getLongitude(), null, null);
+                }
+                Toast.makeText(context, "" + currentBestLocation.getAltitude() + ":" + currentBestLocation.getLongitude(), Toast.LENGTH_LONG).show();
 
 
 
-
-
-
-
-                //SmsManager smsManager = SmsManager.getDefault();
-                //smsManager.sendTextMessage(phone, null, "+hello123:" + currentBestLocation.getLongitude() + "$" + currentBestLocation.getAltitude(), null, null);
-                //Toast.makeText(context,longitude +"$"+latitude,Toast.LENGTH_LONG).show();
             }
 
         }
 
     }
 
+
+    public Location getLocation(Context context) {
+        boolean isGPSEnabled, isNetworkEnabled;
+        LocationManager locationManager;
+        LocationListener locationListener;
+        int MIN_TIME_BW_UPDATES = 5000;
+        int MIN_DISTANCE_CHANGE_FOR_UPDATES = 20;
+        Location location = null;
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+        };
+
+        try {
+            locationManager = (LocationManager) context
+                    .getSystemService(LOCATION_SERVICE);
+
+            // getting GPS status
+            isGPSEnabled = locationManager
+                    .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+            // getting network status
+            isNetworkEnabled = locationManager
+                    .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+            if (!isGPSEnabled && !isNetworkEnabled) {
+                // no network provider is enabled
+            } else {
+
+                if (isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(
+                            LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, locationListener);
+                    Log.d("Network", "Network Enabled");
+                    if (locationManager != null) {
+                        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    ActivityCompat#requestPermissions
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for ActivityCompat#requestPermissions for more details.
+                            return null;
+                        }
+                        location = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+
+                        }
+                    }
+                }
+                // if GPS Enabled get lat/long using GPS Services
+                if (isGPSEnabled) {
+                    if (location == null) {
+                        locationManager.requestLocationUpdates(
+                                LocationManager.GPS_PROVIDER,
+                                MIN_TIME_BW_UPDATES,
+                                MIN_DISTANCE_CHANGE_FOR_UPDATES, locationListener);
+                        Log.d("GPS", "GPS Enabled");
+                        if (locationManager != null) {
+                            location = locationManager
+                                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            if (location != null) {
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return location;
+    }
     /*private Location getLastBestLocation(Context context) {
 
         if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

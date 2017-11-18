@@ -127,7 +127,7 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
                 progressDialog.dismiss();
             }
         });
-        gMap.addMarker(new MarkerOptions().position(position).title("Tao ở đây"));
+        gMap.addMarker(new MarkerOptions().position(position).title("Con ở đây"));
 
         mReceiver=new BroadcastReceiver() {
             @Override
@@ -144,6 +144,21 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
                         smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
                     }
                     String noidung = smsMessage.getMessageBody();
+                    if(noidung!="null") {
+                        String[] pos = noidung.split(":");
+                        LatLng position = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
+                        gMap.clear();
+                        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 35));
+                        gMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                            @Override
+                            public void onMapLoaded() {
+                                progressDialog.dismiss();
+                            }
+                        });
+                        gMap.addMarker(new MarkerOptions().position(position).title("Con ở đây"));
+                    }
+                    else
+                        Toast.makeText(getContext(),"Không tìm thấy con ở đâu",Toast.LENGTH_LONG).show();
                 }
             }
         };
