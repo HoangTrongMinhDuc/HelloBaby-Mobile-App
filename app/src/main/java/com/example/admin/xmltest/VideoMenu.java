@@ -38,6 +38,7 @@ import java.util.List;
 public class VideoMenu extends Fragment{
     private VerticalAdapter mAdapter;
     private List<Category> categories;
+    private List<Category> tempList;
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
     private TextView tvVideoName;
@@ -65,6 +66,7 @@ public class VideoMenu extends Fragment{
         tvVideoName.setText("Kho video");
         //tao danh sach cac tham so du lieu dau vao
         categories = new ArrayList<>(); //list danh sach the loai dung cho recycler
+        tempList = new ArrayList<>();
         final List<String> spinnerList = new ArrayList<>();
         //đưa dữ liệu vào adapter
         mAdapter = new VerticalAdapter(getActivity(),categories);

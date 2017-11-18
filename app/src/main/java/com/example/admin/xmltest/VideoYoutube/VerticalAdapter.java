@@ -82,13 +82,9 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.Simple
         holder.next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent();
-//                Bundle bundle = new Bundle();
-//                intent.getExtras(mCategory.get(position).getNameType().z);
                 Intent intent = new Intent(mContext, ViewAllOnCategory.class);
                 intent.putExtra("videos", mCategory.get(position));
                 mContext.startActivity(intent);
-//                Toast.makeText(mContext, mCategory.get(position).getNameType(), Toast.LENGTH_SHORT).show();
             }
         });
     }

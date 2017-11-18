@@ -76,7 +76,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         //nếu title quá dài thì thu gọn
         final Video current =  mDataList.get(position);
         String title = current.getTitle();
-        if(title.length()>=20)
+        if(title.length() >= 20)
             title =  title.copyValueOf(title.toCharArray(),0,16)+"...";
         holder.text.setText(title); //set title cho video
         holder.itemView.setTag(position);

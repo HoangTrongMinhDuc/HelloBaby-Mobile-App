@@ -52,6 +52,7 @@ public class GridVideoAdapter extends ArrayAdapter<Video> {
         }
         viewHolder.tvtitle.setText(title);
         Picasso.with(mContext).load("https://i.ytimg.com/vi/"+video.getId()+"/hqdefault.jpg").into(viewHolder.imgvideo1);
+
         return convertView;
     }
     public class ViewHolder {
