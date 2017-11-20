@@ -39,7 +39,8 @@ public class ComicPlayer extends AppCompatActivity {
         final ArrayList<String> arrLink = new ArrayList<>();
         final ComicPlayerAdapter mAdapter = new ComicPlayerAdapter(this,R.layout.item_comic_pic, mList);
         lvComic.setAdapter(mAdapter);
-        tvChapter.setText("Chương "+ (++id));
+        String numChapter = (id+1) +"";
+        tvChapter.setText("Chương "+ numChapter);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Comic").child(name).child("chuongs").child(id+"").child("listLink")
                 .addChildEventListener(new ChildEventListener() {
