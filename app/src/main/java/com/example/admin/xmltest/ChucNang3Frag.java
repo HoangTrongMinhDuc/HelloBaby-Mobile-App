@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -93,7 +94,7 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
             public void onClick(View v) {
                 //String sdtcon="01647723485";
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNumber, null, "+hello123 sms message", null, null);
+                smsManager.sendTextMessage(phoneNumber, null, "+hello123send sms message", null, null);
                 Toast.makeText(getContext(),"Đang tìm...",Toast.LENGTH_LONG).show();
             }
         });
@@ -128,23 +129,17 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
             }
         });
         gMap.addMarker(new MarkerOptions().position(position).title("Con ở đây"));
+        Toast.makeText(getContext(),"mapready",Toast.LENGTH_LONG).show();
+        IntentFilter intentFilter = new IntentFilter("SonReceiveAndSendBackService.intent.MAIN");
 
         mReceiver=new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Bundle bundle = intent.getExtras();
-                Object[] pdus = (Object[]) bundle.get("pdus");
-                for (int i = 0; i < pdus.length; i++) {
-                    SmsMessage smsMessage;
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        String format = bundle.getString("format");
-                        smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i], format);
-                    } else {
-                        smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
-                    }
-                    String noidung = smsMessage.getMessageBody();
-                    if(noidung!="null") {
+                Toast.makeText(getContext(),"abc",Toast.LENGTH_LONG).show();
+                String noidung = intent.getStringExtra("get_msg");
+                                    Toast.makeText(getContext(),noidung,Toast.LENGTH_LONG).show();
+                    if(noidung!="null" &&noidung.indexOf("+hello123receive")!=-1) {
+                        noidung=noidung.replace("+hello123receive","");
                         String[] pos = noidung.split(":");
                         LatLng position = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
                         gMap.clear();
@@ -160,7 +155,39 @@ public class ChucNang3Frag extends Fragment implements OnMapReadyCallback {
                     else
                         Toast.makeText(getContext(),"Không tìm thấy con ở đâu",Toast.LENGTH_LONG).show();
                 }
-            }
+
+//                Bundle bundle = intent.getExtras();
+//                Object[] pdus = (Object[]) bundle.get("pdus");
+//                for (int i = 0; i < pdus.length; i++) {
+//                    SmsMessage smsMessage;
+//
+//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                        String format = bundle.getString("format");
+//                        smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i], format);
+//                    } else {
+//                        smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
+//                    }
+//                    String noidung = smsMessage.getMessageBody();
+//                    Toast.makeText(getContext(),noidung,Toast.LENGTH_LONG).show();
+//                    if(noidung!="null" &&noidung.indexOf("+hello123receive")!=-1) {
+//                        noidung=noidung.replace("+hello123receive","");
+//                        String[] pos = noidung.split(":");
+//                        LatLng position = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
+//                        gMap.clear();
+//                        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 35));
+//                        gMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+//                            @Override
+//                            public void onMapLoaded() {
+//                                progressDialog.dismiss();
+//                            }
+//                        });
+//                        gMap.addMarker(new MarkerOptions().position(position).title("Con ở đây"));
+//                    }
+//                    else
+//                        Toast.makeText(getContext(),"Không tìm thấy con ở đâu",Toast.LENGTH_LONG).show();
+//                }
+
         };
+        getContext().registerReceiver(mReceiver,intentFilter);
     }
 }

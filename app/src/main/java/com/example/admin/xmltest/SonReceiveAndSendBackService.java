@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -118,10 +119,10 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
             }
             String noidung = smsMessage.getMessageBody();
             String phone = smsMessage.getOriginatingAddress();
-            Toast.makeText(context, "Số phone=" + phone + "\nNội dung:" + noidung, Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, "Số phone=" + phone + "\nNội dung:" + noidung, Toast.LENGTH_LONG).show();
 
 
-            if (noidung.indexOf("+hello123") != -1) {
+            if (noidung.indexOf("+hello123send") != -1) {
 //                currentBestLocation = getLastBestLocation(context);
 //                mLocationManager = (LocationManager) context
 //                        .getSystemService(Context.LOCATION_SERVICE);
@@ -147,13 +148,18 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
                 if (gotLoc != null) {
                     currentBestLocation = gotLoc;
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phone, null, currentBestLocation.getAltitude() + ":" + currentBestLocation.getLongitude(), null, null);
+                    smsManager.sendTextMessage(phone, null, "+hello123receive"+currentBestLocation.getLatitude() + ":" + currentBestLocation.getLongitude(), null, null);
                 }
-                Toast.makeText(context, "" + currentBestLocation.getAltitude() + ":" + currentBestLocation.getLongitude(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, "+hello123" + currentBestLocation.getAltitude() + ":" + currentBestLocation.getLongitude(), Toast.LENGTH_LONG).show();
 
 
 
             }
+/////////////////////////////////////////////
+            Intent in = new Intent("SonReceiveAndSendBackService.intent.MAIN").
+                    putExtra("get_msg", noidung);
+
+            context.sendBroadcast(in);
 
         }
 
