@@ -21,22 +21,45 @@ public class EduMainActivity extends AppCompatActivity {
     }
 
     public void btnCong(View view) {
-        Intent i = new Intent(EduMainActivity.this, ToanCong.class);
-        startActivity(i);
+        Intent intent = new Intent(EduMainActivity.this, ToanctncActivity.class);
+        Bundle bundle = new Bundle();
+        // Các dữ liệu gửi kèm
+        bundle.putString("key1","PHÉP CỘNG");
+        bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        intent.putExtra("data",bundle);
+        startActivity(intent);
+
     }
 
     public void btnTru(View view) {
-        Intent i = new Intent(EduMainActivity.this, ToanTru.class);
-        startActivity(i);
+        Intent intent = new Intent(EduMainActivity.this, ToanctncActivity.class);
+        Bundle bundle = new Bundle();
+        // Các dữ liệu gửi kèm
+        bundle.putString("key1","PHÉP TRỪ");
+        bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        intent.putExtra("data",bundle);
+        startActivity(intent);
+
     }
 
     public void btnNhan(View view) {
-        Intent i = new Intent(EduMainActivity.this, ToanNhan.class);
-        startActivity(i);
+        Intent intent = new Intent(EduMainActivity.this, ToanctncActivity.class);
+        Bundle bundle = new Bundle();
+        // Các dữ liệu gửi kèm
+        bundle.putString("key1","PHÉP NHÂN");
+        bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        intent.putExtra("data",bundle);
+       startActivity(intent);
     }
     public void btnChia(View view) {
-        Intent i = new Intent(EduMainActivity.this, ToanChia.class);
-        startActivity(i);
+        Intent intent = new Intent(EduMainActivity.this, ToanctncActivity.class);
+        Bundle bundle = new Bundle();
+        // Các dữ liệu gửi kèm
+        bundle.putString("key1","PHÉP CHIA");
+        bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        intent.putExtra("data",bundle);
+        startActivity(intent);
+
     }
 
 
