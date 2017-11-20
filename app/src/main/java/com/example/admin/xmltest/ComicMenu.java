@@ -1,5 +1,6 @@
 package com.example.admin.xmltest;
 
+import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,7 +33,7 @@ public class ComicMenu extends Fragment{
     private List<Truyen> truyens;
     private TruyenTranhAdapter truyenTranhAdapter;
     private RecyclerView recyclerTruyentranh;
-
+    private Dialog progressDialog;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,10 @@ public class ComicMenu extends Fragment{
         tvTruyen = (TextView)view.findViewById(R.id.tvTRUYEN);
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/NABILA.TFF");
         tvTruyen.setTypeface(typeface);
+        progressDialog=new Dialog(getContext(),R.style.Theme_AppCompat_Dialog);
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
 
         recyclerTruyentranh = (RecyclerView) view.findViewById(R.id.recycler_truyentranh);
         truyens = new ArrayList<>();
@@ -69,6 +74,7 @@ public class ComicMenu extends Fragment{
                 truyen.setThumbnail(thumb);
                 truyens.add(truyen);
                 truyenTranhAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
             }
 
             @Override

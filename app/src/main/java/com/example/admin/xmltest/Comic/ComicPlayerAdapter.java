@@ -47,6 +47,7 @@ public class ComicPlayerAdapter extends ArrayAdapter<String> {
         String link = arrJ.get(position);
         int numPage = position +1;
         viewHolder.tvPage.setText("Trang "+numPage);
+        link = link.replace(" ","%20");
         Picasso.with(context).load(link).into(viewHolder.imgPic);
 //        final ViewGroup.LayoutParams params = convertView.getLayoutParams();
 //        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
