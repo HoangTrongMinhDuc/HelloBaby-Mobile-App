@@ -38,7 +38,7 @@
             android:name=".YoutubePlayer"
             android:screenOrientation="portrait" />
         <activity android:name=".VideoYoutube.ViewAllOnCategory" />
-        <activity android:name=".Comic.ComicProfile"/>
+        <activity android:name=".Comic.ComicProfile" />
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
@@ -72,7 +72,8 @@
             android:required="true" />
 
         <activity android:name=".Comic.ComicPlayer" />
-        <activity android:name=".Comic.ComicProfile"></activity>
+        <activity android:name=".Comic.ComicProfile" />
+        <activity android:name=".Comic.ViewAllComic"></activity>
     </application>
 
 </manifest>

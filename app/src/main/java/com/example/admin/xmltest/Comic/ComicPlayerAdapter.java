@@ -22,13 +22,13 @@ import java.util.List;
 public class ComicPlayerAdapter extends ArrayAdapter<String> {
     private Context context;
     private int resource;
-    private List<String> arrJ;
+    private List<String> arrLink;
 
-    public ComicPlayerAdapter(Context context, int resource, List<String> arrJ){
-        super(context, resource, arrJ);
+    public ComicPlayerAdapter(Context context, int resource, List<String> arrLink){
+        super(context, resource, arrLink);
         this.context = context;
         this.resource = resource;
-        this.arrJ = arrJ;
+        this.arrLink = arrLink;
     }
 
     @NonNull
@@ -44,9 +44,10 @@ public class ComicPlayerAdapter extends ArrayAdapter<String> {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        String link = arrJ.get(position);
+        String link = arrLink.get(position);
+        int numPageOfChapter = arrLink.size();
         int numPage = position +1;
-        viewHolder.tvPage.setText("Trang "+numPage);
+        viewHolder.tvPage.setText("Trang " + numPage + "/" + numPageOfChapter);
         link = link.replace(" ","%20");
         Picasso.with(context).load(link).into(viewHolder.imgPic);
 //        final ViewGroup.LayoutParams params = convertView.getLayoutParams();

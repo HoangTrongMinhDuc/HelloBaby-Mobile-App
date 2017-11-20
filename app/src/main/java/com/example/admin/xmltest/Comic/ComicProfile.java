@@ -69,8 +69,9 @@ public class ComicProfile extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String idChapter = dataSnapshot.getKey().toString();
-                //String chapter = dataSnapshot.child(idChapter).child("titleOfChapter").getValue().toString();
-//                float numberChapter = Float.parseFloat(dataSnapshot.child(idChapter).child("numOfChapter").getValue().toString());
+//                String chapters = dataSnapshot.child("titleOfChapter").getValue().toString();
+//                Toast.makeText(ComicProfile.this, chapters,Toast.LENGTH_SHORT).show();
+//                float numberChapter = Float.parseFloat(dataSnapshot.child("numOfChapter").getValue().toString());
 //                if(chapter == ""){
 //                    chapter = "Chương " + numberChapter;
 //                }

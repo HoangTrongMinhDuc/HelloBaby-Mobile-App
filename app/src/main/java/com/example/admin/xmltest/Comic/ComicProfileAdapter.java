@@ -1,5 +1,9 @@
 package com.example.admin.xmltest.Comic;
 
+/**
+ * Created by HTML5 on 20/11/2017.
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -20,11 +24,11 @@ import java.util.List;
  * Created by HTML5 on 20/11/2017.
  */
 
-public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhAdapter.DataViewHolder>{
+public class ComicProfileAdapter extends RecyclerView.Adapter<ComicProfileAdapter.DataViewHolder>{
     private List<Truyen> truyens;
     private Context mContext;
 
-    public TruyenTranhAdapter(Context mContext, List<Truyen> truyens){
+    public ComicProfileAdapter(Context mContext, List<Truyen> truyens){
         this.truyens = truyens;
         this.mContext = mContext;
     }
@@ -43,13 +47,13 @@ public class TruyenTranhAdapter extends RecyclerView.Adapter<TruyenTranhAdapter.
     }
 
     @Override
-    public TruyenTranhAdapter.DataViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ComicProfileAdapter.DataViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_truyentranh, parent, false);
         return new DataViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(TruyenTranhAdapter.DataViewHolder holder, final int position) {
+    public void onBindViewHolder(ComicProfileAdapter.DataViewHolder holder, final int position) {
         final Truyen truyen = truyens.get(position);
         String name = truyen.getName();
         if(name.length() >= 10){
