@@ -18,41 +18,47 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
-public class ToanDem extends AppCompatActivity {
+/**
+ * Created by USER on 11/20/2017.
+ */
 
-
+public class ToanctncActivity extends AppCompatActivity {
     DatabaseReference mDatabase;
     ListView lvtest;
     ArrayAdapter adapter=null;
-    private ViewPager mVPdem;
-    toandem110Adapter adapter110 ;
-    ArrayList<ToanDemIdenX> mlist;
-
+    private ViewPager mVPctnc;
+    toanctncAdapter adapterctnc ;
+    ArrayList<Toanctncbe10> mlist;
 
 
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_toan_dem);
-        mlist = new ArrayList<ToanDemIdenX>();
-        adapter110 = new toandem110Adapter(this, R.layout.item_dem, mlist);
-        mVPdem = (ViewPager) findViewById(R.id.vpDem110);
-        mVPdem.setAdapter(adapter110);
+        setContentView(R.layout.activity_toanctnc);
+
+        Bundle extras = getIntent().getBundleExtra("data");
+        String a1= extras.getString("key1");
+        String a2 = extras.getString("key2");
+       // Toast.makeText(this, a1 + "/" + a2, Toast.LENGTH_SHORT).show();
+
+        mlist = new ArrayList<Toanctncbe10>();
+        adapterctnc = new toanctncAdapter(this, R.layout.item_phep_toan, mlist);
+        mVPctnc = (ViewPager) findViewById(R.id.vpPctnc);
+        mVPctnc.setAdapter(adapterctnc);
 
         mDatabase= FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("MATH").child("TẬP ĐẾM").child("TỪ 1 ĐẾN 10").addChildEventListener(new ChildEventListener(){
+        mDatabase.child("MATH").child(a1).child(a2).addChildEventListener(new ChildEventListener(){
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ToanDemIdenX toandem1den10 = dataSnapshot.getValue(ToanDemIdenX.class);
-                mlist.add(toandem1den10);
+                Toanctncbe10 toanctncduoi10 = dataSnapshot.getValue(Toanctncbe10.class);
+                mlist.add(toanctncduoi10);
                 long seed = System.nanoTime();
                 Collections.shuffle(mlist, new Random(seed));
-                adapter110.notifyDataSetChanged();
+                adapterctnc.notifyDataSetChanged();
             }
 
 
@@ -75,7 +81,7 @@ public class ToanDem extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-            });
+        });
 
 
     }

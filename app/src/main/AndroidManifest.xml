@@ -51,19 +51,10 @@
             android:name=".Education.EduMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Education.ToanChia"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Education.ToanCong"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Education.ToanDem"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Education.ToanNhan"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Education.ToanTru"
+            android:name=".Education.ToanctncActivity"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".SonReceiveAndSendBackService">
