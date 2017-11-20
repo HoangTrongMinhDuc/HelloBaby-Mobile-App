@@ -7,6 +7,7 @@ public class ToanDemIdenX {
     private String link;
     private String question;
     private String result;
+    private  int status =0;
 
     public ToanDemIdenX() {
     }
@@ -48,5 +49,13 @@ public class ToanDemIdenX {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

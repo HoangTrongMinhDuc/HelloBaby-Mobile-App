@@ -82,10 +82,12 @@
             android:layout_gravity="right"
             android:orientation="vertical">
             <EditText
+                android:id="@+id/edtResultd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nhập kết quả của em: "/>
             <Button
+                android:onClick="check"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

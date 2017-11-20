@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ public class ToanDem extends AppCompatActivity {
     private ViewPager mVPdem;
     toandem110Adapter adapter110 ;
     ArrayList<ToanDemIdenX> mlist;
+    EditText edtResultd;
 
 
 
@@ -43,6 +46,8 @@ public class ToanDem extends AppCompatActivity {
         mVPdem = (ViewPager) findViewById(R.id.vpDem110);
         mVPdem.setAdapter(adapter110);
 
+        edtResultd= (EditText) findViewById(R.id.edtResultd);
+
         mDatabase= FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MATH").child("TẬP ĐẾM").child("TỪ 1 ĐẾN 10").addChildEventListener(new ChildEventListener(){
 
@@ -54,6 +59,7 @@ public class ToanDem extends AppCompatActivity {
                 Collections.shuffle(mlist, new Random(seed));
                 adapter110.notifyDataSetChanged();
             }
+
 
 
             @Override
@@ -79,4 +85,23 @@ public class ToanDem extends AppCompatActivity {
 
 
     }
-}
+
+    public void check(View view) {
+        //for(int i = 0 ; i< mlist.size();i++){
+            if(mlist.get(mVPdem.getCurrentItem()).getStatus()==0 &&( edtResultd.getText().toString().equals(mlist.get(mVPdem.getCurrentItem()).getResult()))){
+                mlist.get(mVPdem.getCurrentItem()).setStatus(1);
+                Toast.makeText(this, "Ket qua dung", Toast.LENGTH_SHORT).show();
+                edtResultd.setText("");
+                mVPdem.setCurrentItem(mVPdem.getCurrentItem() + 1);
+                mlist.remove(mVPdem.getCurrentItem()-1);
+                adapter110.notifyDataSetChanged();
+            }
+            else
+            {
+                edtResultd.setText("");
+                mVPdem.setCurrentItem(mVPdem.getCurrentItem() + 1);
+            }
+        }
+
+    }
+
