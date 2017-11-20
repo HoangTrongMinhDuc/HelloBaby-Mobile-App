@@ -38,6 +38,7 @@
             android:name=".YoutubePlayer"
             android:screenOrientation="portrait" />
         <activity android:name=".VideoYoutube.ViewAllOnCategory" />
+
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
@@ -62,6 +63,7 @@
             </intent-filter>
         </receiver>
 
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
@@ -71,7 +73,8 @@
             android:required="true" />
 
         <activity android:name=".Comic.ComicPlayer" />
-        <activity android:name=".Comic.ComicProfile"></activity>
+        <activity android:name=".Comic.ComicProfile" />
+        <activity android:name=".Comic.ViewAllComic"></activity>
     </application>
 
 </manifest>

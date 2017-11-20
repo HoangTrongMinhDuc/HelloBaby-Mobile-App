@@ -98,7 +98,7 @@ public class NavigationDrawer extends AppCompatActivity
 
         mUser=FirebaseAuth.getInstance().getCurrentUser();
         tvName.setText(mUser.getEmail());
-        tvPass.setText(mUser.getDisplayName());
+        tvPass.setText(mUser.getDisplayName()+"----");
 //        tvName.setText(pre.getString("username",""));
 //        tvPass.setText(pre.getString("username",""));
 

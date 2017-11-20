@@ -1,18 +1,31 @@
 package com.example.admin.xmltest;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.admin.xmltest.models.Chuong;
+import com.example.admin.xmltest.Comic.ComicProfileAdapter;
+import com.example.admin.xmltest.Comic.ViewAllComic;
+import com.example.admin.xmltest.VideoYoutube.VerticalAdapter;
+import com.example.admin.xmltest.models.Category;
 import com.example.admin.xmltest.models.Truyen;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,30 +33,133 @@ import java.util.List;
  */
 
 public class ComicMenu extends Fragment{
-    private TextView tvVideoName;
+    private TextView tvTruyen, tvTruyentranh, tvTruyenke;
     private DatabaseReference mDatabase;
-    private Truyen truyen;
-    private List<Chuong> chuongs;
-    private List<String> links;
+    private List<Truyen> truyens;
+    private ComicProfileAdapter comicProfileAdapter;
+    private RecyclerView recyclerTruyentranh;
+    private Dialog progressDialog;
+    private RecyclerView recyclerTruyenke;
+    private List<Category> categories;
+    private VerticalAdapter mAdapterTruyenKe;
+    private ImageView btnNext;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.screen_comic, container, false);
-        tvVideoName = (TextView)view.findViewById(R.id.tvVideoName);
+
+        tvTruyen = (TextView)view.findViewById(R.id.tvTRUYEN);
+        tvTruyentranh = (TextView)view.findViewById(R.id.tvTruyentranh);
+        tvTruyenke = (TextView)view.findViewById(R.id.tvTruyenke);
+        btnNext = (ImageView) view.findViewById(R.id.btnNextComic);
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/NABILA.TFF");
-        tvVideoName.setTypeface(typeface);
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        List<String> links = new ArrayList<>();
-//        List<Chuong> chuongs = new ArrayList<>();
-//        String link = "http://1.bp.blogspot.com/-qE_CjIQgLKA/VdVrpqdKq_I/AAAAAAAGlHY/hx0nQC2JrEQ/s0/credit-dora.png?imgmax=3000";
-//        links.add(link);
-//        link = "http://1.bp.blogspot.com/-_qUbTY1Ht0E/VdVtht8a56I/AAAAAAAGlH4/Vz4SXGSXRis/s0/Doraemon 2015 (1).png?imgmax=3000";
-//        links.add(link);
-//        Chuong chuong = new Chuong("Ten Chuong truyen", 1,links);
-//        chuongs.add(chuong);
-//        Truyen truyen = new Truyen("Doraemon","Đây là phiên bản truyện tranh của Eiga Doraemon 2015, kể vệ nhóm bạn Nobita đóng phim làm siêu anh hùng. nhưng không ngờ lại được làm siêu anh hùng thật.", "truyen tranh",chuongs, "http://storage.fshare.vn/Test-vechai/1584-doraemon-nobita-va-nhung-hiep-si-khong-gian-.jpg");
-//        mDatabase.child("Comic").child("Doraemon").setValue(truyen);
+        Typeface typeface2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/MAINFONT2.OTF");
+        tvTruyen.setTypeface(typeface);
+        tvTruyenke.setTypeface(typeface2);
+        tvTruyentranh.setTypeface(typeface2);
+        progressDialog=new Dialog(getContext(),R.style.Theme_AppCompat_Dialog);
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);
+
+        recyclerTruyentranh = (RecyclerView) view.findViewById(R.id.recycler_truyentranh);
+        recyclerTruyenke = (RecyclerView) view.findViewById(R.id.recycler_truyenke);
+        truyens = new ArrayList<>();
+        categories = new ArrayList<>();
+        mAdapterTruyenKe = new VerticalAdapter(getActivity(),categories);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        recyclerTruyenke.setLayoutManager(mLayoutManager);
+        recyclerTruyenke.setHasFixedSize(true);
+        recyclerTruyenke.setAdapter(mAdapterTruyenKe);
+        comicProfileAdapter = new ComicProfileAdapter(getContext(), truyens);
+        LinearLayoutManager mLayout = new LinearLayoutManager(getActivity());
+        mLayout.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerTruyentranh.setLayoutManager(mLayout);
+        recyclerTruyentranh.setHasFixedSize(true);
+        recyclerTruyentranh.setAdapter(comicProfileAdapter);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Comic").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String name = dataSnapshot.getKey();
+                String thumb = dataSnapshot.child("thumbnail").getValue().toString();
+                Truyen truyen = new Truyen();
+                truyen.setName(name);
+                truyen.setThumbnail(thumb);
+                truyens.add(truyen);
+                comicProfileAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child("KeTruyen").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Category category = dataSnapshot.getValue(Category.class); //get doi tuong category ve
+                categories.add(category); //them doi tuong vao list
+                //sap xep lai doi tuong trong danh sach
+
+                mAdapterTruyenKe.addItems(categories);  //them doi tuong vao adapter
+                mAdapterTruyenKe.notifyDataSetChanged(); //notify
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentNext = new Intent(getActivity(), ViewAllComic.class);
+                getActivity().startActivity(intentNext);
+            }
+        });
+
         return view;
     }
 }

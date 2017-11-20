@@ -44,6 +44,9 @@ public class VideoMenu extends Fragment{
     private TextView tvVideoName;
     private Dialog progressDialog;
     private Spinner spinner;
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){

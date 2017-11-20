@@ -1,12 +1,13 @@
 package com.example.admin.xmltest.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by HTML5 on 18/11/2017.
  */
 
-public class Truyen {
+public class Truyen implements Serializable{
     String name;
     String description;
     String category;
