@@ -1,4 +1,4 @@
-package com.example.admin.xmltest.Education;
+package com.example.admin.xmltest.Math;
 
 import android.content.Intent;
 import android.os.Bundle;

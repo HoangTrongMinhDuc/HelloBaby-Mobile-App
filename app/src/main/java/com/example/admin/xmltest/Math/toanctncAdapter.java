@@ -1,28 +1,26 @@
-package com.example.admin.xmltest.Education;
+package com.example.admin.xmltest.Math;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.admin.xmltest.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 /**
- * Created by USER on 11/18/2017.
+ * Created by USER on 11/20/2017.
  */
 
-public class toandem110Adapter extends PagerAdapter {
+public class toanctncAdapter extends PagerAdapter {
     private Context mContext;
     private int mLayout;
-    private ArrayList<ToanDemIdenX> mList;
+    private ArrayList<Toanctncbe10> mList;
 
-    public toandem110Adapter(Context context, int layout, ArrayList<ToanDemIdenX> list){
+    public toanctncAdapter(Context context, int layout, ArrayList<Toanctncbe10> list){
         mContext = context;
         mLayout = layout;
         mList = list;
@@ -47,10 +45,8 @@ public class toandem110Adapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View layout = inflater.inflate(mLayout, container, false);
-        ImageView imglink = (ImageView) layout.findViewById(R.id.imgLink);
-        TextView tvquestion = (TextView)layout.findViewById(R.id.tvQuestion);
-        ToanDemIdenX pst = mList.get(position);
-        Picasso.with(mContext).load(pst.getLink()).into(imglink);
+        TextView tvquestion = (TextView)layout.findViewById(R.id.tvQuestionptoan);
+        Toanctncbe10 pst = mList.get(position);
         tvquestion.setText(pst.getQuestion());
         container.addView(layout);
         return layout;

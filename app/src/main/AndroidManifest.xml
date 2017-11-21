@@ -48,13 +48,13 @@
             android:name=".SetupAccountActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Education.EduMainActivity"
+            android:name=".Math.EduMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Education.ToanDem"
+            android:name=".Math.ToanDem"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Education.ToanctncActivity"
+            android:name=".Math.ToanctncActivity"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".SonReceiveAndSendBackService">

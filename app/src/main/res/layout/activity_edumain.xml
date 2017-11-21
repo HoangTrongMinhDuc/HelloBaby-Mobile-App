@@ -5,15 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgr"
-    tools:context="com.example.admin.xmltest.Education.EduMainActivity">
+    android:background="@mipmap/backgr"
+    tools:context="com.example.admin.xmltest.Math.EduMainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TOÁN HỌC"
         android:layout_gravity="center"
-        android:layout_weight="0"/>
+        android:layout_weight="0"
+        android:textSize="30dp"
+        android:textColorHint="@color/cardview_dark_background"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,14 +27,7 @@
         android:paddingTop="10dp">
 
 
-        <ImageView
 
-            android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/qq" />
 
         <Button
             android:id="@+id/btnDem"
@@ -36,8 +35,10 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:background="@drawable/butn"
+            android:onClick="btnDem"
             android:text="BÀI TOÁN ĐẾM"
-            android:onClick="btnDem"/>
+            android:layout_marginTop="20dp"/>
+
         <Button
             android:id="@+id/btnCong"
             android:layout_width="200dp"
@@ -45,7 +46,7 @@
             android:layout_gravity="center"
             android:background="@drawable/butn"
             android:text="BÀI TOÁN CỘNG"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:onClick="btnCong"/>
         <Button
             android:id="@+id/btnTru"
@@ -54,8 +55,16 @@
             android:layout_gravity="center"
             android:background="@drawable/butn"
             android:text="BÀI TOÁN TRỪ"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:onClick="btnTru"/>
+        <ImageView
+
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/qq" />
         <Button
             android:id="@+id/btnNhan"
             android:layout_width="200dp"
@@ -63,7 +72,7 @@
             android:layout_gravity="center"
             android:background="@drawable/butn"
             android:text="BÀI TOÁN NHÂN"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="2dp"
             android:onClick="btnNhan"/>
         <Button
             android:id="@+id/btnChia"
@@ -78,7 +87,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="24dp">
 
             <ImageView
 

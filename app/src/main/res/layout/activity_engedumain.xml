@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="5dp"
     android:background="@mipmap/backgr">
-
     <LinearLayout
         android:id="@+id/layoutTopics"
         android:layout_width="280dp"
@@ -50,55 +47,32 @@
         android:background="@color/activity_practice_line"/>
 
     <android.support.v4.view.ViewPager
-    android:id="@+id/vpPctnc"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
+        android:id="@+id/vpPctnc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="SCORE"
-                android:textSize="30dp"
-                android:textColor="#0B0B0B"
-                android:gravity="center"
 
-                android:background="@color/activity_practice_line"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:textSize="30dp"
-                android:gravity="center"
-                android:textColor="#0B0B0B"
-                android:background="@drawable/app_bar_background"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:orientation="vertical">
-            <EditText
-                android:id="@+id/edtResultp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nhập kết quả của em: "/>
+
             <Button
 
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="OK"
+
                 android:textSize="20dp"
-                android:onClick="checkp"/>
+                android:onClick="checkp"
+                android:background="@drawable/volume"/>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+

@@ -1,4 +1,4 @@
-package com.example.admin.xmltest.Education;
+package com.example.admin.xmltest.Math;
 
 
 
@@ -7,7 +7,7 @@ public class ToanDemIdenX {
     private String link;
     private String question;
     private String result;
-    private  int status =0;
+    private  int status ;
 
     public ToanDemIdenX() {
     }
@@ -17,6 +17,7 @@ public class ToanDemIdenX {
         this.link = link;
         this.question = question;
         this.result = result;
+        this.status=0;
     }
 
     public String getId() {

@@ -1,15 +1,11 @@
-package com.example.admin.xmltest.Education;
-
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
-import com.example.admin.xmltest.R;
+package com.example.admin.xmltest.Math;
 
 public class Toanctncbe10 {
 
     private String id;
     private String question;
     private String result;
+    private  int status;
 
     public Toanctncbe10() {
     }
@@ -18,6 +14,7 @@ public class Toanctncbe10 {
         this.id = id;
         this.question = question;
         this.result = result;
+        this.status=0;
     }
 
     public String getId() {
@@ -44,4 +41,11 @@ public class Toanctncbe10 {
         this.result = result;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.admin.xmltest.Education;
+package com.example.admin.xmltest.Math;
 
 import java.util.ArrayList;
 import java.util.Random;
