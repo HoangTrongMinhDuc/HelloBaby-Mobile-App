@@ -111,14 +111,20 @@ public class SonReceiveAndSendBackService extends BroadcastReceiver {
         for (int i = 0; i < pdus.length; i++) {
             SmsMessage smsMessage;
 
+            String noidung;
+            String phone;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 String format = bundle.getString("format");
                 smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i], format);
+                noidung = smsMessage.getMessageBody();
+                phone = smsMessage.getOriginatingAddress();
             } else {
                 smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                noidung=smsMessage.getDisplayMessageBody();
+                phone = smsMessage.getOriginatingAddress();
             }
-            String noidung = smsMessage.getMessageBody();
-            String phone = smsMessage.getOriginatingAddress();
+
+
             //Toast.makeText(context, "Số phone=" + phone + "\nNội dung:" + noidung, Toast.LENGTH_LONG).show();
 
 
