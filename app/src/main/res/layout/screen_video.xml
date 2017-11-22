@@ -15,20 +15,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout
-        android:orientation="horizontal"
+        android:gravity="center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <SearchView
-            android:id="@+id/searchVideo"
-            android:queryHint="Tìm kiếm video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></SearchView>
+        <AutoCompleteTextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/autoSearch"
+            android:hint="Tìm kiếm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <Spinner
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:id="@+id/spinnerVideo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></Spinner>
+            android:layout_height="wrap_content"></Spinner>
     </LinearLayout>
 
     <ScrollView

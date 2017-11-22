@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,8 +32,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.app.Activity.RESULT_OK;
-
 /**
  * Created by HTML5 on 21/09/2017.
  */
@@ -47,19 +46,8 @@ public class VideoMenu extends Fragment{
     private Dialog progressDialog;
     private Spinner spinner;
     private Category favorite;
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 2017){
-            if (resultCode == RESULT_OK){
-                if(data.getIntExtra("CHANGE",0) == 2017){
-                    mAdapter.notifyDataSetChanged();
-                }
-            }
-        }
-    }
+    private List<String> videoList;
+    private AutoCompleteTextView autoSearch;
 
     @Nullable
     @Override
@@ -77,14 +65,17 @@ public class VideoMenu extends Fragment{
         recyclerView = (RecyclerView) view.findViewById(R.id.vertical_list_video);
         tvVideoName = (TextView) view.findViewById(R.id.tvVideoName);
         spinner = (Spinner) view.findViewById(R.id.spinnerVideo);
+        autoSearch = (AutoCompleteTextView) view.findViewById(R.id.autoSearch);
         //set font cho tieu de
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/NABILA.TFF");
         tvVideoName.setTypeface(typeface);
         tvVideoName.setText("Kho video");
+//        searchView = (SearchView)view.findViewById(R.id.searchVideo);
         //tao danh sach cac tham so du lieu dau vao
         categories = new ArrayList<>(); //list danh sach the loai dung cho recycler
         tempList = new ArrayList<>();
         final List<String> spinnerList = new ArrayList<>();
+        videoList = new ArrayList<>();
         //đưa dữ liệu vào adapter
         mAdapter = new VerticalAdapter(getActivity(),categories, "Video");
         //dua du liệu vào adapter cua spinner
@@ -113,6 +104,9 @@ public class VideoMenu extends Fragment{
                     Category category = dataSnapshot.getValue(Category.class); //get doi tuong category ve
                     categories.add(category); //them doi tuong vao list
                     spinnerList.add(category.getNameType());
+                    for (int i = 0; i < category.getVideos().size(); i++){
+                        videoList.add(category.getVideos().get(i).getTitle());
+                    }
                     //sap xep lai doi tuong trong danh sach
 //                    Collections.sort(categories, new Comparator<Category>() {
 //                        @Override
@@ -238,6 +232,28 @@ public class VideoMenu extends Fragment{
         });
 
 
+        final ArrayAdapter titleList = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, videoList);
+        autoSearch.setAdapter(titleList);
+        autoSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                autoSearch.setText("");
+                String titleSearch = titleList.getItem(position).toString();
+                for (int i = 0; i < categories.size(); i++){
+                    for (int j = 0; j < categories.get(i).getVideos().size(); j++){
+                        Video current = categories.get(i).getVideos().get(j);
+                        if (current.getTitle() == titleSearch ){
+                            Intent intent = new Intent(getActivity(), YoutubePlayer.class);
+                            intent.putExtra("ID", current.getId());
+                            intent.putExtra("TITLE", current.getTitle());
+                            intent.putExtra("TYPE", "Video");
+                            getActivity().startActivity(intent);
+                        }
+                    }
+
+                }
+            }
+        });
         return view;
     }
 }

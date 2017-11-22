@@ -35,7 +35,7 @@ import java.util.List;
  */
 
 public class ComicMenu extends Fragment{
-    private TextView tvTruyen, tvTruyentranh, tvTruyenke;
+    private TextView tvTruyen, tvTruyentranh;
     private DatabaseReference mDatabase;
     private List<Truyen> truyens;
     private ComicProfileAdapter comicProfileAdapter;
@@ -60,12 +60,10 @@ public class ComicMenu extends Fragment{
 
         tvTruyen = (TextView)view.findViewById(R.id.tvTRUYEN);
         tvTruyentranh = (TextView)view.findViewById(R.id.tvTruyentranh);
-        tvTruyenke = (TextView)view.findViewById(R.id.tvTruyenke);
         btnNext = (ImageView) view.findViewById(R.id.btnNextComic);
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/NABILA.TFF");
         Typeface typeface2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/MAINFONT2.OTF");
         tvTruyen.setTypeface(typeface);
-        tvTruyenke.setTypeface(typeface2);
         tvTruyentranh.setTypeface(typeface2);
         progressDialog=new Dialog(getContext(),R.style.Theme_AppCompat_Dialog);
         progressDialog.setContentView(R.layout.progress_dialog);

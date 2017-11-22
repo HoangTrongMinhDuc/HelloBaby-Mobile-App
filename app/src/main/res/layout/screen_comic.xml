@@ -51,15 +51,6 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/nexticon"/>
         </RelativeLayout>
-        <TextView
-            android:paddingLeft="20dp"
-            android:text="Truyện Kể"
-            android:textSize="15dp"
-            android:id="@+id/tvTruyenke"
-            android:textColor="@color/colorPrimaryDark"
-            android:background="#5aff4e"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_truyenke"
             android:layout_width="match_parent"
