@@ -223,6 +223,7 @@ public class VideoMenu extends Fragment{
                         if (categories.get(i).getNameType() == spinnerList.get(position)){
                             Intent intent = new Intent(getActivity(), ViewAllOnCategory.class);
                             intent.putExtra("videos", categories.get(i));
+                            intent.putExtra("TYPE", "Video");
                             getActivity().startActivity(intent);
                         }
                     }
