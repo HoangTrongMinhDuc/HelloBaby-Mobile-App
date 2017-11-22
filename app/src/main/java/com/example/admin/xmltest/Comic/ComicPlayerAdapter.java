@@ -50,6 +50,9 @@ public class ComicPlayerAdapter extends ArrayAdapter<String> {
         viewHolder.tvPage.setText("Trang " + numPage + "/" + numPageOfChapter);
         link = link.replace(" ","%20");
         Picasso.with(context).load(link).into(viewHolder.imgPic);
+//        ViewGroup.LayoutParams params = convertView.getLayoutParams();
+//        params.height = viewHolder.tvPage.getHeight() + viewHolder.imgPic.getHeight();
+//        convertView.setLayoutParams(params);
 //        final ViewGroup.LayoutParams params = convertView.getLayoutParams();
 //        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
 //        convertView.setLayoutParams(params);

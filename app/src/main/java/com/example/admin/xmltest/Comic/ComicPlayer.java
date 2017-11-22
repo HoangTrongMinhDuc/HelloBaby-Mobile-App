@@ -41,6 +41,7 @@ public class ComicPlayer extends AppCompatActivity {
         lvComic.setAdapter(mAdapter);
         String numChapter = (id+1) +"";
         tvChapter.setText("Chương "+ numChapter);
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Comic").child(name).child("chuongs").child(id+"").child("listLink")
                 .addChildEventListener(new ChildEventListener() {

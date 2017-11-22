@@ -36,6 +36,7 @@ public class ViewAllOnCategory extends AppCompatActivity {
 
         Intent intent = getIntent();
         Category category = (Category) intent.getSerializableExtra("videos");
+        final String typeVideo = intent.getStringExtra("TYPE");
         List<Video> videos = category.getVideos();
         gridView = (GridView)findViewById(R.id.GridVideo);
 
@@ -59,6 +60,7 @@ public class ViewAllOnCategory extends AppCompatActivity {
                 Intent intent = new Intent(ViewAllOnCategory.this, YoutubePlayer.class);
                 intent.putExtra("ID", arrV.get(position).getId());
                 intent.putExtra("TITLE", arrV.get(position).getTitle());
+                intent.putExtra("TYPE", typeVideo);
                 startActivity(intent);
             }
         });

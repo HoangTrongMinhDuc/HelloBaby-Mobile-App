@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.example.admin.xmltest.VideoYoutube.VerticalAdapter;
 import com.example.admin.xmltest.VideoYoutube.ViewAllOnCategory;
 import com.example.admin.xmltest.models.Category;
+import com.example.admin.xmltest.models.Video;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,9 +29,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by HTML5 on 21/09/2017.
@@ -44,12 +46,24 @@ public class VideoMenu extends Fragment{
     private TextView tvVideoName;
     private Dialog progressDialog;
     private Spinner spinner;
+    private Category favorite;
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 2017){
+            if (resultCode == RESULT_OK){
+                if(data.getIntExtra("CHANGE",0) == 2017){
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        }
+    }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.screen_video, container, false);
 
@@ -72,7 +86,7 @@ public class VideoMenu extends Fragment{
         tempList = new ArrayList<>();
         final List<String> spinnerList = new ArrayList<>();
         //đưa dữ liệu vào adapter
-        mAdapter = new VerticalAdapter(getActivity(),categories);
+        mAdapter = new VerticalAdapter(getActivity(),categories, "Video");
         //dua du liệu vào adapter cua spinner
         ArrayAdapter<String> mAdapterS = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,spinnerList);
         mAdapterS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,12 +114,12 @@ public class VideoMenu extends Fragment{
                     categories.add(category); //them doi tuong vao list
                     spinnerList.add(category.getNameType());
                     //sap xep lai doi tuong trong danh sach
-                    Collections.sort(categories, new Comparator<Category>() {
-                        @Override
-                        public int compare(Category o1, Category o2) {
-                            return o1.getType().compareTo(o2.getType());
-                        }
-                    });
+//                    Collections.sort(categories, new Comparator<Category>() {
+//                        @Override
+//                        public int compare(Category o1, Category o2) {
+//                            return o1.getType().compareTo(o2.getType());
+//                        }
+//                    });
 
                     mAdapter.addItems(categories);  //them doi tuong vao adapter
                     mAdapter.notifyDataSetChanged(); //notify
@@ -151,6 +165,53 @@ public class VideoMenu extends Fragment{
             });
         }
 
+        //lay id cua acc
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        String idAcc = mAuth.getCurrentUser().getUid().toString();
+        favorite = new Category();
+        favorite.setNameType("Đã yêu thích");
+        final List<Video> videoF = new ArrayList<>();
+        favorite.setVideos(videoF);
+        categories.add(favorite);
+
+        mDatabase.child("favorite").child(idAcc).child("Video").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Video video = dataSnapshot.getValue(Video.class);
+                videoF.add(video);
+                mAdapter.addItems(categories);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Video videoX = dataSnapshot.getValue(Video.class);
+                for (int i = 0; i < videoF.size(); i++){
+                    if (videoX.getId() == videoF.get(i).getId()){
+                        videoF.remove(i);
+                        mAdapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -174,6 +235,7 @@ public class VideoMenu extends Fragment{
 
             }
         });
+
 
         return view;
     }
