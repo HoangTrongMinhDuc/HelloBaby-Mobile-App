@@ -216,13 +216,14 @@ public class VideoMenu extends Fragment{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){
-                    return;
+                    //do nothing
                 }
                 else {
                     for (int i = 0; i < categories.size(); i++){
                         if (categories.get(i).getNameType() == spinnerList.get(position)){
                             Intent intent = new Intent(getActivity(), ViewAllOnCategory.class);
                             intent.putExtra("videos", categories.get(i));
+                            intent.putExtra("TYPE", "Video");
                             getActivity().startActivity(intent);
                         }
                     }

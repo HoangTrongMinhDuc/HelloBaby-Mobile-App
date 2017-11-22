@@ -1,60 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main"
     >
-    <TextView
-        android:layout_marginTop="10dp"
-        android:textSize="30sp"
-        android:textColor="#004cff"
-        android:background="#c800bdea"
-        android:gravity="center"
-        android:id="@+id/tvTRUYEN"
-        android:text="Kho Truyện"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main"
+        >
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:textColor="#004cff"
+            android:background="#c800bdea"
+            android:gravity="center"
+            android:id="@+id/tvTRUYEN"
+            android:text="Kho Truyện"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:paddingLeft="20dp"
-                android:text="Truyện Tranh"
-                android:id="@+id/tvTruyentranh"
-                android:textSize="15dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:background="#5aff4e"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_truyentranh"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <ImageView
-            android:id="@+id/btnNextComic"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/nexticon"/>
-    </RelativeLayout>
-    <TextView
-        android:paddingLeft="20dp"
-        android:text="Truyện Kể"
-        android:textSize="15dp"
-        android:id="@+id/tvTruyenke"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="#5aff4e"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_truyenke"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:text="Truyện Tranh"
+                    android:id="@+id/tvTruyentranh"
+                    android:textSize="15dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:background="#5aff4e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_truyentranh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/btnNextComic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/nexticon"/>
+        </RelativeLayout>
+        <TextView
+            android:paddingLeft="20dp"
+            android:text="Truyện Kể"
+            android:textSize="15dp"
+            android:id="@+id/tvTruyenke"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="#5aff4e"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_truyenke"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</ScrollView>
