@@ -216,7 +216,7 @@ public class VideoMenu extends Fragment{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){
-                    return;
+                    //do nothing
                 }
                 else {
                     for (int i = 0; i < categories.size(); i++){
