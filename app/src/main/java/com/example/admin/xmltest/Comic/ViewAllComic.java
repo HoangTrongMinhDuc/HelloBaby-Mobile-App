@@ -38,6 +38,7 @@ public class ViewAllComic extends AppCompatActivity {
 
 
         final ViewAllAdapter mAdapter = new ViewAllAdapter(ViewAllComic.this, R.layout.item_truyentranh,truyenList);
+        gridView.setNumColumns(3);
         gridView.setAdapter(mAdapter);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Comic").addChildEventListener(new ChildEventListener() {
@@ -50,7 +51,6 @@ public class ViewAllComic extends AppCompatActivity {
                 truyen.setThumbnail(thumb);
                 truyenList.add(truyen);
                 mAdapter.notifyDataSetChanged();
-               // progressDialog.dismiss();
             }
 
             @Override

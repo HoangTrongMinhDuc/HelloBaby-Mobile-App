@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.admin.xmltest.R;
 import com.example.admin.xmltest.YoutubePlayer;
@@ -28,11 +27,15 @@ public class HorizontalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private List<Video> mDataList;
     private int mRowIndex = -1;
     private Context mContext;
+    private String typeVideo;
 
     //constructor
     public HorizontalAdapter(Context mContext) {
         this.mContext = mContext;
         notifyDataSetChanged();
+    }
+    public void setTypeVideo(String typeVideo){
+        this.typeVideo = typeVideo;
     }
 
     //hàm set dữ liệu cho adapter, nếu dữ liệu thay đổi thì cập nhật adapter
@@ -87,8 +90,8 @@ public class HorizontalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 Intent intent = new Intent(mContext, YoutubePlayer.class);
                 intent.putExtra("ID", current.getId());
                 intent.putExtra("TITLE", current.getTitle());
+                intent.putExtra("TYPE", typeVideo);
                 mContext.startActivity(intent);
-                Toast.makeText(mContext, current.getTitle(), Toast.LENGTH_SHORT).show();
 
             }
         });

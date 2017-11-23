@@ -29,7 +29,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.Simple
     private final Context mContext;
     private static List<Category> mCategory; //danh sach du liệu các thể loại
     private static RecyclerView horizontal_list; //recycler view để hiển thị dữ liệu theo chiều ngang của từng phần từ trong mCategory
-
+    private final String typeVideo;
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         public final TextView category; //tiêu đề tên thể loại
@@ -53,8 +53,9 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.Simple
         }
     }
     //constructor
-    public VerticalAdapter(Context mContext, List<Category> data) {
+    public VerticalAdapter(Context mContext, List<Category> data, String typeVideo) {
         this.mContext = mContext;
+        this.typeVideo = typeVideo;
         if (data != null)
             mCategory = new ArrayList<>(data);
         else mCategory = new ArrayList<>();
@@ -64,6 +65,7 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.Simple
         mCategory.addAll(categories);
     }
 
+
     //set layout cho adapter
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(mContext).inflate(R.layout.horizontal_item, parent, false);
@@ -71,19 +73,21 @@ public class VerticalAdapter extends RecyclerView.Adapter<VerticalAdapter.Simple
     }
 
     @Override
-    public void onBindViewHolder(SimpleViewHolder holder, final int position) {
+    public void onBindViewHolder(final SimpleViewHolder holder, final int position) {
         //set text cho layout ngang
-        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/MAINFONT2.OTF");
+        final Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/MAINFONT2.OTF");
         holder.category.setTypeface(typeface);
         holder.category.setText(mCategory.get(position).getNameType()); //tên thể loại
         holder.horizontalAdapter.setData(mCategory.get(position).getVideos()); // set dữ liệu là danh sách video cho adapter ngang
         holder.horizontalAdapter.setRowIndex(position); //set index cho adapter ngang
+        holder.horizontalAdapter.setTypeVideo(typeVideo);
         //bắt sự kiện khi chọn nút next, đưa ra màn hình mới
         holder.next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ViewAllOnCategory.class);
                 intent.putExtra("videos", mCategory.get(position));
+                intent.putExtra("TYPE", typeVideo);
                 mContext.startActivity(intent);
             }
         });

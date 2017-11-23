@@ -4,13 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admin.xmltest.models.Video;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private YouTubePlayerView ytPlayer;
@@ -19,7 +31,13 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
     private String title = "title";
     private TextView tvTieude;
     private Button btnBack;
-
+    private LinearLayout likeVideo;
+    private ImageView imgLike;
+    private boolean isLike = false;
+    private DatabaseReference mDatabase;
+    private List<String> mListLike;
+    private String idAcc;
+    private String typeVideo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +47,70 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
         Intent intent = getIntent();
         id = intent.getStringExtra("ID");
         title = intent.getStringExtra("TITLE");
+        typeVideo = intent.getStringExtra("TYPE");
+        likeVideo = (LinearLayout)findViewById(R.id.btnLike);
+        imgLike = (ImageView)findViewById(R.id.imgLike);
+
+        mListLike = new ArrayList<>();
+
+        //lay id cua acc
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        idAcc = mAuth.getCurrentUser().getUid().toString();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("favorite").child(idAcc).child(typeVideo).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String idVideo = dataSnapshot.getKey();
+                mListLike.add(idVideo);
+                if(mListLike.contains(id)){
+                    imgLike.setImageResource(R.mipmap.like);
+                    isLike = true;
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        likeVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isLike) {
+                    imgLike.setImageResource(R.mipmap.unlike);
+                    isLike = false;
+                    mDatabase.child("favorite").child(idAcc).child(typeVideo).child(id).setValue(null);
+                    Toast.makeText(YoutubePlayer.this, "Đã xóa khỏi danh sách yêu thích!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    imgLike.setImageResource(R.mipmap.like);
+                    isLike = true;
+                    Video video = new Video(id,title);
+                    mDatabase.child("favorite").child(idAcc).child(typeVideo).child(id).setValue(video);
+                    Toast.makeText(YoutubePlayer.this, "Đã thêm vào danh sách yêu thích!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
         tvTieude = (TextView)findViewById(R.id.tvTieudevideo);
         tvTieude.setText(title);
         btnBack = (Button)findViewById(R.id.btnBackvideo);

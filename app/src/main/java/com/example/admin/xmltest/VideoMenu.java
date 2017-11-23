@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import com.example.admin.xmltest.VideoYoutube.VerticalAdapter;
 import com.example.admin.xmltest.VideoYoutube.ViewAllOnCategory;
 import com.example.admin.xmltest.models.Category;
+import com.example.admin.xmltest.models.Video;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,8 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -44,12 +45,13 @@ public class VideoMenu extends Fragment{
     private TextView tvVideoName;
     private Dialog progressDialog;
     private Spinner spinner;
-
-
+    private Category favorite;
+    private List<String> videoList;
+    private AutoCompleteTextView autoSearch;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.screen_video, container, false);
 
@@ -63,16 +65,19 @@ public class VideoMenu extends Fragment{
         recyclerView = (RecyclerView) view.findViewById(R.id.vertical_list_video);
         tvVideoName = (TextView) view.findViewById(R.id.tvVideoName);
         spinner = (Spinner) view.findViewById(R.id.spinnerVideo);
+        autoSearch = (AutoCompleteTextView) view.findViewById(R.id.autoSearch);
         //set font cho tieu de
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/NABILA.TFF");
         tvVideoName.setTypeface(typeface);
         tvVideoName.setText("Kho video");
+//        searchView = (SearchView)view.findViewById(R.id.searchVideo);
         //tao danh sach cac tham so du lieu dau vao
         categories = new ArrayList<>(); //list danh sach the loai dung cho recycler
         tempList = new ArrayList<>();
         final List<String> spinnerList = new ArrayList<>();
+        videoList = new ArrayList<>();
         //đưa dữ liệu vào adapter
-        mAdapter = new VerticalAdapter(getActivity(),categories);
+        mAdapter = new VerticalAdapter(getActivity(),categories, "Video");
         //dua du liệu vào adapter cua spinner
         ArrayAdapter<String> mAdapterS = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,spinnerList);
         mAdapterS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -99,13 +104,16 @@ public class VideoMenu extends Fragment{
                     Category category = dataSnapshot.getValue(Category.class); //get doi tuong category ve
                     categories.add(category); //them doi tuong vao list
                     spinnerList.add(category.getNameType());
+                    for (int i = 0; i < category.getVideos().size(); i++){
+                        videoList.add(category.getVideos().get(i).getTitle());
+                    }
                     //sap xep lai doi tuong trong danh sach
-                    Collections.sort(categories, new Comparator<Category>() {
-                        @Override
-                        public int compare(Category o1, Category o2) {
-                            return o1.getType().compareTo(o2.getType());
-                        }
-                    });
+//                    Collections.sort(categories, new Comparator<Category>() {
+//                        @Override
+//                        public int compare(Category o1, Category o2) {
+//                            return o1.getType().compareTo(o2.getType());
+//                        }
+//                    });
 
                     mAdapter.addItems(categories);  //them doi tuong vao adapter
                     mAdapter.notifyDataSetChanged(); //notify
@@ -151,17 +159,65 @@ public class VideoMenu extends Fragment{
             });
         }
 
+        //lay id cua acc
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        String idAcc = mAuth.getCurrentUser().getUid().toString();
+        favorite = new Category();
+        favorite.setNameType("Đã yêu thích");
+        final List<Video> videoF = new ArrayList<>();
+        favorite.setVideos(videoF);
+        categories.add(favorite);
+
+        mDatabase.child("favorite").child(idAcc).child("Video").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Video video = dataSnapshot.getValue(Video.class);
+                videoF.add(video);
+                mAdapter.addItems(categories);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Video videoX = dataSnapshot.getValue(Video.class);
+                for (int i = 0; i < videoF.size(); i++){
+                    if (videoX.getId() == videoF.get(i).getId()){
+                        videoF.remove(i);
+                        mAdapter.notifyDataSetChanged();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){
-                    return;
+                    //do nothing
                 }
                 else {
                     for (int i = 0; i < categories.size(); i++){
                         if (categories.get(i).getNameType() == spinnerList.get(position)){
                             Intent intent = new Intent(getActivity(), ViewAllOnCategory.class);
                             intent.putExtra("videos", categories.get(i));
+                            intent.putExtra("TYPE", "Video");
                             getActivity().startActivity(intent);
                         }
                     }
@@ -175,6 +231,29 @@ public class VideoMenu extends Fragment{
             }
         });
 
+
+        final ArrayAdapter titleList = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, videoList);
+        autoSearch.setAdapter(titleList);
+        autoSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                autoSearch.setText("");
+                String titleSearch = titleList.getItem(position).toString();
+                for (int i = 0; i < categories.size(); i++){
+                    for (int j = 0; j < categories.get(i).getVideos().size(); j++){
+                        Video current = categories.get(i).getVideos().get(j);
+                        if (current.getTitle() == titleSearch ){
+                            Intent intent = new Intent(getActivity(), YoutubePlayer.class);
+                            intent.putExtra("ID", current.getId());
+                            intent.putExtra("TITLE", current.getTitle());
+                            intent.putExtra("TYPE", "Video");
+                            getActivity().startActivity(intent);
+                        }
+                    }
+
+                }
+            }
+        });
         return view;
     }
 }

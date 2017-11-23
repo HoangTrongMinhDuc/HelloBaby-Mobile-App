@@ -19,6 +19,8 @@ import com.example.admin.xmltest.Comic.ViewAllComic;
 import com.example.admin.xmltest.VideoYoutube.VerticalAdapter;
 import com.example.admin.xmltest.models.Category;
 import com.example.admin.xmltest.models.Truyen;
+import com.example.admin.xmltest.models.Video;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +35,7 @@ import java.util.List;
  */
 
 public class ComicMenu extends Fragment{
-    private TextView tvTruyen, tvTruyentranh, tvTruyenke;
+    private TextView tvTruyen, tvTruyentranh;
     private DatabaseReference mDatabase;
     private List<Truyen> truyens;
     private ComicProfileAdapter comicProfileAdapter;
@@ -43,6 +45,7 @@ public class ComicMenu extends Fragment{
     private List<Category> categories;
     private VerticalAdapter mAdapterTruyenKe;
     private ImageView btnNext;
+    private Category favorite;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,12 +60,10 @@ public class ComicMenu extends Fragment{
 
         tvTruyen = (TextView)view.findViewById(R.id.tvTRUYEN);
         tvTruyentranh = (TextView)view.findViewById(R.id.tvTruyentranh);
-        tvTruyenke = (TextView)view.findViewById(R.id.tvTruyenke);
         btnNext = (ImageView) view.findViewById(R.id.btnNextComic);
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/NABILA.TFF");
         Typeface typeface2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/MAINFONT2.OTF");
         tvTruyen.setTypeface(typeface);
-        tvTruyenke.setTypeface(typeface2);
         tvTruyentranh.setTypeface(typeface2);
         progressDialog=new Dialog(getContext(),R.style.Theme_AppCompat_Dialog);
         progressDialog.setContentView(R.layout.progress_dialog);
@@ -73,7 +74,7 @@ public class ComicMenu extends Fragment{
         recyclerTruyenke = (RecyclerView) view.findViewById(R.id.recycler_truyenke);
         truyens = new ArrayList<>();
         categories = new ArrayList<>();
-        mAdapterTruyenKe = new VerticalAdapter(getActivity(),categories);
+        mAdapterTruyenKe = new VerticalAdapter(getActivity(),categories, "Truyen");
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerTruyenke.setLayoutManager(mLayoutManager);
         recyclerTruyenke.setHasFixedSize(true);
@@ -139,6 +140,52 @@ public class ComicMenu extends Fragment{
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        FirebaseAuth mAuth;
+        mAuth = FirebaseAuth.getInstance();
+        String idAcc = mAuth.getCurrentUser().getUid().toString();
+        favorite = new Category();
+        favorite.setNameType("Đã yêu thích");
+        final List<Video> videoF = new ArrayList<>();
+        favorite.setVideos(videoF);
+        categories.add(favorite);
+
+        mDatabase.child("favorite").child(idAcc).child("Truyen").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Video video = dataSnapshot.getValue(Video.class);
+                videoF.add(video);
+                mAdapterTruyenKe.addItems(categories);
+                mAdapterTruyenKe.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Video videoX = dataSnapshot.getValue(Video.class);
+                for (int i = 0; i < videoF.size(); i++){
+                    if (videoX.getId() == videoF.get(i).getId()){
+                        videoF.remove(i);
+                        mAdapterTruyenKe.notifyDataSetChanged();
+                        break;
+                    }
+                }
             }
 
             @Override

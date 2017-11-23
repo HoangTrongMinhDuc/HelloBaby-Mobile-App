@@ -143,34 +143,33 @@ public class MainActivity extends AppCompatActivity {
     private void xuLyDangNhap() {
         String email = edtUserName.getText().toString();
         String password = edtPassWords.getText().toString();
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+        if(email!=null&&password!=null) {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
 
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(MainActivity.this, "Đăng nhập thành công",
-                                    Toast.LENGTH_SHORT).show();
-                            
-                            
-                            kiemTraTrongProfile(user.getUid().toString());
-                            
-                            
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(MainActivity.this, "Đăng nhập thành công",
+                                        Toast.LENGTH_SHORT).show();
 
 
-                        } else {
-                            // If sign in fails, display a message to the user.
+                                kiemTraTrongProfile(user.getUid().toString());
 
-                            Toast.makeText(MainActivity.this, "Đăng nhập không thành công",
-                                    Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+
+                                Toast.makeText(MainActivity.this, "Đăng nhập không thành công",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
                         }
-
-                        // ...
-                    }
-                });
-
+                    });
+        }
     }
 
     private void kiemTraTrongProfile(final String uid) {
