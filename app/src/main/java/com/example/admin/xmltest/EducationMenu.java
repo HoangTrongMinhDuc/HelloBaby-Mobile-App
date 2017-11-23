@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.admin.xmltest.English.EngEduMainActivity;
 import com.example.admin.xmltest.Math.EduMainActivity;
 
 
@@ -30,6 +31,13 @@ public class EducationMenu extends Fragment{
             @Override
             public void onClick(View v) {
                Intent intent = new Intent(getActivity(),EduMainActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        btnTiengAnh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(getActivity(),EngEduMainActivity.class);
                 getActivity().startActivity(intent);
             }
         });

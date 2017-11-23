@@ -52,6 +52,7 @@ public class ToanDem extends AppCompatActivity {
         tvCurrentOverTotal = (TextView)findViewById(R.id.tvCurrentOverTotal);
         mVPdem = (ViewPager) findViewById(R.id.vpDem110);
         mVPdem.setAdapter(adapter110);
+
         edtResultd= (EditText) findViewById(R.id.edtResultd);
         mDatabase= FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MATH").child("TẬP ĐẾM").child("TỪ 1 ĐẾN 10").addValueEventListener(new ValueEventListener() {
@@ -118,7 +119,7 @@ public class ToanDem extends AppCompatActivity {
 
     private void setCurrentOverTotal(int position){
 
-        tvCurrentOverTotal.setText((position + 1)+"/" + mlist.size());
+        tvCurrentOverTotal.setText((position + 1)+"/" + 4);
     }
 
     }

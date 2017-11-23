@@ -56,6 +56,16 @@
         <activity
             android:name=".Math.ToanctncActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".English.EngEduMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".English.alphabetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".English.numberActivity"
+            android:screenOrientation="portrait" />
+
 
         <receiver android:name=".SonReceiveAndSendBackService">
             <intent-filter>

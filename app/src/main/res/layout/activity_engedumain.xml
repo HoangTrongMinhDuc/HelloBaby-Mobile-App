@@ -3,76 +3,107 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/backgr">
-    <LinearLayout
-        android:id="@+id/layoutTopics"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="5dp"
-        android:background="@color/activity_practice_line">
-        <!--android:onClick="showChooseTopic"-->
-
-        <TextView
-            android:id="@+id/tvTopics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center_vertical"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="Toán nhân"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/muiten"/>
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
     <TextView
-        android:id="@+id/tvCurrentOverTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Tiếng anh"
+        android:layout_gravity="center"
+        android:layout_weight="0"
         android:textSize="30dp"
-        android:layout_gravity="center_horizontal"
-        android:text="10/30"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/activity_practice_line"/>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpPctnc"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:textColorHint="@color/cardview_dark_background"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
         />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
 
-        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btnalpha"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/butn"
+            android:onClick="btnAlphabet"
+            android:text="ALPHABET"
+            android:layout_marginTop="70dp"/>
+
+        <Button
+            android:id="@+id/btnnum"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/butn"
+            android:onClick="btnNumber"
+            android:text="NUMBER" />
+
+        <ImageView
+
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/qq" />
+        <Button
+            android:id="@+id/btnNhan"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/butn"
+            android:text="PRATICE"
+            android:layout_marginTop="2dp"
+            android:onClick="btnPratice"/>
+
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:orientation="vertical">
+            android:layout_marginTop="90dp">
 
-            <Button
+            <ImageView
 
+
+                android:id="@+id/imageView1"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/qq">
 
-                android:textSize="20dp"
-                android:onClick="checkp"
-                android:background="@drawable/volume"/>
+            </ImageView>
+            <ImageView
+
+                android:id="@+id/imageView2"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/qq" />
+
+            <ImageView
+
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/qq" />
         </LinearLayout>
+
+
     </LinearLayout>
+
+
+</LinearLayout>
 
