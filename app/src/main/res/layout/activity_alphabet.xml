@@ -20,13 +20,13 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center_vertical"
-            android:textSize="16sp"
+            android:textSize="@dimen/alphabet_text_size"
             android:textStyle="bold"
             android:text="ALPHABET"
             android:layout_weight="1"/>
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/alphabet_img_width"
+            android:layout_height="@dimen/alphabet_img_height"
             android:layout_gravity="center_vertical"
             android:background="@drawable/muiten"/>
     </LinearLayout>
@@ -54,11 +54,11 @@
 
             <Button
                 android:id="@+id/btnSound"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/alphabet_btn_width"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
 
-                android:textSize="20dp"
+                android:textSize="@dimen/alphabet_text_size"
                 android:background="@drawable/volume"/>
         </LinearLayout>
     </LinearLayout>
