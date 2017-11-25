@@ -14,25 +14,25 @@
         android:text="TOÁN HỌC"
         android:layout_gravity="center"
         android:layout_weight="0"
-        android:textSize="30dp"
+        android:textSize="@dimen/edumain_textsize"
         android:textColorHint="@color/cardview_dark_background"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/edumain_tvmargintop"
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:paddingTop="@dimen/edumain_paddingtop">
 
 
 
 
         <Button
             android:id="@+id/btnDem"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/edumain_btnwidth"
+            android:layout_height="@dimen/edumain_btnheight"
             android:layout_gravity="center"
             android:background="@drawable/butn"
             android:onClick="btnDem"
