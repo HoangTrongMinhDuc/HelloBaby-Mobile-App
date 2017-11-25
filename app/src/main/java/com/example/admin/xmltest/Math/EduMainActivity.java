@@ -26,17 +26,17 @@ public class EduMainActivity extends AppCompatActivity {
         // Các dữ liệu gửi kèm
         bundle.putString("key1","PHÉP CỘNG");
         bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        bundle.putString("key3", "Phép Cộng");
         intent.putExtra("data",bundle);
         startActivity(intent);
-
     }
 
     public void btnTru(View view) {
         Intent intent = new Intent(EduMainActivity.this, ToanctncActivity.class);
         Bundle bundle = new Bundle();
-        // Các dữ liệu gửi kèm
         bundle.putString("key1","PHÉP TRỪ");
         bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        bundle.putString("key3", "Phép Trừ");
         intent.putExtra("data",bundle);
         startActivity(intent);
 
@@ -45,18 +45,18 @@ public class EduMainActivity extends AppCompatActivity {
     public void btnNhan(View view) {
         Intent intent = new Intent(EduMainActivity.this, ToanctncActivity.class);
         Bundle bundle = new Bundle();
-        // Các dữ liệu gửi kèm
         bundle.putString("key1","PHÉP NHÂN");
         bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        bundle.putString("key3", "Phép Nhân");
         intent.putExtra("data",bundle);
        startActivity(intent);
     }
     public void btnChia(View view) {
         Intent intent = new Intent(EduMainActivity.this, ToanctncActivity.class);
         Bundle bundle = new Bundle();
-        // Các dữ liệu gửi kèm
         bundle.putString("key1","PHÉP CHIA");
         bundle.putString("key2", "CÁC SỐ DƯỚI 10");
+        bundle.putString("key3", "Phép Chia");
         intent.putExtra("data",bundle);
         startActivity(intent);
 

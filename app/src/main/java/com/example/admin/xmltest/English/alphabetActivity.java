@@ -41,28 +41,21 @@ public class alphabetActivity extends AppCompatActivity {
     private Button btnSound;
     private int mCurrentPageIndex;
 
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alphabet);
-        mCurrentPageIndex = 0;
-        btnSound = (Button)findViewById(R.id.btnSound);
+        init();
+        setComponents();
+        setDefault();
+        setEvents();
+    }
+
+    private void setDefault() {
         Bundle extras = getIntent().getBundleExtra("data");
         String a1= extras.getString("key1");
         String a2 = extras.getString("key2");
-        TextReader.init(this);
-        TextReader.getInstance().speak("");
-        mlist = new ArrayList<Alphabet>();
-        mlist1 = new ArrayList<Alphabet>();
-        adapterAl = new alphabetAdapter(this, R.layout.item_alphabet, mlist);
-        mVPalpha = (ViewPager) findViewById(R.id.vpAlpha);
-        mVPalpha.setAdapter(adapterAl);
-        mVPalpha.setCurrentItem(mCurrentPageIndex);
-        mDatabase= FirebaseDatabase.getInstance().getReference();
         mDatabase.child("ENGLISH").child(a1).child(a2).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -96,6 +89,9 @@ public class alphabetActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setEvents() {
         btnSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +99,21 @@ public class alphabetActivity extends AppCompatActivity {
                 TextReader.getInstance().speak(alpha.getContent());
             }
         });
+    }
 
+    private void setComponents() {
+        btnSound = (Button)findViewById(R.id.btnSound);
+        mVPalpha = (ViewPager) findViewById(R.id.vpAlpha);
+        mVPalpha.setAdapter(adapterAl);
+        mVPalpha.setCurrentItem(mCurrentPageIndex);
+    }
+
+    private void init() {
+        mlist = new ArrayList<Alphabet>();
+        mlist1 = new ArrayList<Alphabet>();
+        mCurrentPageIndex = 0;
+        adapterAl = new alphabetAdapter(this, R.layout.item_alphabet, mlist);
+        mDatabase= FirebaseDatabase.getInstance().getReference();
     }
 
 }

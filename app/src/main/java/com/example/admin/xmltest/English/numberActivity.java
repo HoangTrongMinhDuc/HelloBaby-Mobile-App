@@ -44,39 +44,14 @@ public class numberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alphabet);
-        mCurrentPageIndex = 0;
-        btnSound = (Button)findViewById(R.id.btnSound);
-        Bundle extras = getIntent().getBundleExtra("data");
-        String a1= extras.getString("key1");
-        String a2 = extras.getString("key2");
-        TextReader.init(this);
-        TextReader.getInstance().speak("");
-        mlist = new ArrayList<Number>();
-        mlist1 = new ArrayList<Number>();
-        adapternum = new numberAdapter(this, R.layout.item_number, mlist);
-        mVPalpha = (ViewPager) findViewById(R.id.vpAlpha);
-        mVPalpha.setAdapter(adapternum);
+        init();
+        setComponents();
+        setDefault();
+        setEvents();
+    }
+
+    private void setEvents() {
         mVPalpha.setCurrentItem(mCurrentPageIndex);
-        mDatabase= FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("ENGLISH").child(a1).child(a2).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot dt : dataSnapshot.getChildren()) {
-                    Number num = dt.getValue(Number.class);
-                    mlist.add(num);
-
-                }
-                for (Number tdItoX : mlist1) {
-                    mlist.add(tdItoX);
-                }
-
-                adapternum.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
         mVPalpha.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -95,13 +70,44 @@ public class numberActivity extends AppCompatActivity {
             }
         });
         btnSound.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Number num = mlist.get(mCurrentPageIndex);
                 TextReader.getInstance().speak(num.getContent());
             }
         });
+    }
 
+    private void setDefault() {
+        mVPalpha.setAdapter(adapternum);
+        Bundle extras = getIntent().getBundleExtra("data");
+        String a1= extras.getString("key1");
+        String a2 = extras.getString("key2");
+        mDatabase.child("ENGLISH").child(a1).child(a2).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dt : dataSnapshot.getChildren()) {
+                    Number num = dt.getValue(Number.class);
+                    mlist.add(num);
+                }
+                adapternum.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+    private void setComponents() {
+        btnSound = (Button)findViewById(R.id.btnSound);
+        mVPalpha = (ViewPager) findViewById(R.id.vpAlpha);
+    }
+    private void init() {
+        mCurrentPageIndex = 0;
+        mlist = new ArrayList<Number>();
+        adapternum = new numberAdapter(this, R.layout.item_number, mlist);
+        mDatabase= FirebaseDatabase.getInstance().getReference();
     }
 
 }

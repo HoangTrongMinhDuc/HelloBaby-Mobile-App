@@ -40,21 +40,40 @@ public class ToanDem extends AppCompatActivity {
     private TextView tvCurrentOverTotal;
     private int check = 0;
 
-
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toan_dem);
-        mlist = new ArrayList<ToanDemIdenX>();
-        mlist1 = new ArrayList<ToanDemIdenX>();
-        adapter110 = new toandem110Adapter(this, R.layout.item_dem, mlist);
-        tvCurrentOverTotal = (TextView)findViewById(R.id.tvCurrentOverTotal);
-        mVPdem = (ViewPager) findViewById(R.id.vpDem110);
-        mVPdem.setAdapter(adapter110);
+        init();
+        setComponents();
+        setDefault();
+        setEvents();
+    }
 
-        edtResultd= (EditText) findViewById(R.id.edtResultd);
-        mDatabase= FirebaseDatabase.getInstance().getReference();
+    private void setEvents() {
+        mVPdem.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setCurrentOverTotal(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        setCurrentOverTotal(0);
+    }
+
+    private void setDefault() {
+        mVPdem.setAdapter(adapter110);
         mDatabase.child("MATH").child("TẬP ĐẾM").child("TỪ 1 ĐẾN 10").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -75,25 +94,19 @@ public class ToanDem extends AppCompatActivity {
 
             }
         });
+    }
 
-        mVPdem.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    private void setComponents() {
+        tvCurrentOverTotal = (TextView)findViewById(R.id.tvCurrentOverTotal);
+        mVPdem = (ViewPager) findViewById(R.id.vpDem110);
+        edtResultd= (EditText) findViewById(R.id.edtResultd);
+    }
 
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                setCurrentOverTotal(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        setCurrentOverTotal(0);
-
+    private void init() {
+        mlist = new ArrayList<ToanDemIdenX>();
+        mlist1 = new ArrayList<ToanDemIdenX>();
+        adapter110 = new toandem110Adapter(this, R.layout.item_dem, mlist);
+        mDatabase= FirebaseDatabase.getInstance().getReference();
     }
 
     public void check(View view) {
@@ -104,7 +117,7 @@ public class ToanDem extends AppCompatActivity {
                 Toast.makeText(this, "Ket qua dung", Toast.LENGTH_SHORT).show();
                 edtResultd.setText("");
                 mVPdem.setCurrentItem(mVPdem.getCurrentItem() + 1);
-                Toast.makeText(this, mVPdem.getCurrentItem() + "", Toast.LENGTH_SHORT).show();
+
                 adapter110.notifyDataSetChanged();
             } else {
                 Toast.makeText(this, "Ket qua Sai", Toast.LENGTH_LONG).show();
@@ -119,7 +132,7 @@ public class ToanDem extends AppCompatActivity {
 
     private void setCurrentOverTotal(int position){
 
-        tvCurrentOverTotal.setText((position + 1)+"/" + 4);
+        tvCurrentOverTotal.setText((position + 1)+"/" + mlist.size());
     }
 
     }

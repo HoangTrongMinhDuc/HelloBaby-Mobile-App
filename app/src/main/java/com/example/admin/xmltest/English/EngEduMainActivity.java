@@ -18,6 +18,8 @@ public class EngEduMainActivity extends AppCompatActivity {
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_engedumain);
+        TextReader.init(this);
+        TextReader.getInstance().speak("");
     }
     public void btnAlphabet(View view) {
         Intent intent = new Intent(EngEduMainActivity.this, alphabetActivity.class);
