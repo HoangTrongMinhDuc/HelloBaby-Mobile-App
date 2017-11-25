@@ -16,6 +16,6 @@
     <ImageView
         android:id="@+id/imgComicPic"
         android:src="@drawable/anh1"
-        android:layout_width="350dp"
-        android:layout_height="550dp" />
+        android:layout_width="@dimen/item_comic_pic_width"
+        android:layout_height="@dimen/item_comic_pic_height" />
 </LinearLayout>

@@ -10,18 +10,18 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_weight="0.07"
-        android:textSize="80dp"
+        android:textSize="@dimen/item_number_textsize"
         android:gravity="center"
         android:textColor="@color/activity_practice_line"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="@dimen/item_number_margintop"/>
     <TextView
         android:id="@+id/tvnum2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_weight="0.07"
-        android:textSize="40dp"
+        android:textSize="@dimen/item_number_textsize2"
         android:gravity="center"
         />
 
@@ -31,6 +31,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.08"
         android:text="TextView"
-        android:textSize="20dp"
+        android:textSize="@dimen/item_number_textsize3"
         android:gravity="center"/>
 </LinearLayout>

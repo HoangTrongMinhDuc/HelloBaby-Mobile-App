@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_weight="0.24"
-        android:textSize="70dp"
+        android:textSize="@dimen/item_alphabet_textsize"
         android:gravity="center"
         android:textColor="@color/colorPink"
         android:textStyle="bold"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="@dimen/item_alphabet_margintop"/>
 
     <TextView
         android:id="@+id/tvSpell"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.08"
         android:text="TextView"
-        android:textSize="40dp"
+        android:textSize="@dimen/item_alphabet_textsize2"
         android:gravity="center"/>
 
 </LinearLayout>

@@ -13,13 +13,13 @@
         android:background="@drawable/bg_main"
         >
         <TextView
-            android:layout_marginTop="10dp"
-            android:textSize="30sp"
-            android:textColor="@color/title_text"
-            android:background="@color/title_bg"
+            android:layout_marginTop="@dimen/screen_comic_margintop"
+            android:textSize="@dimen/screen_comic_textsize"
+            android:textColor="#004cff"
+            android:background="#c800bdea"
             android:gravity="center"
             android:id="@+id/tvTRUYEN"
-            android:text="@string/comic_title"
+            android:text="Kho Truyện"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <RelativeLayout
@@ -30,12 +30,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:paddingLeft="20dp"
-                    android:text="@string/comic"
+                    android:paddingLeft="@dimen/screen_comic_paddingleft"
+                    android:text="Truyện Tranh"
                     android:id="@+id/tvTruyentranh"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/screen_comic_textsize2"
                     android:textColor="@color/colorPrimaryDark"
-                    android:background="@color/item_green_title"
+                    android:background="#5aff4e"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <android.support.v7.widget.RecyclerView
@@ -45,8 +45,8 @@
             </LinearLayout>
             <ImageView
                 android:id="@+id/btnNextComic"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/screen_comic_imgwidth"
+                android:layout_height="@dimen/screen_comic_imgheight"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/nexticon"/>

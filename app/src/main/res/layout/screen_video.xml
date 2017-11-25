@@ -5,10 +5,10 @@
     android:background="@drawable/bg_main"
     >
     <TextView
-        android:layout_marginTop="10dp"
-        android:textSize="30sp"
-        android:textColor="@color/title_text"
-        android:background="@color/title_bg"
+        android:layout_marginTop="@dimen/screen_video_margintop"
+        android:textSize="@dimen/screen_video_textsize"
+        android:textColor="#004cff"
+        android:background="#c800bdea"
         android:gravity="center"
         android:id="@+id/tvVideoName"
         android:text="@string/video_title"
@@ -20,15 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <AutoCompleteTextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/screen_video_marginleft"
+            android:layout_marginRight="@dimen/screen_video_marginright"
             android:id="@+id/autoSearch"
             android:hint="@string/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Spinner
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/screen_video_marginleft"
+            android:layout_marginRight="@dimen/screen_video_marginright"
             android:id="@+id/spinnerVideo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></Spinner>
