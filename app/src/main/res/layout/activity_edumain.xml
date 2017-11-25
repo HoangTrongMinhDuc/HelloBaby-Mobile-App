@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TOÁN HỌC"
+        android:text="@string/math_title"
         android:layout_gravity="center"
         android:layout_weight="0"
         android:textSize="@dimen/edumain_textsize"
@@ -25,10 +25,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="@dimen/edumain_paddingtop">
-
-
-
-
         <Button
             android:id="@+id/btnDem"
             android:layout_width="@dimen/edumain_btnwidth"
@@ -36,7 +32,7 @@
             android:layout_gravity="center"
             android:background="@drawable/butn"
             android:onClick="btnDem"
-            android:text="BÀI TOÁN ĐẾM"
+            android:text="@string/count_math"
             android:layout_marginTop="@dimen/edumain_btnmargintop"/>
 
         <Button
@@ -45,7 +41,7 @@
             android:layout_height="@dimen/edumain_btnheight"
             android:layout_gravity="center"
             android:background="@drawable/butn"
-            android:text="BÀI TOÁN CỘNG"
+            android:text="@string/add_math"
             android:layout_marginTop="@dimen/edumain_btnmargintop"
             android:onClick="btnCong"/>
         <Button
@@ -54,7 +50,7 @@
             android:layout_height="@dimen/edumain_btnheight"
             android:layout_gravity="center"
             android:background="@drawable/butn"
-            android:text="BÀI TOÁN TRỪ"
+            android:text="@string/sub_math"
             android:layout_marginTop="25dp"
             android:onClick="btnTru"/>
         <ImageView
@@ -71,7 +67,7 @@
             android:layout_height="@dimen/edumain_btnheight"
             android:layout_gravity="center"
             android:background="@drawable/butn"
-            android:text="BÀI TOÁN NHÂN"
+            android:text="@string/mul_math"
             android:layout_marginTop="@dimen/edumain_btnmargintop2"
             android:onClick="btnNhan"/>
         <Button
@@ -80,7 +76,7 @@
             android:layout_height="@dimen/edumain_btnheight"
             android:layout_gravity="center"
             android:background="@drawable/butn"
-            android:text="BÀI TOÁN CHIA"
+            android:text="@string/div_math"
             android:layout_marginTop="@dimen/edumain_btnmargintop3"
             android:onClick="btnChia"/>
 

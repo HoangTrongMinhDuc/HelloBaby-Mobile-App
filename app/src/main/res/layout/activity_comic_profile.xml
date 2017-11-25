@@ -24,7 +24,7 @@
             android:layout_height="match_parent">
                 <TextView
                     android:id="@+id/tvNameComic_profile"
-                    android:text="Ten truyen"
+                    android:text="@string/comic_title_player"
                     android:textColor="#004cff"
                     android:textSize="@dimen/comic_profile_textsize"
                     android:layout_marginTop="@dimen/comic_profile_margintop"
@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/tvDescription"
-                    android:text="Day la mo ta ve truyen"
+                    android:text="@string/comic_description"
                     android:paddingLeft="@dimen/comic_profile_paddingleft"
                     android:paddingRight="@dimen/comic_profile_paddingright"
                     android:maxLines = "20"
@@ -44,7 +44,7 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
-        android:text="Danh sách chương truyện"
+        android:text="@string/chapters_list"
         android:textSize="15dp"
         android:textColor="#4800ff"
         android:background="#cb78c4fa"

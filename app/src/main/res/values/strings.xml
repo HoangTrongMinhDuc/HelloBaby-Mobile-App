@@ -9,5 +9,37 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="english_title">Tiếng anh</string>
+    <string name="alphabet_title">ALPHABET</string>
+    <string name="number_english">NUMBER</string>
+    <string name="pratice_english">PRATICE</string>
+    <string name="math_title">TOÁN HỌC</string>
+    <string name="count_math">BÀI TOÁN ĐẾM</string>
+    <string name="count_exam">Toán đếm</string>
+    <string name="score_edu">SCORE</string>
+    <string name="input_edu">Nhập kết quả của em: </string>
+    <string name="mul_edu">Toán nhân</string>
+    <string name="add_math">BÀI TOÁN CỘNG</string>
+    <string name="sub_math">BÀI TOÁN TRỪ</string>
+    <string name="mul_math">BÀI TOÁN NHÂN</string>
+    <string name="div_math">BÀI TOÁN CHIA</string>
+    
+    <string name="comic_title_player">Tên Truyện</string>
+    <string name="chapter_title_player">Tên Chương</string>
+    <string name="comic_description">Description</string>
+    <string name="chapters_list">Danh sách chương truyện</string>
+    
+    <string name="username_login">Username</string>
+    <string name="password_login">Passwords</string>
+    <string name="create_login">CREATE</string>
+    <string name="recommend_have_acc">Have an account?</string>
+    <string name="login_login">LOGIN</string>
+    <string name="recommend_create">Don\'t have an account?</string>
+    <string name="signup_signup">SIGN UP</string>
+    <string name="phone_create">Phone</string>
+    <string name="phone_son">Child Number</string>
+    <string name="ok">OK</string>
 
+    <string name="mother_item">Cho mẹ</string>
+    <string name="son_item">Cho Bé</string>
 </resources>

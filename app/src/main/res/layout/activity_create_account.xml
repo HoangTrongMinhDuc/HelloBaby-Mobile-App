@@ -8,9 +8,6 @@
     tools:context="com.example.admin.xmltest.CreateAccountActivity"
     android:background="@mipmap/bg_giaoduc"
     >
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,7 +47,7 @@
                 android:drawablePadding="@dimen/create_account_edtpadding"
                 android:drawableTint="@color/colorPink"
                 android:ems="10"
-                android:hint="Username"
+                android:hint="@string/username_login"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorBlue" />
@@ -66,7 +63,7 @@
                 android:drawablePadding="5dp"
                 android:drawableTint="@color/colorPink"
                 android:ems="10"
-                android:hint="Passwords"
+                android:hint="@string/password_login"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorBlue" />
@@ -79,7 +76,7 @@
                 android:layout_marginTop="@dimen/create_account_edtmargintop2"
                 android:layout_weight="0.00"
                 android:background="@color/colorPink"
-                android:text="CREATE"
+                android:text="@string/create_login"
                 android:textColor="@android:color/background_light" />
         </LinearLayout>
     </LinearLayout>
@@ -99,7 +96,7 @@
 
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Have an account?"
+            android:text="@string/recommend_have_acc"
             android:textColor="@android:color/background_dark" />
 
         <TextView
@@ -108,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginLeft="@dimen/create_account_twmarginleft"
-            android:text="LOGIN"
+            android:text="@string/login_login"
             android:textColor="@android:color/background_dark"
             android:textStyle="bold" />
 

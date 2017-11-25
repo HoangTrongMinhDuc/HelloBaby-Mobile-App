@@ -23,7 +23,7 @@
             android:layout_gravity="center_vertical"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="Toán nhân"
+            android:text="@string/mul_edu"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="30dp"
@@ -90,13 +90,13 @@
                 android:id="@+id/edtResultp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nhập kết quả của em: "/>
+                android:hint="@string/input_edu"/>
             <Button
 
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="OK"
+                android:text="@string/ok"
                 android:textSize="20dp"
                 android:onClick="checkp"/>
         </LinearLayout>

@@ -40,7 +40,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="0.01"
                 android:background="@color/colorPink"
-                android:text="Cho mẹ"
+                android:text="@string/mother_item"
                 android:textColor="@android:color/background_light"
 
 
@@ -54,7 +54,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.01"
                 android:background="@color/colorPink"
-                android:text="Cho Bé"
+                android:text="@string/son_item"
                 android:textColor="@android:color/background_light"/>
 
             <Space

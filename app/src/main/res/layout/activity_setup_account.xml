@@ -37,7 +37,7 @@
                 android:layout_weight="0.01"
                 android:drawableTint="@color/colorPink"
                 android:ems="10"
-                android:hint="Username"
+                android:hint="@string/username_login"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorBlue" />
@@ -51,7 +51,7 @@
                 android:layout_weight="0.01"
                 android:drawableTint="@color/colorPink"
                 android:ems="10"
-                android:hint="Phone"
+                android:hint="@string/phone_create"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorBlue" />
@@ -65,7 +65,7 @@
                 android:layout_weight="0.01"
                 android:drawableTint="@color/colorPink"
                 android:ems="10"
-                android:hint="Child Number"
+                android:hint="@string/phone_son"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorBlue" />
@@ -78,7 +78,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_weight="0.00"
                 android:background="@color/colorPink"
-                android:text="OK"
+                android:text="@string/ok"
                 android:textColor="@android:color/background_light" />
 
         </LinearLayout>
