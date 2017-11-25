@@ -40,7 +40,7 @@
                 android:drawableLeft="@drawable/accountimg"
                 android:drawablePadding="@dimen/main_padding"
                 android:drawableTint="@color/colorPink"
-                android:hint="Username"
+                android:hint="@string/username_login"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorBlue" />
@@ -55,7 +55,7 @@
                 android:drawableLeft="@drawable/accountimg"
                 android:drawablePadding="@dimen/main_padding"
                 android:drawableTint="@color/colorPink"
-                android:hint="Passwords"
+                android:hint="@string/password_login"
                 android:inputType="textPassword"
                 android:textColor="@color/colorBlue"
                 android:textColorHint="@color/colorBlue" />
@@ -68,7 +68,7 @@
                 android:layout_marginTop="@dimen/main_margin_top"
                 android:layout_weight="0.00"
                 android:background="@color/colorPink"
-                android:text="Login"
+                android:text="@string/login_login"
                 android:textColor="@android:color/background_light" />
 
         </LinearLayout>
@@ -89,7 +89,7 @@
 
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Don't have an account?"
+            android:text="@string/recommend_create"
             android:textColor="@android:color/background_dark" />
 
         <TextView
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginLeft="@dimen/main_margin_left"
-            android:text="SIGN UP"
+            android:text="@string/signup_signup"
             android:textColor="@android:color/background_dark"
             android:textStyle="bold" />
     </LinearLayout>

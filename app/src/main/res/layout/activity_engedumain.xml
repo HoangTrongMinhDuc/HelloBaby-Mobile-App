@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tiếng anh"
+        android:text="@string/english_title"
         android:layout_gravity="center"
         android:layout_weight="0"
         android:textSize="30dp"
@@ -31,7 +31,7 @@
             android:layout_gravity="center"
             android:background="@drawable/butn"
             android:onClick="btnAlphabet"
-            android:text="ALPHABET"
+            android:text="@string/alphabet_title"
             android:layout_marginTop="70dp"/>
 
         <Button
@@ -42,7 +42,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/butn"
             android:onClick="btnNumber"
-            android:text="NUMBER" />
+            android:text="@string/number_english" />
 
         <ImageView
 
@@ -58,7 +58,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:background="@drawable/butn"
-            android:text="PRATICE"
+            android:text="@string/pratice_english"
             android:layout_marginTop="2dp"
             android:onClick="btnPratice"/>
 

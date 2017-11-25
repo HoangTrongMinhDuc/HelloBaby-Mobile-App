@@ -45,6 +45,7 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
         setContentView(R.layout.activity_youtube_player);
         addControls();
         addData();
+        catchData();
         getData();
         addEvents();
     }

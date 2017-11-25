@@ -15,7 +15,7 @@
         android:layout_centerVertical="true">
         <TextView
             android:paddingLeft="@dimen/item_horizontal_tvpaddingleft"
-            android:text="Loai video"
+            android:text="@string/category_video"
             android:textSize="@dimen/item_horizontal_tvtextsize"
             android:textColor="@color/colorPrimaryDark"
             android:background="#5aff4e"

@@ -22,7 +22,7 @@
             android:layout_gravity="center_vertical"
             android:textSize="@dimen/alphabet_text_size"
             android:textStyle="bold"
-            android:text="ALPHABET"
+            android:text="@string/alphabet_title"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="@dimen/alphabet_img_width"

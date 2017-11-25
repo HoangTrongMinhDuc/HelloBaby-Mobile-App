@@ -23,7 +23,7 @@
             android:layout_gravity="center_vertical"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:text="Toán đếm"
+            android:text="@string/count_exam"
             android:layout_weight="1"/>
         <ImageView
             android:layout_width="30dp"
@@ -63,7 +63,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="SCORE"
+                android:text="@string/score_edu"
                 android:textSize="30dp"
                 android:textColor="#0B0B0B"
                 android:gravity="center"
@@ -85,13 +85,13 @@
                 android:id="@+id/edtResultd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nhập kết quả của em: "/>
+                android:hint="@string/input_count"/>
             <Button
                 android:onClick="check"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="OK"
+                android:text="@string/ok"
                 android:textSize="20dp"/>
         </LinearLayout>
     </LinearLayout>
