@@ -39,7 +39,7 @@
                 android:layout_height="50dp" />
             <TextView
                 android:layout_marginLeft="20dp"
-                android:text="Yêu thích video"
+                android:text="@string/like_video"
                 android:textColor="#ff9900"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
         <Button
             android:id="@+id/btnBackvideo"
             android:layout_weight="6"
-            android:text="Trở về"
+            android:text="@string/back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

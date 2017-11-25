@@ -42,4 +42,9 @@
 
     <string name="mother_item">Cho mẹ</string>
     <string name="son_item">Cho Bé</string>
+
+    <string name="like_video">Yêu thích video</string>
+    <string name="back">Trở về</string>
+
+    <string name="find">Tìm</string>
 </resources>
