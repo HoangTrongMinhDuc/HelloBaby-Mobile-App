@@ -46,10 +46,13 @@ public class GridVideoAdapter extends ArrayAdapter<Video> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Video video = mVideo.get(position);
+        //lay title
         String title = video.getTitle();
+        //rut gon title
         if(video.getTitle().length()>=20){
             title = title.copyValueOf(title.toCharArray(),0,17) + "...";
         }
+        //set data cho view
         viewHolder.tvtitle.setText(title);
         Picasso.with(mContext).load("https://i.ytimg.com/vi/"+video.getId()+"/hqdefault.jpg").into(viewHolder.imgvideo1);
 

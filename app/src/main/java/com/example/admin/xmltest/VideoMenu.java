@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.admin.xmltest.VideoYoutube.VerticalAdapter;
 import com.example.admin.xmltest.VideoYoutube.ViewAllOnCategory;
@@ -39,7 +38,6 @@ import java.util.List;
 public class VideoMenu extends Fragment{
     private VerticalAdapter mAdapter;
     private List<Category> categories;
-    private List<Category> tempList;
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
     private TextView tvVideoName;
@@ -48,127 +46,123 @@ public class VideoMenu extends Fragment{
     private Category favorite;
     private List<String> videoList;
     private AutoCompleteTextView autoSearch;
+    private List<String> spinnerList;
+    private FirebaseAuth mAuth;
+    private ArrayAdapter titleList;
+    private String idAcc;
+    private List<Video> videoF;
+    private ArrayAdapter<String> mAdapterS;
 
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
         View view=inflater.inflate(R.layout.screen_video, container, false);
+        addControls(view);
+        setView();
+        setData();
+        getData();
+        addEvents();
+        return view;
+    }
 
+    private void addControls(View view){
+        //import cac view
+        recyclerView = (RecyclerView) view.findViewById(R.id.vertical_list_video);
+        tvVideoName = (TextView) view.findViewById(R.id.tvVideoName);
+        spinner = (Spinner) view.findViewById(R.id.spinnerVideo);
+        autoSearch = (AutoCompleteTextView) view.findViewById(R.id.autoSearch);
         //set dialog khi dang load du lieu
         progressDialog=new Dialog(getContext(),R.style.Theme_AppCompat_Dialog);
         progressDialog.setContentView(R.layout.progress_dialog);
         progressDialog.show();
         progressDialog.setCanceledOnTouchOutside(false);
 
-        //import cac view
-        recyclerView = (RecyclerView) view.findViewById(R.id.vertical_list_video);
-        tvVideoName = (TextView) view.findViewById(R.id.tvVideoName);
-        spinner = (Spinner) view.findViewById(R.id.spinnerVideo);
-        autoSearch = (AutoCompleteTextView) view.findViewById(R.id.autoSearch);
-        //set font cho tieu de
+    }
+
+    private void setView(){
+        //set font chu cho man hinh
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/NABILA.TFF");
         tvVideoName.setTypeface(typeface);
         tvVideoName.setText("Kho video");
-//        searchView = (SearchView)view.findViewById(R.id.searchVideo);
+    }
+
+    private void setData(){
         //tao danh sach cac tham so du lieu dau vao
         categories = new ArrayList<>(); //list danh sach the loai dung cho recycler
-        tempList = new ArrayList<>();
-        final List<String> spinnerList = new ArrayList<>();
+        spinnerList = new ArrayList<>();
         videoList = new ArrayList<>();
         //đưa dữ liệu vào adapter
         mAdapter = new VerticalAdapter(getActivity(),categories, "Video");
         //dua du liệu vào adapter cua spinner
-        ArrayAdapter<String> mAdapterS = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,spinnerList);
+        mAdapterS = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item,spinnerList);
         mAdapterS.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         //dua du lieu vao adapter cua spinner
         spinnerList.add("Chọn thể loại");
         spinner.setAdapter(mAdapterS);
-
         //set bố cục dọc cho adapter dọc
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
         //set du liệu hiển thị của recycler
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(mAdapter);
-
-        //lay du lieu tu firebase
+        //set du lieu tu firebase xuong
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        if(mDatabase == null ) Toast.makeText(getActivity(),"loi firebase",Toast.LENGTH_SHORT).show();
-        else
-        {
-            mDatabase.child("Category").addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Category category = dataSnapshot.getValue(Category.class); //get doi tuong category ve
-                    categories.add(category); //them doi tuong vao list
-                    spinnerList.add(category.getNameType());
-                    for (int i = 0; i < category.getVideos().size(); i++){
-                        videoList.add(category.getVideos().get(i).getTitle());
-                    }
-                    //sap xep lai doi tuong trong danh sach
-//                    Collections.sort(categories, new Comparator<Category>() {
-//                        @Override
-//                        public int compare(Category o1, Category o2) {
-//                            return o1.getType().compareTo(o2.getType());
-//                        }
-//                    });
-
-                    mAdapter.addItems(categories);  //them doi tuong vao adapter
-                    mAdapter.notifyDataSetChanged(); //notify
-                    progressDialog.dismiss(); //neu da load xong du lieu thi tat dialog
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if(position == 0){
-                        return;
-                    }
-                    else {
-
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-        }
-
-        //lay id cua acc
-        FirebaseAuth mAuth;
         mAuth = FirebaseAuth.getInstance();
-        String idAcc = mAuth.getCurrentUser().getUid().toString();
+        //adapter title cho spinner
+        titleList = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, videoList);
+        //set adapter cho thanh search
+        autoSearch.setAdapter(titleList);
+        //lay id cua acc
+        idAcc = mAuth.getCurrentUser().getUid().toString();
+        //tao danh sach yeu thich
         favorite = new Category();
         favorite.setNameType("Đã yêu thích");
-        final List<Video> videoF = new ArrayList<>();
+        //danh sach video yeu thich
+        videoF = new ArrayList<>();
         favorite.setVideos(videoF);
+        //them the loai yeu thich vao
         categories.add(favorite);
 
+    }
+
+    private void getData(){
+        //lay du lieu tu firebase
+        mDatabase.child("Category").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Category category = dataSnapshot.getValue(Category.class); //get doi tuong category ve
+                categories.add(category); //them doi tuong vao list
+                spinnerList.add(category.getNameType());
+                for (int i = 0; i < category.getVideos().size(); i++){
+                    videoList.add(category.getVideos().get(i).getTitle());
+                }
+                mAdapter.addItems(categories);  //them doi tuong vao adapter
+                mAdapter.notifyDataSetChanged(); //notify
+                progressDialog.dismiss(); //neu da load xong du lieu thi tat dialog
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //lay du lieu cac video yeu thich ve
         mDatabase.child("favorite").child(idAcc).child("Video").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -185,6 +179,7 @@ public class VideoMenu extends Fragment{
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
+                //khi unlike video thi xoa video do ra khoi danh sach
                 Video videoX = dataSnapshot.getValue(Video.class);
                 for (int i = 0; i < videoF.size(); i++){
                     if (videoX.getId() == videoF.get(i).getId()){
@@ -205,7 +200,9 @@ public class VideoMenu extends Fragment{
 
             }
         });
+    }
 
+    private void addEvents(){
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -231,9 +228,6 @@ public class VideoMenu extends Fragment{
             }
         });
 
-
-        final ArrayAdapter titleList = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, videoList);
-        autoSearch.setAdapter(titleList);
         autoSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -254,6 +248,5 @@ public class VideoMenu extends Fragment{
                 }
             }
         });
-        return view;
     }
 }

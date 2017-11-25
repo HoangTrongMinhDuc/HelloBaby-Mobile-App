@@ -22,25 +22,40 @@ public class ViewAllComic extends AppCompatActivity {
     private GridView gridView;
     private List<Truyen> truyenList;
     private DatabaseReference mDatabase;
+    private ViewAllAdapter mAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_view_all_on_category);
+        addControls();
+        addData();
+        setView();
+        getData();
+    }
+
+    private void addControls(){
         tvName = (TextView)findViewById(R.id.typeName);
         gridView = (GridView)findViewById(R.id.GridVideo);
+    }
+
+    private void addData(){
         truyenList = new ArrayList<>();
-
-        tvName.setText("Truyện Tranh");
-        Typeface typeface = Typeface.createFromAsset(ViewAllComic.this.getAssets(), "fonts/NABILA.TFF");
-        tvName.setTypeface(typeface);
-
-
-        final ViewAllAdapter mAdapter = new ViewAllAdapter(ViewAllComic.this, R.layout.item_truyentranh,truyenList);
+        mAdapter = new ViewAllAdapter(ViewAllComic.this, R.layout.item_truyentranh,truyenList);
         gridView.setNumColumns(3);
         gridView.setAdapter(mAdapter);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    private void setView(){
+        tvName.setText("Truyện Tranh");
+        Typeface typeface = Typeface.createFromAsset(ViewAllComic.this.getAssets(), "fonts/NABILA.TFF");
+        tvName.setTypeface(typeface);
+    }
+
+    private void getData(){
+        //lay du lieu cac truyen tranh
         mDatabase.child("Comic").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -73,6 +88,5 @@ public class ViewAllComic extends AppCompatActivity {
 
             }
         });
-
     }
 }

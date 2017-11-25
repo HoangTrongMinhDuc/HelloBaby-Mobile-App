@@ -38,32 +38,51 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
     private List<String> mListLike;
     private String idAcc;
     private String typeVideo;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_player);
+        addControls();
+        addData();
+        getData();
+        addEvents();
+    }
+
+    private void addControls(){
         ytPlayer = (YouTubePlayerView) findViewById(R.id.ytPlayer);
+        likeVideo = (LinearLayout)findViewById(R.id.btnLike);
+        imgLike = (ImageView)findViewById(R.id.imgLike);
+        tvTieude = (TextView)findViewById(R.id.tvTieudevideo);
         ytPlayer.initialize(API_KEY_YT, this);
+        btnBack = (Button)findViewById(R.id.btnBackvideo);
+    }
+
+    private void catchData(){
+        //bat du lieu chuyen qua
         Intent intent = getIntent();
         id = intent.getStringExtra("ID");
         title = intent.getStringExtra("TITLE");
         typeVideo = intent.getStringExtra("TYPE");
-        likeVideo = (LinearLayout)findViewById(R.id.btnLike);
-        imgLike = (ImageView)findViewById(R.id.imgLike);
+    }
 
+    private void addData(){
+        //tao danh sach video da like
         mListLike = new ArrayList<>();
-
-        //lay id cua acc
-        FirebaseAuth mAuth;
+        //lay id cua acc va firebase
         mAuth = FirebaseAuth.getInstance();
         idAcc = mAuth.getCurrentUser().getUid().toString();
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    private void getData(){
+        //lay du lieu video da like va add vao danh sach da like
         mDatabase.child("favorite").child(idAcc).child(typeVideo).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String idVideo = dataSnapshot.getKey();
                 mListLike.add(idVideo);
+                //neu video da like thi set man hinh qua trang thai da like
                 if(mListLike.contains(id)){
                     imgLike.setImageResource(R.mipmap.like);
                     isLike = true;
@@ -90,8 +109,12 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
 
             }
         });
+    }
 
-
+    private void addEvents(){
+        //set title video
+        tvTieude.setText(title);
+        //bat su kien nhan like
         likeVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,20 +131,16 @@ public class YoutubePlayer extends YouTubeBaseActivity implements YouTubePlayer.
                     mDatabase.child("favorite").child(idAcc).child(typeVideo).child(id).setValue(video);
                     Toast.makeText(YoutubePlayer.this, "Đã thêm vào danh sách yêu thích!", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-        tvTieude = (TextView)findViewById(R.id.tvTieudevideo);
-        tvTieude.setText(title);
-        btnBack = (Button)findViewById(R.id.btnBackvideo);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
     }
+
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {

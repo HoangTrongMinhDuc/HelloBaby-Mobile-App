@@ -21,28 +21,41 @@ public class ComicPlayer extends AppCompatActivity {
     private TextView tvName, tvChapter;
     private DatabaseReference mDatabase;
     private List<String> mList;
+    private String name;
+    private int id;
+    private ComicPlayerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_player);
+        addControls();
+        catchData();
+        addData();
+        getData();
+        setView();
+    }
+
+    private void addControls(){
         lvComic = (ListView) findViewById(R.id.lvComic);
         tvName = (TextView) findViewById(R.id.tvNameComic);
         tvChapter = (TextView) findViewById(R.id.tvNameChapter);
+    }
+
+    private void catchData(){
         Intent intent = getIntent();
-        String name = intent.getStringExtra("TRUYEN");
-        int id = intent.getIntExtra("CHUONG",0);
-        tvName.setText(name);
+        name = intent.getStringExtra("TRUYEN");
+        id = intent.getIntExtra("CHUONG",0);
+    }
 
+    private void addData(){
         mList = new ArrayList<>();
-
-        final ArrayList<String> arrLink = new ArrayList<>();
-        final ComicPlayerAdapter mAdapter = new ComicPlayerAdapter(this,R.layout.item_comic_pic, mList);
+        mAdapter = new ComicPlayerAdapter(this,R.layout.item_comic_pic, mList);
         lvComic.setAdapter(mAdapter);
-        String numChapter = (id+1) +"";
-        tvChapter.setText("Chương "+ numChapter);
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    private void getData(){
         mDatabase.child("Comic").child(name).child("chuongs").child(id+"").child("listLink")
                 .addChildEventListener(new ChildEventListener() {
                     @Override
@@ -72,5 +85,11 @@ public class ComicPlayer extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void setView(){
+        tvName.setText(name);
+        String numChapter = (id + 1) + "";
+        tvChapter.setText("Chương "+ numChapter);
     }
 }

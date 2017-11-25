@@ -76,14 +76,15 @@ public class HorizontalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder rawHolder, final int position) {
         final ItemViewHolder holder = (ItemViewHolder) rawHolder;
-        //nếu title quá dài thì thu gọn
         final Video current =  mDataList.get(position);
         String title = current.getTitle();
+        //nếu title quá dài thì thu gọn
         if(title.length() >= 20)
             title =  title.copyValueOf(title.toCharArray(),0,16)+"...";
         holder.text.setText(title); //set title cho video
         holder.itemView.setTag(position);
         Picasso.with(mContext).load("https://i.ytimg.com/vi/"+current.getId()+"/hqdefault.jpg").into(holder.img);
+        //bat su kien nhan vao video
         holder.itemVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

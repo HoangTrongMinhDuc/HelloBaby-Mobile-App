@@ -31,26 +31,47 @@ public class ComicProfile extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String description;
     private List<String> listChapter;
+    private Truyen truyen;
+    private ArrayAdapter arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_profile);
+        addControls();
+        addData();
+        catchData();
+        setView();
+        getData();
+        addEvents();
+    }
 
+    private void addControls(){
         imgThum = (ImageView) findViewById(R.id.imgThumbnailComic);
         tvName = (TextView) findViewById(R.id.tvNameComic_profile);
         tvDescription = (TextView) findViewById(R.id.tvDescription);
         lvChapter = (ListView) findViewById(R.id.lvChapter);
-        listChapter = new ArrayList<>();
-        final ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,listChapter);
-        lvChapter.setAdapter(arrayAdapter);
-        final Intent intent = getIntent();
-        final Truyen truyen = (Truyen) intent.getSerializableExtra("TRUYEN");
+    }
 
+    private void addData(){
+        listChapter = new ArrayList<>();
+        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,listChapter);
+        lvChapter.setAdapter(arrayAdapter);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    private void catchData(){
+        final Intent intent = getIntent();
+        truyen = (Truyen) intent.getSerializableExtra("TRUYEN");
+    }
+
+    private void setView(){
         tvName.setText(truyen.getName());
         tvDescription.setText(truyen.getDescription());
         Picasso.with(ComicProfile.this).load(truyen.getThumbnail()).into(imgThum);
         tvDescription.setMovementMethod(new ScrollingMovementMethod());
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    private void getData(){
         mDatabase.child("Comic").child(truyen.getName()).child("description")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -69,17 +90,9 @@ public class ComicProfile extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String idChapter = dataSnapshot.getKey().toString();
-//                String chapters = dataSnapshot.child("titleOfChapter").getValue().toString();
-//                Toast.makeText(ComicProfile.this, chapters,Toast.LENGTH_SHORT).show();
-//                float numberChapter = Float.parseFloat(dataSnapshot.child("numOfChapter").getValue().toString());
-//                if(chapter == ""){
-//                    chapter = "Chương " + numberChapter;
-//                }
                 String chapter = "Chương " + (Integer.parseInt(idChapter)+1);
                 listChapter.add(chapter);
                 arrayAdapter.notifyDataSetChanged();
-
-
             }
 
             @Override
@@ -102,8 +115,9 @@ public class ComicProfile extends AppCompatActivity {
 
             }
         });
+    }
 
-
+    private void addEvents(){
         lvChapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -113,7 +127,5 @@ public class ComicProfile extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
-
     }
 }

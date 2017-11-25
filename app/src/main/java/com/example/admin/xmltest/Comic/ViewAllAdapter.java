@@ -49,13 +49,16 @@ public class ViewAllAdapter extends ArrayAdapter<Truyen> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         final Truyen truyen = mTruyen.get(position);
-
+        //lay ten truyen
         String name = truyen.getName();
+        //rut gon ten truyen
         if(name.length() >= 10){
             name = name.copyValueOf(name.toCharArray(), 0, 10) + "...";
         }
+        //set data cho view
         viewHolder.tvName.setText(name);
         Picasso.with(this.mContext).load(truyen.getThumbnail()).into(viewHolder.imgThumb);
+        //bat su kien nhan chon truyen
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +67,6 @@ public class ViewAllAdapter extends ArrayAdapter<Truyen> {
                 mContext.startActivity(intent);
             }
         });
-
         return convertView;
     }
     public class ViewHolder {

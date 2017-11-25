@@ -46,18 +46,11 @@ public class ComicPlayerAdapter extends ArrayAdapter<String> {
         }
         String link = arrLink.get(position);
         int numPageOfChapter = arrLink.size();
-        int numPage = position +1;
+        int numPage = position + 1;
         viewHolder.tvPage.setText("Trang " + numPage + "/" + numPageOfChapter);
+        //thay the ky tu space thanh %20
         link = link.replace(" ","%20");
         Picasso.with(context).load(link).into(viewHolder.imgPic);
-//        ViewGroup.LayoutParams params = convertView.getLayoutParams();
-//        params.height = viewHolder.tvPage.getHeight() + viewHolder.imgPic.getHeight();
-//        convertView.setLayoutParams(params);
-//        final ViewGroup.LayoutParams params = convertView.getLayoutParams();
-//        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        convertView.setLayoutParams(params);
-
-
         return convertView;
     }
     public class ViewHolder {

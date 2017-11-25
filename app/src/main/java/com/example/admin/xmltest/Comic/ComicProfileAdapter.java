@@ -55,12 +55,16 @@ public class ComicProfileAdapter extends RecyclerView.Adapter<ComicProfileAdapte
     @Override
     public void onBindViewHolder(ComicProfileAdapter.DataViewHolder holder, final int position) {
         final Truyen truyen = truyens.get(position);
+        //ten truyen
         String name = truyen.getName();
+        //rut gon ten truyen
         if(name.length() >= 10){
             name = name.copyValueOf(name.toCharArray(), 0, 10) + "...";
         }
+        //set du lieu cho item
         holder.tvNameItem.setText(name);
         Picasso.with(this.mContext).load(truyen.getThumbnail()).into(holder.imgThumb);
+        //bat su kien khi chon truyen
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,7 +79,5 @@ public class ComicProfileAdapter extends RecyclerView.Adapter<ComicProfileAdapte
     public int getItemCount() {
         return truyens.size();
     }
-
-
 
 }
