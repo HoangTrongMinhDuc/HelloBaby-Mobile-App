@@ -33,7 +33,7 @@
                     android:paddingLeft="@dimen/screen_comic_paddingleft"
                     android:text="Truyện Tranh"
                     android:id="@+id/tvTruyentranh"
-                    android:textSize="@dimen/screen_comic_textsize2"
+                    android:textSize="@dimen/screen_comic_textsizel2"
                     android:textColor="@color/colorPrimaryDark"
                     android:background="#5aff4e"
                     android:layout_width="match_parent"

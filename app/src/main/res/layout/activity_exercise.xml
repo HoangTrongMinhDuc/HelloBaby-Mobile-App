@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="@mipmap/backgr"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
+        android:background="@color/activity_practice_line">
+        <!--android:onClick="showChooseTopic"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="Luyện tập"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:textSize="15dp"
+        android:text="Điền từ vào chỗ trống"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpExer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="SCORE"
+                android:textSize="30dp"
+                android:textColor="#0B0B0B"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:textColor="#0B0B0B"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/edtResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập kết quả của em: "/>
+            <Button
+                android:onClick="check"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="OK"
+                android:textSize="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

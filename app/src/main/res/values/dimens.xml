@@ -122,6 +122,7 @@
 
     <dimen name="screen_comic_textsize">30sp</dimen>
     <dimen name="screen_comic_textsize2">30sp</dimen>
+    <dimen name="screen_comic_textsizel2">15sp</dimen>
     <dimen name="screen_comic_paddingleft">20sp</dimen>
     <dimen name="screen_comic_margintop">10dp</dimen>
     <dimen name="screen_comic_imgwidth">50dp</dimen>
