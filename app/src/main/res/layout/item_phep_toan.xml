@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="abc"
-        android:textSize="50sp"
+        android:textSize="@dimen/item_phep_toan_textsize"
         android:gravity="center"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="@dimen/item_phep_toan_margintop"/>
 </LinearLayout>

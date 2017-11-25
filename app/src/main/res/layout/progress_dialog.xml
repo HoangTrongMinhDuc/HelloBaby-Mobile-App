@@ -11,8 +11,8 @@
         <!--android:layout_centerHorizontal="true"/>-->
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/imgRabit"
-        android:layout_height="100dp"
-        android:layout_width="100dp"
+        android:layout_height="@dimen/progress_dialog_gif_height"
+        android:layout_width="@dimen/progress_dialog_gif_width"
         android:src="@mipmap/icon_running_rabit_1"
         android:layout_centerHorizontal="true"
         />
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Chờ mình tí nhé.."
-        android:textSize="20sp"
+        android:textSize="@dimen/progress_dialog_textsize"
         android:gravity="center"
         android:textColor="#000000"/>
 

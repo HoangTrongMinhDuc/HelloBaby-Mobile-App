@@ -17,8 +17,8 @@
                 android:id="@+id/imgThumbComicItem"
                 android:scaleType="centerCrop"
                 android:background="#00FF00"
-                android:layout_width="110dp"
-                android:layout_height="140dp" />
+                android:layout_width="@dimen/item_truyentranh_imgwidth"
+                android:layout_height="@dimen/item_truyentranh_imgheight" />
             <TextView
                 android:id="@+id/tvNameComicItem"
                 android:text="Day la ten truyen"

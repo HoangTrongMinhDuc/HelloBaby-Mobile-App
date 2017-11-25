@@ -14,41 +14,41 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/man_hinh_chinh_imgwidth"
+            android:layout_height="@dimen/man_hinh_chinh_imgheight"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/man_hinh_chinh_margin"
+            android:layout_marginRight="@dimen/man_hinh_chinh_margin"
             android:background="@mipmap/logo"/>
         <Button
             android:id="@+id/btnGiaoDuc"
             android:onClick="chuyenGiaoDuc"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/man_hinh_chinh_btnheight"
             android:background="@mipmap/btn_giaoduc"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/man_hinh_chinh_margin"
+            android:layout_marginRight="@dimen/man_hinh_chinh_margin"
+            android:layout_marginTop="@dimen/man_hinh_chinh_margin"
             />
         <Button
             android:id="@+id/btnComic"
             android:onClick="chuyenTruyen"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/man_hinh_chinh_btnheight"
             android:background="@mipmap/btn_truyen"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/man_hinh_chinh_margin"
+            android:layout_marginRight="@dimen/man_hinh_chinh_margin"
+            android:layout_marginTop="@dimen/man_hinh_chinh_margin"
             />
         <Button
             android:id="@+id/btnVideo"
             android:onClick="chuyenVideo"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/man_hinh_chinh_btnheight"
             android:background="@mipmap/btn_video"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="@dimen/man_hinh_chinh_margin"
+            android:layout_marginRight="@dimen/man_hinh_chinh_margin"
+            android:layout_marginTop="@dimen/man_hinh_chinh_margin"
             />
     </LinearLayout>
 

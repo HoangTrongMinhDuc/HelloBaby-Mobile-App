@@ -7,10 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-
-
-
-
     <dimen name="main_logo">100dp</dimen>
     <dimen name="main_edit_text">300dp</dimen>
     <dimen name="main_margin_top">20dp</dimen>
@@ -20,17 +16,9 @@
     <dimen name="main_button_height">30dp</dimen>
 
 
-
     <dimen name="frag_1_margin_top">20dp</dimen>
     <dimen name="frag_1_padding">20dp</dimen>
     <dimen name="frag_1_margin">10dp</dimen>
-
-
-
-
-
-
-
 
 
     <dimen name="alphabet_text_size">16sp</dimen>
@@ -61,7 +49,6 @@
     <dimen name="create_account_twmarginleft">5dp</dimen>
 
 
-
     <dimen name="edumain_textsize">30sp</dimen>
     <dimen name="edumain_tvmargintop">10dp</dimen>
     <dimen name="edumain_paddingtop">10dp</dimen>
@@ -87,6 +74,71 @@
     <dimen name="item_horizontal_recycleviewmargintop">5dp</dimen>
     <dimen name="item_horizontal_imgwidth">50dp</dimen>
     <dimen name="item_horizontal_imgheight">50dp</dimen>
+
+
+    <dimen name="item_alphabet_textsize">70dp</dimen>
+    <dimen name="item_alphabet_textsize2">40dp</dimen>
+    <dimen name="item_alphabet_margintop">50dp</dimen>
+
+
+    <dimen name="item_button_call_imgmargin">10dp</dimen>
+
+    <dimen name="item_comic_pic_width">350dp</dimen>
+    <dimen name="item_comic_pic_height">550dp</dimen>
+
+
+    <dimen name="item_dem_lymargintop">30dp</dimen>
+    <dimen name="item_dem_textsize">15sp</dimen>
+
+
+    <dimen name="item_number_textsize">80dp</dimen>
+    <dimen name="item_number_margintop">30dp</dimen>
+    <dimen name="item_number_textsize2">40dp</dimen>
+    <dimen name="item_number_textsize3">20dp</dimen>
+
+
+    <dimen name="item_phep_toan_textsize">50sp</dimen>
+    <dimen name="item_phep_toan_margintop">30sp</dimen>
+
+
+    <dimen name="item_truyentranh_imgheight">140dp</dimen>
+    <dimen name="item_truyentranh_imgwidth">110dp</dimen>
+
+
+    <dimen name="item_video_imgwidth">150dp</dimen>
+    <dimen name="item_video_imgheight">85dp</dimen>
+    
+    
+    <dimen name="man_hinh_chinh_imgwidth">200dp</dimen>
+    <dimen name="man_hinh_chinh_imgheight">50dp</dimen>
+    <dimen name="man_hinh_chinh_margin">20dp</dimen>
+    <dimen name="man_hinh_chinh_btnheight">100dp</dimen>
+
+    
+    <dimen name="progress_dialog_gif_height">100dp</dimen>
+    <dimen name="progress_dialog_gif_width">100dp</dimen>
+    <dimen name="progress_dialog_textsize">20sp</dimen>
+
+
+    <dimen name="screen_comic_textsize">30sp</dimen>
+    <dimen name="screen_comic_textsize2">30sp</dimen>
+    <dimen name="screen_comic_paddingleft">20sp</dimen>
+    <dimen name="screen_comic_margintop">10dp</dimen>
+    <dimen name="screen_comic_imgwidth">50dp</dimen>
+    <dimen name="screen_comic_imgheight">50dp</dimen>
+
+
+    <dimen name="screen_edu_imgwidth">200dp</dimen>
+    <dimen name="screen_edu_imgheight">50dp</dimen>
+    <dimen name="screen_edu_margin">20dp</dimen>
+    <dimen name="screen_edu_btnheight">100dp</dimen>
+
+
+    <dimen name="screen_video_margintop">10dp</dimen>
+    <dimen name="screen_video_textsize">30sp</dimen>
+    <dimen name="screen_video_marginleft">20dp</dimen>
+    <dimen name="screen_video_marginright">20dp</dimen>
+
 
 
 

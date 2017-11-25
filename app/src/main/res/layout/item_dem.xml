@@ -8,9 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="abc"
-        android:textSize="15sp"
+        android:textSize="@dimen/item_dem_textsize"
         android:gravity="center"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="@dimen/item_dem_lymargintop"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -17,8 +17,8 @@
                 android:id="@+id/imgvideo1"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:layout_width="150dp"
-                android:layout_height="85dp" />
+                android:layout_width="@dimen/item_video_imgwidth"
+                android:layout_height="@dimen/item_video_imgheight" />
             <TextView
                 android:id="@+id/tvTitle"
                 android:textColor="@color/colorPrimaryDark"
