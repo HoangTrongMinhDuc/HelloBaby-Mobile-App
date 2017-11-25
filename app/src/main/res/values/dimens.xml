@@ -67,6 +67,26 @@
     <dimen name="edumain_paddingtop">10dp</dimen>
     <dimen name="edumain_btnwidth">200dp</dimen>
     <dimen name="edumain_btnheight">40dp</dimen>
+    <dimen name="edumain_btnmargintop">20dp</dimen>
+    <dimen name="edumain_imgwidth">100dp</dimen>
+    <dimen name="edumain_imgheight">50dp</dimen>
+    <dimen name="edumain_imgmargintop">80dp</dimen>
+    <dimen name="edumain_btnmargintop2">2dp</dimen>
+    <dimen name="edumain_btnmargintop3">30dp</dimen>
+    <dimen name="edumain_btnmargintop4">24dp</dimen>
+
+    <dimen name="frag_view_all_on_categorypaddingtop">20dp</dimen>
+    <dimen name="frag_view_all_on_categorytextsize">30sp</dimen>
+    <dimen name="frag_view_all_on_categorypaddingleft">20dp</dimen>
+    <dimen name="frag_view_all_on_categorypaddingright">20dp</dimen>
+
+
+    <dimen name="item_horizontal_layoutheight">25dp</dimen>
+    <dimen name="item_horizontal_tvpaddingleft">25dp</dimen>
+    <dimen name="item_horizontal_tvtextsize">15dp</dimen>
+    <dimen name="item_horizontal_recycleviewmargintop">5dp</dimen>
+    <dimen name="item_horizontal_imgwidth">50dp</dimen>
+    <dimen name="item_horizontal_imgheight">50dp</dimen>
 
 
 

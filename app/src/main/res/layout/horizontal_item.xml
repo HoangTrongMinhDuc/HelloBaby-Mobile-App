@@ -5,7 +5,7 @@
     <Space
         android:id="@+id/space1"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="@dimen/item_horizontal_layoutheight" />
     <LinearLayout
         android:layout_below="@+id/space1"
         android:layout_width="match_parent"
@@ -14,9 +14,9 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true">
         <TextView
-            android:paddingLeft="20dp"
+            android:paddingLeft="@dimen/item_horizontal_tvpaddingleft"
             android:text="Loai video"
-            android:textSize="15dp"
+            android:textSize="@dimen/item_horizontal_tvtextsize"
             android:textColor="@color/colorPrimaryDark"
             android:background="#5aff4e"
             android:id="@+id/tvCategory"
@@ -25,14 +25,14 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/horizontal_list"
             android:layout_width="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/item_horizontal_recycleviewmargintop"
             android:layout_height="wrap_content"
             android:visibility="visible"/>
     </LinearLayout>
     <ImageView
         android:id="@+id/btnNext"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/item_horizontal_imgwidth"
+        android:layout_height="@dimen/item_horizontal_imgheight"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:src="@drawable/nexticon"/>
