@@ -43,8 +43,18 @@
     <string name="mother_item">Cho mẹ</string>
     <string name="son_item">Cho Bé</string>
 
+    <string name="category">Thể loại</string>
+    <string name="category_video">Loai video</string>
     <string name="like_video">Yêu thích video</string>
     <string name="back">Trở về</string>
+    <string name="page_comic">Số trang</string>
+    <string name="title_item_comic">Đây là tên truyện</string>
+    <string name="title_item_video">Tiêu đề video</string>
+    <string name="comic_title">Kho Truyện</string>
+    <string name="comic">Truyện Tranh</string>
+    <string name="video_title">Kho video</string>
+    <string name="search">Tìm kiếm</string>
 
+    <string name="waiting">Chờ mình tí nhé..</string>
     <string name="find">Tìm</string>
 </resources>

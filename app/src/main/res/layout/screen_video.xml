@@ -11,7 +11,7 @@
         android:background="#c800bdea"
         android:gravity="center"
         android:id="@+id/tvVideoName"
-        android:text="Kho video"
+        android:text="@string/video_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:id="@+id/autoSearch"
-            android:hint="Tìm kiếm"
+            android:hint="@string/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Spinner

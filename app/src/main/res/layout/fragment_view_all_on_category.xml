@@ -16,7 +16,7 @@
             <TextView
                 android:paddingTop="@dimen/frag_view_all_on_categorypaddingtop"
                 android:id="@+id/typeName"
-                android:text="Thể loại"
+                android:text="@string/category"
                 android:textSize="@dimen/frag_view_all_on_categorytextsize"
                 android:textColor="#0026ff"
                 android:gravity="center"

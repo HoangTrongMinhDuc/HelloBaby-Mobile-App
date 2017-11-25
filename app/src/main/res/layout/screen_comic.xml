@@ -19,7 +19,7 @@
             android:background="#c800bdea"
             android:gravity="center"
             android:id="@+id/tvTRUYEN"
-            android:text="Kho Truyện"
+            android:text="@string/comic_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <RelativeLayout
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:paddingLeft="20dp"
-                    android:text="Truyện Tranh"
+                    android:text="@string/comic"
                     android:id="@+id/tvTruyentranh"
                     android:textSize="15dp"
                     android:textColor="@color/colorPrimaryDark"
