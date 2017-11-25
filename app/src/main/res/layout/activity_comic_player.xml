@@ -16,7 +16,7 @@
             android:id="@+id/tvNameComic"
             android:text="@string/comic_title_player"
             android:textSize="@dimen/comic_player_textsize_big"
-            android:textColor="#8400ff"
+            android:textColor="@color/title_comic_text"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -25,7 +25,7 @@
             android:text="@string/chapter_title_player"
             android:gravity="center"
             android:textSize="@dimen/comic_player_textsize"
-            android:textColor="#a755ff"
+            android:textColor="@color/title_comic_chapter"
             android:paddingLeft="@dimen/comic_player_padding"
             android:paddingRight="@dimen/comic_player_padding"
             android:layout_width="match_parent"

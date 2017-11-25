@@ -25,7 +25,7 @@
                 <TextView
                     android:id="@+id/tvNameComic_profile"
                     android:text="@string/comic_title_player"
-                    android:textColor="#004cff"
+                    android:textColor="@color/title_text"
                     android:textSize="@dimen/comic_profile_textsize"
                     android:layout_marginTop="@dimen/comic_profile_margintop"
                     android:layout_marginLeft="@dimen/comic_profile_marginleft"
@@ -46,8 +46,8 @@
     <TextView
         android:text="@string/chapters_list"
         android:textSize="15dp"
-        android:textColor="#4800ff"
-        android:background="#cb78c4fa"
+        android:textColor="@color/text_list_chapter"
+        android:background="@color/bg_list_chapter"
         android:paddingLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

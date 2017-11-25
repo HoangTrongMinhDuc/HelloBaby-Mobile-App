@@ -85,7 +85,7 @@
                 android:id="@+id/edtResultd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/input_count"/>
+                android:hint="@string/input_edu"/>
             <Button
                 android:onClick="check"
                 android:layout_width="100dp"

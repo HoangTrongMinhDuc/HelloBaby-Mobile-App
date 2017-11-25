@@ -9,4 +9,16 @@
     <color name="colorPink">#f79db4</color>
     <color name="colorBlueLight">#b7e2f7</color>
 
+    <color name="title_text">#004cff</color>
+    <color name="title_bg">#c800bdea</color>
+    <color name="title_comic_text">#8400ff</color>
+    <color name="title_comic_chapter">#a755ff</color>
+    <color name="item_green_title">#5aff4e</color>
+    <color name="green_nothing">#00FF00</color>
+    <color name="page_num_bg">#f7dcd1d1</color>
+    <color name="yellow_like">#ff9900</color>
+    <color name="blue_text_video">#0048ad</color>
+    <color name="bg_list_chapter">#cb78c4fa</color>
+    <color name="text_list_chapter">#4800ff</color>
+
 </resources>

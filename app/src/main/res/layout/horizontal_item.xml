@@ -18,7 +18,7 @@
             android:text="@string/category_video"
             android:textSize="@dimen/item_horizontal_tvtextsize"
             android:textColor="@color/colorPrimaryDark"
-            android:background="#5aff4e"
+            android:background="@color/item_green_title"
             android:id="@+id/tvCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

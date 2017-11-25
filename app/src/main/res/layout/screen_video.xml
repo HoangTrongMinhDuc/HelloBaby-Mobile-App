@@ -7,8 +7,8 @@
     <TextView
         android:layout_marginTop="10dp"
         android:textSize="30sp"
-        android:textColor="#004cff"
-        android:background="#c800bdea"
+        android:textColor="@color/title_text"
+        android:background="@color/title_bg"
         android:gravity="center"
         android:id="@+id/tvVideoName"
         android:text="@string/video_title"

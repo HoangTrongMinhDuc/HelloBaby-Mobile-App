@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
-                android:background="#00FF00"
+                android:background="@color/green_nothing"
                 android:id="@+id/imgvideo1"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"

@@ -10,7 +10,7 @@
         android:id="@+id/tvPage"
         android:text="@string/page_comic"
         android:gravity="center"
-        android:background="#f7dcd1d1"
+        android:background="@color/page_num_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView

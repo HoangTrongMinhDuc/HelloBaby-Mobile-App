@@ -16,7 +16,7 @@
             <ImageView
                 android:id="@+id/imgThumbComicItem"
                 android:scaleType="centerCrop"
-                android:background="#00FF00"
+                android:background="@color/green_nothing"
                 android:layout_width="110dp"
                 android:layout_height="140dp" />
             <TextView
