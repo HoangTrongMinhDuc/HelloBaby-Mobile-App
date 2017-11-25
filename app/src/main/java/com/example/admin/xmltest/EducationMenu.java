@@ -3,18 +3,19 @@ package com.example.admin.xmltest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.admin.xmltest.English.EngEduMainActivity;
 import com.example.admin.xmltest.Math.EduMainActivity;
+import com.example.admin.xmltest.Vietnamese.VNEduMainActivity;
 
 
 public class EducationMenu extends Fragment{
-    Button btnTiengAnh, btnTienViet, btnToan;
+    Button btnTiengAnh, btnTiengViet, btnToan;
     @Nullable
     @Override
 
@@ -30,23 +31,30 @@ public class EducationMenu extends Fragment{
         btnToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(getActivity(),EduMainActivity.class);
+                Intent intent = new Intent(getActivity(),EduMainActivity.class);
                 getActivity().startActivity(intent);
             }
         });
         btnTiengAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(getActivity(),EngEduMainActivity.class);
+                Intent intent = new Intent(getActivity(),EngEduMainActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        btnTiengViet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),VNEduMainActivity.class);
                 getActivity().startActivity(intent);
             }
         });
     }
 
     private void addControls(View view) {
-        btnTiengAnh=(Button)view.findViewById(R.id.btnTiengAnh);
-        btnTienViet=(Button)view.findViewById(R.id.btnTiengViet);
-        btnToan=(Button)view.findViewById(R.id.btnToan);
+        btnTiengAnh = (Button)view.findViewById(R.id.btnTiengAnh);
+        btnTiengViet = (Button)view.findViewById(R.id.btnTiengViet);
+        btnToan = (Button)view.findViewById(R.id.btnToan);
 
     }
 

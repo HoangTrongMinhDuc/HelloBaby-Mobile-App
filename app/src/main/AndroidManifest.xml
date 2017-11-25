@@ -38,7 +38,6 @@
             android:name=".YoutubePlayer"
             android:screenOrientation="portrait" />
         <activity android:name=".VideoYoutube.ViewAllOnCategory" />
-
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
@@ -66,13 +65,11 @@
             android:name=".English.numberActivity"
             android:screenOrientation="portrait" />
 
-
         <receiver android:name=".SonReceiveAndSendBackService">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -84,7 +81,11 @@
 
         <activity android:name=".Comic.ComicPlayer" />
         <activity android:name=".Comic.ComicProfile" />
-        <activity android:name=".Comic.ViewAllComic"></activity>
+        <activity android:name=".Comic.ViewAllComic" />
+        <activity android:name=".Vietnamese.VNEduMainActivity" />
+        <activity android:name=".Vietnamese.BangChuCai.BangChuCai" />
+        <activity android:name=".Vietnamese.Vidu.Vidu" />
+        <activity android:name=".Vietnamese.Exercise.ExerciseActivity"></activity>
     </application>
 
 </manifest>
