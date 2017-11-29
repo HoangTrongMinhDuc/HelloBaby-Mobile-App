@@ -7,10 +7,20 @@ package com.example.admin.xmltest.English;
 public class Alphabet {
     private String content;
     private String spell;
+    private int status;
 
     public Alphabet(String content, String spell) {
         this.content = content;
         this.spell = spell;
+        this.status=0;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Alphabet() {

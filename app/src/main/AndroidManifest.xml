@@ -62,6 +62,9 @@
             android:name=".English.alphabetActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".English.praticeAlphabetActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".English.numberActivity"
             android:screenOrientation="portrait" />
 

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg_giaoduc"
+    android:background="@mipmap/backgr1"
     class="com.example.admin.xmltest.EducationMenu"
     android:padding="5dp"
     >

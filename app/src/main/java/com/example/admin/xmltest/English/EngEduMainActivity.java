@@ -31,6 +31,16 @@ public class EngEduMainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void btnPratice(View view) {
+        Intent intent = new Intent(EngEduMainActivity.this, praticeAlphabetActivity.class);
+        Bundle bundle = new Bundle();
+        // Các dữ liệu gửi kèm
+        bundle.putString("key1","PRONUNCIATION");
+        bundle.putString("key2", "ALPHA");
+        intent.putExtra("data",bundle);
+        startActivity(intent);
+
+    }
 
     public void btnNumber(View view) {
         Intent intent = new Intent(EngEduMainActivity.this, numberActivity.class);
@@ -42,6 +52,7 @@ public class EngEduMainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
     }
 
 

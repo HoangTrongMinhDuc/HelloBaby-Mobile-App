@@ -6,16 +6,17 @@
     >
 
 
+
     <TextView
-        android:id="@+id/tvAlphaa"
+        android:id="@+id/tvSpellpra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_weight="0.24"
-        android:textSize="70dp"
+        android:layout_weight="0.08"
         android:gravity="center"
+        android:text="TextView"
+        android:paddingTop="70dp"
         android:textColor="@color/colorPink"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"/>
+        android:textSize="@dimen/item_alphabet_textsize"
+        android:textStyle="bold" />
 
 </LinearLayout>

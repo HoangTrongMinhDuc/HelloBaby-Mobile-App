@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/backgr1">
+
+    <LinearLayout
+        android:id="@+id/layoutTopics"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
+        android:background="@color/activity_practice_line"
+        android:layout_marginTop="20dp">
+        <!--android:onClick="showChooseTopic"-->
+
+        <TextView
+            android:id="@+id/tvTopics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/alphabet_text_size"
+            android:textStyle="bold"
+            android:text="@string/alphabet_title"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Xem phiên âm, Nhấn nút nghe"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/blue_text_video"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/blue_text_video"
+        android:text="Hãy đoán xem là chữ cái nào nha"
+        android:textSize="20dp"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpAlphaPra"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSoundPra"
+                android:layout_width="@dimen/alphabet_btn_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/volume"
+                android:textSize="@dimen/alphabet_text_size" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/edtResulpra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_edu"/>
+                <Button
+                    android:onClick="checkpra"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/ok"
+                    android:textSize="20dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
