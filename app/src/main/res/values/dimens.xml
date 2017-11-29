@@ -88,7 +88,10 @@
 
 
     <dimen name="item_dem_lymargintop">30dp</dimen>
-    <dimen name="item_dem_textsize">15sp</dimen>
+    <dimen name="item_dem_textsize">20sp</dimen>
+
+    <dimen name="customtoast_width">300dp</dimen>
+    <dimen name="customtoast_height">200dp</dimen>
 
 
     <dimen name="item_number_textsize">80dp</dimen>

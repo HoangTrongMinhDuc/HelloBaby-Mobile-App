@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="5px"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/imgCustomToast"
+            android:layout_width="@dimen/customtoast_width"
+            android:layout_height="@dimen/customtoast_height"
+            android:layout_gravity="center"
+            android:background="@mipmap/customtoast_false"
+            android:layout_weight="1" />
+        />
+    </LinearLayout>
+
+</LinearLayout>

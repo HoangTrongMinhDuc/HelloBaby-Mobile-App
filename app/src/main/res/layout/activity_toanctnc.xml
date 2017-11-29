@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    android:background="@mipmap/backgr">
+    android:background="@mipmap/backgr1">
 
     <LinearLayout
         android:id="@+id/layoutTopics"
@@ -25,11 +25,7 @@
             android:textStyle="bold"
             android:text="@string/mul_edu"
             android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/muiten"/>
+
     </LinearLayout>
 
     <Space
@@ -37,7 +33,7 @@
         android:layout_height="20dp" />
 
     <TextView
-        android:id="@+id/tvCurrentOverTotal"
+        android:id="@+id/tvCurrentOverTotal1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30dp"
@@ -64,6 +60,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="SCORE"
@@ -73,9 +70,9 @@
 
                 android:background="@color/activity_practice_line"/>
             <TextView
+                android:id="@+id/tvScorectnc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="100"
                 android:textSize="30dp"
                 android:gravity="center"
                 android:textColor="#0B0B0B"

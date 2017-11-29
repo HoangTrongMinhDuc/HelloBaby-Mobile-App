@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,9 +37,13 @@ public class ToanctncActivity extends AppCompatActivity {
     private ViewPager mVPctnc;
     toanctncAdapter adapterctnc ;
     ArrayList<Toanctncbe10> mlist;
+    ArrayList<Toanctncbe10> mlist1;
     EditText edtResultp;
+    private TextView tvScore;
     private TextView tvCurrentOverTotal1;
     private TextView tvTopics;
+    private int score =0;
+    private  int check=0;
 
     @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
@@ -71,37 +78,34 @@ public class ToanctncActivity extends AppCompatActivity {
     }
 
     private void setDefault() {
+        tvScore.setText(""+score);
         Bundle extras = getIntent().getBundleExtra("data");
         String a1= extras.getString("key1");
         String a2 = extras.getString("key2");
         String a3 = extras.getString("key3");
         mVPctnc.setAdapter(adapterctnc);
-        mDatabase.child("MATH").child(a1).child(a2).addChildEventListener(new ChildEventListener(){
+        mDatabase.child("MATH").child(a1).child(a2).addValueEventListener(new ValueEventListener(){
 
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                long seed = System.nanoTime();
-                Collections.shuffle(mlist, new Random(seed));
-                Toanctncbe10 toanctncduoi10 = dataSnapshot.getValue(Toanctncbe10.class);
-                mlist.add(toanctncduoi10);
-                Collections.shuffle(mlist, new Random(seed));
-                adapterctnc.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot dt : dataSnapshot.getChildren()){
+                        Toanctncbe10 toanctncduoi10 = dt.getValue(Toanctncbe10.class);
+                        mlist1.add(toanctncduoi10);
+                        long seed = System.nanoTime();
+                        Collections.shuffle(mlist1, new Random(seed));
+                    }
+                    for( Toanctncbe10 tdItoX : mlist1){
+                        if (check==10) {
+                            check =0;
+                            break;
+                        }
+                        check++;
+                        mlist.add(tdItoX);
+                    }
+                    adapterctnc.notifyDataSetChanged();
+                }
 
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -116,10 +120,12 @@ public class ToanctncActivity extends AppCompatActivity {
         edtResultp= (EditText)findViewById(R.id.edtResultp);
         mVPctnc = (ViewPager) findViewById(R.id.vpPctnc);
         tvTopics=(TextView)findViewById(R.id.tvTopics);
+        tvScore=(TextView)findViewById(R.id.tvScorectnc);
     }
 
     private void init() {
         mlist = new ArrayList<Toanctncbe10>();
+        mlist1 = new ArrayList<Toanctncbe10>();
         adapterctnc = new toanctncAdapter(this, R.layout.item_phep_toan, mlist);
         mDatabase= FirebaseDatabase.getInstance().getReference();
     }
@@ -129,12 +135,34 @@ public class ToanctncActivity extends AppCompatActivity {
         if (mlist.get(mVPctnc.getCurrentItem()).getStatus() == 0) {
             mlist.get(mVPctnc.getCurrentItem()).setStatus(1);
             if (edtResultp.getText().toString().equals(mlist.get(mVPctnc.getCurrentItem()).getResult())) {
-                Toast.makeText(this, "Ket qua dung", Toast.LENGTH_SHORT).show();
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.custom_toasttrue, null);
+                Toast toast = new Toast(getApplicationContext());
+                //Set vị trí hiển thị cho Toast
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                //Thời gian hiển thị của Toast
+                toast.setDuration(Toast.LENGTH_LONG);
+                //Set layout mycustom_toast_border.xml cho Toast
+                toast.setView(layout);
+                //hiển thị Toast
+                toast.show();
+                score+=10;
+                tvScore.setText(""+score);
                 edtResultp.setText("");
                 mVPctnc.setCurrentItem(mVPctnc.getCurrentItem() + 1);
                 adapterctnc.notifyDataSetChanged();
             } else {
-                Toast.makeText(this, "Ket qua Sai", Toast.LENGTH_LONG).show();
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.custom_toastfalse, null);
+                Toast toast = new Toast(getApplicationContext());
+                //Set vị trí hiển thị cho Toast
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                //Thời gian hiển thị của Toast
+                toast.setDuration(Toast.LENGTH_SHORT);
+                //Set layout mycustom_toast_border.xml cho Toast
+                toast.setView(layout);
+                //hiển thị Toast
+                toast.show();
                 edtResultp.setText("");
                 mVPctnc.setCurrentItem(mVPctnc.getCurrentItem() + 1);
             }
@@ -144,7 +172,7 @@ public class ToanctncActivity extends AppCompatActivity {
     }
     private void setCurrentOverTotal(int position){
 
-        tvCurrentOverTotal1.setText((position + 1)+"/" + mlist.size());
+        tvCurrentOverTotal1.setText((position + 1)+"/" + 10);
     }
 
 }
