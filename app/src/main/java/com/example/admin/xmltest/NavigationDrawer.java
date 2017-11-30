@@ -104,7 +104,7 @@ public class NavigationDrawer extends AppCompatActivity
 
 
         //Tao fragment 1 ban dau khi vao
-        ChucNang1TestFrag fragment1=new ChucNang1TestFrag();
+        ChucNang1Frag fragment1=new ChucNang1Frag();
         android.support.v4.app.FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container,fragment1);
         fragmentTransaction.commit();
