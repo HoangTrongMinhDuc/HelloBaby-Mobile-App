@@ -156,7 +156,7 @@ public class ToanDem extends AppCompatActivity {
                 mVPdem.setCurrentItem(mVPdem.getCurrentItem() + 1);
             }
         }
-        else {Toast.makeText(this, "Da dien vao roi", Toast.LENGTH_LONG).show();
+        else {Toast.makeText(this, "ĐÃ ĐIỀN VÀO RỒI !!", Toast.LENGTH_LONG).show();
             mVPdem.setCurrentItem(mVPdem.getCurrentItem() + 1);
             edtResultd.setText("");}
     }

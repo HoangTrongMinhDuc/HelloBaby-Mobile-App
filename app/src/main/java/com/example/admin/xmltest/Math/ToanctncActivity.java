@@ -167,7 +167,7 @@ public class ToanctncActivity extends AppCompatActivity {
                 mVPctnc.setCurrentItem(mVPctnc.getCurrentItem() + 1);
             }
         }
-        else {Toast.makeText(this, "Da dien vao roi", Toast.LENGTH_LONG).show();
+        else {Toast.makeText(this, "ĐÃ ĐIỀN VÀO RỒI !!", Toast.LENGTH_LONG).show();
             mVPctnc.setCurrentItem(mVPctnc.getCurrentItem() + 1);}
     }
     private void setCurrentOverTotal(int position){
